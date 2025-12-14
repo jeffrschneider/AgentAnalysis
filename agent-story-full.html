@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Story: Full | HAP Analysis</title>
+    <meta name="description" content="Comprehensive Agent Story format for complex agents requiring detailed specifications.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(192, 132, 252, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(192, 132, 252, 0.3);
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .code-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #c084fc;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .code-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #c084fc;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .yaml-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #34d399;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .yaml-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #34d399;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .yaml-key { color: #38bdf8; }
+        .yaml-value { color: #a5f3fc; }
+        .yaml-comment { color: #6b7280; }
+
+        .diagram-block {
+            background: #0f172a;
+            border: 1px solid #374151;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+        .toc-link:hover {
+            color: #c084fc;
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="agent-stories.html" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Agent Stories
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-secondary">
+                <i class="fa-solid fa-layer-group"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Comprehensive Format</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                Agent Story: <span class="text-gradient">Full</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                For complex agents requiring detailed specifications, multi-skill workflows, and nuanced human collaboration.
+            </p>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <section class="py-8 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-6 rounded-2xl">
+                <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-list text-brand-secondary"></i>
+                    Contents
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="space-y-2">
+                        <a href="#philosophy" class="toc-link block text-gray-400 hover:text-brand-secondary">Philosophy</a>
+                        <a href="#core-format" class="toc-link block text-gray-400 hover:text-brand-secondary">The Core Format</a>
+                        <a href="#annotations" class="toc-link block text-gray-400 hover:text-brand-secondary">Structured Annotations</a>
+                    </div>
+                    <div class="space-y-2">
+                        <a href="#cardinality" class="toc-link block text-gray-400 hover:text-brand-secondary">Cardinality & Ownership</a>
+                        <a href="#example" class="toc-link block text-gray-400 hover:text-brand-secondary">Complete Example</a>
+                        <a href="#guidelines" class="toc-link block text-gray-400 hover:text-brand-secondary">Writing Guidelines</a>
+                    </div>
+                    <div class="space-y-2">
+                        <a href="#relationships" class="toc-link block text-gray-400 hover:text-brand-secondary">Relationship to Other Artifacts</a>
+                        <a href="#quick-reference" class="toc-link block text-gray-400 hover:text-brand-secondary">Quick Reference Card</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-8 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-12">
+
+            <!-- Philosophy -->
+            <div id="philosophy" class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-brand-secondary"></i>
+                    Philosophy
+                </h2>
+                <div class="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                        An Agent Story extends the User Story paradigm to capture autonomous and semi-autonomous AI behavior. Where User Stories focus on human intent ("As a user, I want..."), Agent Stories must capture <strong class="text-white">emergent behavior</strong>, <strong class="text-white">conditional autonomy</strong>, and <strong class="text-white">collaborative intelligence</strong>.
+                    </p>
+                    <p>
+                        The format follows a principle of <strong class="text-white">progressive disclosure</strong>: the core story remains simple and readable, while structured annotations capture complexity only where it exists.
+                    </p>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10 mt-6">
+                        <p class="text-sm text-gray-400">
+                            <i class="fa-solid fa-lightbulb text-brand-accent mr-2"></i>
+                            For simpler agents or early-stage design, see <a href="agent-story-light.html" class="text-brand-accent hover:text-white transition-colors">Agent Story Format: Light</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Core Format -->
+            <div id="core-format" class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-file-lines text-brand-secondary"></i>
+                    The Core Format
+                </h2>
+                <p class="text-gray-300 mb-6">This core remains human-readable and captures the essential narrative. Everything else is annotation.</p>
+                <div class="code-block">
+                    <div class="code-label">Core Format</div>
+<pre class="whitespace-pre-wrap">AGENT STORY: <span class="text-brand-accent">[ID]</span>
+
+As <span class="text-brand-accent">[Agent Role]</span>,
+triggered by <span class="text-brand-accent">[Event]</span>,
+I <span class="text-brand-accent">[Action/Goal]</span>,
+so that <span class="text-brand-accent">[Outcome/Value]</span>.
+
+Autonomy: <span class="text-brand-secondary">[Full | Supervised | Collaborative | Directed]</span></pre>
+                </div>
+            </div>
+
+            <!-- Structured Annotations -->
+            <div id="annotations" class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-puzzle-piece text-brand-success"></i>
+                    Structured Annotations
+                </h2>
+                <p class="text-gray-300 mb-8">Add only the annotations relevant to your agent. Each section is optional.</p>
+
+                <div class="space-y-8">
+
+                    <!-- 1. Trigger Specification -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">1</span>
+                            Trigger Specification
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[message | resource_change | schedule | cascade | manual]</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">[Description of event source]</span>
+  <span class="yaml-key">conditions:</span> <span class="yaml-value">[Optional guard conditions]</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">[Concrete example of triggering event]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 2. Behavior Model -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">2</span>
+                            Behavior Model
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">For agents with defined stages or workflows:</p>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">behavior:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[workflow | adaptive | hybrid]</span>
+
+  <span class="yaml-comment"># For workflow/hybrid types:</span>
+  <span class="yaml-key">stages:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Stage Name]</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">[What this stage accomplishes]</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">[Next Stage]</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">[Condition]</span>
+
+  <span class="yaml-comment"># For adaptive/hybrid types:</span>
+  <span class="yaml-key">capabilities:</span>
+    - <span class="yaml-value">[High-level capability the agent can invoke]</span>
+
+  <span class="yaml-key">planning:</span> <span class="yaml-value">[none | local | delegated | emergent]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 3. Reasoning & Decisions -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">3</span>
+                            Reasoning & Decisions
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">reasoning:</span>
+  <span class="yaml-key">strategy:</span> <span class="yaml-value">[rule_based | llm_guided | hybrid]</span>
+
+  <span class="yaml-key">decision_points:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Decision Name]</span>
+      <span class="yaml-key">inputs:</span> <span class="yaml-value">[What information informs this decision]</span>
+      <span class="yaml-key">approach:</span> <span class="yaml-value">[How the decision is made]</span>
+      <span class="yaml-key">fallback:</span> <span class="yaml-value">[What happens if decision fails]</span>
+
+  <span class="yaml-key">iteration:</span>
+    <span class="yaml-key">enabled:</span> <span class="yaml-value">[true | false]</span>
+    <span class="yaml-key">max_attempts:</span> <span class="yaml-value">[number]</span>
+    <span class="yaml-key">retry_conditions:</span> <span class="yaml-value">[When to retry]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 4. Memory & State -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">4</span>
+                            Memory & State
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">memory:</span>
+  <span class="yaml-key">working:</span>
+    - <span class="yaml-value">[Ephemeral context maintained during execution]</span>
+
+  <span class="yaml-key">persistent:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Memory Store Name]</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">[kb | vector | relational | kv]</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">[Why this memory exists]</span>
+      <span class="yaml-key">updates:</span> <span class="yaml-value">[read_only | append | full_crud]</span>
+
+  <span class="yaml-key">learning:</span>
+    - <span class="yaml-key">type:</span> <span class="yaml-value">[feedback_loop | reinforcement | fine_tuning]</span>
+      <span class="yaml-key">signal:</span> <span class="yaml-value">[What triggers learning]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 5. Tools & Integrations -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">5</span>
+                            Tools & Integrations
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Tool/MCP Server Name]</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">[Why the agent uses this]</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">[read | write | execute | admin]</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">[Optional: when tool is available/used]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 6. Skills -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">6</span>
+                            Skills
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Skill Name]</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">[Knowledge domain this skill operates in]</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">[Specific competency within the skill]</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Tools this skill leverages, if any]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">[What competent execution looks like]</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">[built_in | learned | delegated]</span></pre>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 mt-4">
+                            <p class="text-sm text-gray-300 mb-3">
+                                Skills are composable units of competency that can be reused across agents. They bundle domain knowledge, behavioral patterns, tool proficiency, and quality standards into a coherent capability.
+                            </p>
+                            <p class="text-sm text-gray-400">
+                                <strong class="text-white">Skill acquisition types:</strong>
+                            </p>
+                            <ul class="text-sm text-gray-400 mt-2 space-y-1">
+                                <li><span class="text-brand-accent">built_in:</span> Core competency the agent is designed with</li>
+                                <li><span class="text-brand-accent">learned:</span> Acquired through training, feedback, or experience</li>
+                                <li><span class="text-brand-accent">delegated:</span> Performed by calling another agent or service</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 7. Human Collaboration -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">7</span>
+                            Human Collaboration
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">[in_the_loop | on_the_loop | out_of_loop]</span>
+
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Checkpoint Name]</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">[When human involvement is required]</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">[approval | input | review | escalation]</span>
+      <span class="yaml-key">timeout:</span> <span class="yaml-value">[What happens if human doesn't respond]</span>
+
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">[When to escalate to human]</span>
+    <span class="yaml-key">channel:</span> <span class="yaml-value">[How escalation occurs]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 8. Agent Collaboration -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">8</span>
+                            Agent Collaboration
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">collaboration:</span>
+  <span class="yaml-key">role:</span> <span class="yaml-value">[supervisor | worker | peer]</span>
+
+  <span class="yaml-comment"># For supervisors:</span>
+  <span class="yaml-key">coordinates:</span>
+    - <span class="yaml-key">agent:</span> <span class="yaml-value">[Worker Agent ID/Type]</span>
+      <span class="yaml-key">via:</span> <span class="yaml-value">[Communication protocol]</span>
+      <span class="yaml-key">for:</span> <span class="yaml-value">[What tasks are delegated]</span>
+
+  <span class="yaml-comment"># For workers:</span>
+  <span class="yaml-key">reports_to:</span> <span class="yaml-value">[Supervisor Agent ID/Type]</span>
+
+  <span class="yaml-comment"># For all:</span>
+  <span class="yaml-key">peers:</span>
+    - <span class="yaml-key">agent:</span> <span class="yaml-value">[Peer Agent ID/Type]</span>
+      <span class="yaml-key">interaction:</span> <span class="yaml-value">[Request/Response | Pub/Sub | Shared State]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- 9. Acceptance Criteria -->
+                    <div class="border-t border-white/10 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-success rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">9</span>
+                            Acceptance Criteria
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">[Observable behavior that indicates success]</span>
+
+  <span class="yaml-key">quality:</span>
+    - <span class="yaml-value">[Non-functional requirements: latency, accuracy, etc.]</span>
+
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">[Constraints the agent must never violate]</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cardinality & Ownership -->
+            <div id="cardinality" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-sitemap text-brand-accent"></i>
+                    Cardinality & Ownership
+                </h2>
+                <p class="text-gray-300 mb-6">Understanding how elements relate to each other is critical for proper modeling.</p>
+
+                <!-- Element Hierarchy Diagram -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-white mb-4">Element Hierarchy</h3>
+                    <div class="diagram-block text-xs">
+<pre class="whitespace-pre">
++---------------------------------------------------------------------+
+|                            AGENT                                    |
+|                                                                     |
+|  Owns directly:                                                     |
+|  |-- trigger (1..*)      - What activates this agent                |
+|  |-- behavior (1)        - How the agent is structured              |
+|  |-- memory (0..1)       - Agent-level state and learning           |
+|  |-- human_interaction (0..1) - How humans collaborate              |
+|  |-- collaboration (0..1)     - How other agents collaborate        |
+|  +-- acceptance (1)      - Success criteria for the agent           |
+|                                                                     |
+|  Composes:                                                          |
+|  +-- skills (1..*)       - Competencies the agent has               |
+|        |                                                            |
+|        |  Each skill owns:                                          |
+|        |-- proficiencies (1..*) - What the skill enables            |
+|        |-- tools_used (0..*)    - Tools this skill leverages        |
+|        |-- quality_bar (1)      - Standard for this skill           |
+|        +-- acquired (1)         - How skill was obtained            |
+|                                                                     |
+|  References (shared resources):                                     |
+|  +-- tools (1..*)        - Available to agent, used by skills       |
+|                                                                     |
+|  Contains:                                                          |
+|  +-- reasoning (0..1)    - Can exist at agent OR skill level        |
+|                                                                     |
++---------------------------------------------------------------------+
+</pre>
+                    </div>
+                </div>
+
+                <!-- Relationship Rules Table -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-white mb-4">Relationship Rules</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-white/10">
+                                    <th class="text-left py-3 px-4 text-brand-accent font-bold">Element</th>
+                                    <th class="text-left py-3 px-4 text-brand-accent font-bold">Owned By</th>
+                                    <th class="text-left py-3 px-4 text-brand-accent font-bold">Cardinality</th>
+                                    <th class="text-left py-3 px-4 text-brand-accent font-bold">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-300 text-xs">
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">trigger</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">1..*</td>
+                                    <td class="py-2 px-4">An agent must have at least one trigger</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">behavior</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">1</td>
+                                    <td class="py-2 px-4">One behavior model per agent</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">tools</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">1..*</td>
+                                    <td class="py-2 px-4">Declared at agent level, referenced by skills</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">skills</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">1..*</td>
+                                    <td class="py-2 px-4">An agent must have at least one skill</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">proficiencies</td>
+                                    <td class="py-2 px-4">Skill</td>
+                                    <td class="py-2 px-4">1..*</td>
+                                    <td class="py-2 px-4">Each skill must specify what it can do</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">tools_used</td>
+                                    <td class="py-2 px-4">Skill</td>
+                                    <td class="py-2 px-4">0..*</td>
+                                    <td class="py-2 px-4">Skills reference agent-level tools</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">quality_bar</td>
+                                    <td class="py-2 px-4">Skill</td>
+                                    <td class="py-2 px-4">1</td>
+                                    <td class="py-2 px-4">Every skill needs a measurable standard</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">reasoning</td>
+                                    <td class="py-2 px-4">Agent or Skill</td>
+                                    <td class="py-2 px-4">0..1</td>
+                                    <td class="py-2 px-4">Can be defined at agent level or per-skill</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">memory</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">0..1</td>
+                                    <td class="py-2 px-4">Shared across all skills</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">human_interaction</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">0..1</td>
+                                    <td class="py-2 px-4">Defined at agent level</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-2 px-4 font-mono">collaboration</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">0..1</td>
+                                    <td class="py-2 px-4">Agent-to-agent relationships</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 font-mono">acceptance</td>
+                                    <td class="py-2 px-4">Agent</td>
+                                    <td class="py-2 px-4">1</td>
+                                    <td class="py-2 px-4">Agent-level success criteria</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Key Distinctions -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-bold text-white mb-4">Key Distinctions</h3>
+
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-accent mb-2">Tools vs. Skills</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li><strong class="text-white">Tools</strong> are resources the agent has access to (MCP servers, APIs, databases)</li>
+                            <li><strong class="text-white">Skills</strong> are competencies that use tools to accomplish domain-specific work</li>
+                            <li>Tools are declared once at agent level; skills reference which tools they use</li>
+                            <li>A tool can be used by multiple skills; a skill can use multiple tools (or none)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-accent mb-2">Agent-level vs. Skill-level Reasoning</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li><strong class="text-white">Agent-level reasoning:</strong> Shared decision-making patterns (e.g., "always retry 3 times")</li>
+                            <li><strong class="text-white">Skill-level reasoning:</strong> Domain-specific logic (e.g., fraud detection heuristics)</li>
+                            <li>If reasoning is the same across skills, define it once at agent level</li>
+                            <li>If skills have distinct reasoning approaches, define per-skill</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-accent mb-2">Memory Ownership</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>Memory is always agent-level - skills share access to the same memory stores</li>
+                            <li>Skills may read from or write to memory, but don't own separate memory</li>
+                            <li>This prevents fragmentation and ensures consistency</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-accent mb-2">Quality Bars vs. Acceptance Criteria</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li><strong class="text-white">Quality bars</strong> (skill-level): "This skill performs at X standard"</li>
+                            <li><strong class="text-white">Acceptance criteria</strong> (agent-level): "The agent as a whole succeeds when..."</li>
+                            <li>Skill quality bars are inputs to agent acceptance criteria</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Visual: How Skills Compose an Agent -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-bold text-white mb-4">Visual: How Skills Compose an Agent</h3>
+                    <div class="diagram-block text-xs">
+<pre class="whitespace-pre">
++---------------------------------------------------------------+
+|  Claims Processing Agent                                      |
+|                                                               |
+|  +-------------+  +-------------+  +-----------------------+  |
+|  |   Tools     |  |   Memory    |  |   Human Interaction   |  |
+|  | (shared)    |  | (shared)    |  |   (shared)            |  |
+|  +------+------+  +------+------+  +-----------+-----------+  |
+|         |                |                     |              |
+|         v                v                     v              |
+|  +------------------------------------------------------------+
+|  |                      Skills                                |
+|  |  +--------------+ +--------------+ +--------------------+  |
+|  |  |   Damage     | |    Fraud     | |     Customer       |  |
+|  |  |  Assessment  | |  Detection   | |   Communication    |  |
+|  |  |              | |              | |                    |  |
+|  |  | uses: Doc    | | uses: Doc    | | uses: Comms Tool   |  |
+|  |  | Analysis,    | | Analysis     | |                    |  |
+|  |  | Policy Sys   | |              | | triggers: human    |  |
+|  |  |              | | writes:      | | checkpoint on      |  |
+|  |  |              | | fraud scores | | escalation         |  |
+|  |  |              | | to memory    | |                    |  |
+|  |  +--------------+ +--------------+ +--------------------+  |
+|  +------------------------------------------------------------+
+|                                                               |
+|  Behavior: Orchestrates skills through workflow stages        |
+|  Acceptance: Evaluated at agent level using skill quality bars|
++---------------------------------------------------------------+
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Example -->
+            <div id="example" class="glass-card p-8 rounded-2xl border-l-4 border-brand-alert">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-code text-brand-alert"></i>
+                    Complete Example
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- Core Story -->
+                    <div class="code-block">
+                        <div class="code-label">Core Story</div>
+<pre class="whitespace-pre-wrap">AGENT STORY: CLAIM-001
+
+As a <span class="text-brand-accent">Claims Processing Agent</span>,
+triggered by <span class="text-brand-accent">new insurance claim submission</span>,
+I <span class="text-brand-accent">assess the claim, gather required documentation, and route to appropriate resolution</span>,
+so that <span class="text-brand-accent">claims are processed accurately with minimal customer wait time</span>.
+
+Autonomy: <span class="text-brand-secondary">Supervised</span></pre>
+                    </div>
+
+                    <!-- Full YAML -->
+                    <div class="yaml-block">
+                        <div class="yaml-label">Full Specification</div>
+<pre class="whitespace-pre-wrap text-xs"><span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">message</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Claims intake system (A2A from portal agent)</span>
+  <span class="yaml-key">conditions:</span> <span class="yaml-value">Claim type in [auto, property, health]</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">"New auto claim #12345 submitted with photos and police report"</span>
+
+<span class="yaml-key">behavior:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">hybrid</span>
+  <span class="yaml-key">stages:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Initial Assessment</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Categorize claim and determine processing path</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Documentation Gathering</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Additional docs needed</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Auto-Approval Check</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Claim is straightforward</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Fraud Review</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Risk indicators detected</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Documentation Gathering</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Request and validate required documents</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Auto-Approval Check</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">All docs received and valid</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Human Review</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Doc gathering timeout (72h)</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Auto-Approval Check</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Determine if claim qualifies for automatic approval</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Resolution</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Within auto-approval thresholds</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Human Review</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Exceeds thresholds or edge case</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Fraud Review</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Deep analysis for potential fraud</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Human Review</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Analysis complete</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Human Review</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Adjuster makes final determination</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Resolution</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Decision made</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Resolution</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Execute approval/denial and notify customer</span>
+
+  <span class="yaml-key">planning:</span> <span class="yaml-value">local</span>
+
+<span class="yaml-key">reasoning:</span>
+  <span class="yaml-key">strategy:</span> <span class="yaml-value">hybrid</span>
+
+  <span class="yaml-key">decision_points:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Fraud Risk Assessment</span>
+      <span class="yaml-key">inputs:</span> <span class="yaml-value">Claim history, submission patterns, document metadata</span>
+      <span class="yaml-key">approach:</span> <span class="yaml-value">ML model + rule-based flags</span>
+      <span class="yaml-key">fallback:</span> <span class="yaml-value">Route to human review</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Auto-Approval Eligibility</span>
+      <span class="yaml-key">inputs:</span> <span class="yaml-value">Claim amount, policy limits, documentation completeness</span>
+      <span class="yaml-key">approach:</span> <span class="yaml-value">Policy rules engine</span>
+      <span class="yaml-key">fallback:</span> <span class="yaml-value">Route to human review</span>
+
+  <span class="yaml-key">iteration:</span>
+    <span class="yaml-key">enabled:</span> <span class="yaml-value">true</span>
+    <span class="yaml-key">max_attempts:</span> <span class="yaml-value">3</span>
+    <span class="yaml-key">retry_conditions:</span> <span class="yaml-value">Document validation failures, API timeouts</span>
+
+<span class="yaml-key">memory:</span>
+  <span class="yaml-key">working:</span>
+    - <span class="yaml-value">Current claim context and gathered documents</span>
+    - <span class="yaml-value">Conversation history with customer</span>
+
+  <span class="yaml-key">persistent:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Claims Knowledge Base</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">vector</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Similar claim retrieval for consistency</span>
+      <span class="yaml-key">updates:</span> <span class="yaml-value">append</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Customer History</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">relational</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Policy and claims history lookup</span>
+      <span class="yaml-key">updates:</span> <span class="yaml-value">read_only</span>
+
+  <span class="yaml-key">learning:</span>
+    - <span class="yaml-key">type:</span> <span class="yaml-value">feedback_loop</span>
+      <span class="yaml-key">signal:</span> <span class="yaml-value">Adjuster corrections to agent assessments</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Document Analysis MCP</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Extract and validate information from uploaded documents</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Policy System</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Retrieve policy details and coverage limits</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Customer Communication</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Send status updates and document requests</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">execute</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">Outbound communications require template match</span>
+
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Damage Assessment</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Insurance claim evaluation</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Interpret photos and repair estimates for auto/property damage</span>
+      - <span class="yaml-value">Cross-reference damage claims against policy coverage</span>
+      - <span class="yaml-value">Identify inconsistencies between reported and documented damage</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Document Analysis MCP, Policy System]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Assessments align with adjuster decisions 90%+ of the time</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">built_in</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Fraud Detection</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Insurance fraud patterns</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Recognize common fraud indicators (staged accidents, inflated claims)</span>
+      - <span class="yaml-value">Analyze claim patterns across customer history</span>
+      - <span class="yaml-value">Flag document anomalies (metadata inconsistencies, edited images)</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Document Analysis MCP]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">>85% precision on fraud flags (minimize false positives)</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">learned</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Customer Communication</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Claims customer experience</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Explain claim status and next steps in plain language</span>
+      - <span class="yaml-value">Request specific documentation with clear instructions</span>
+      - <span class="yaml-value">De-escalate frustrated customers while maintaining accuracy</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Customer Communication]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Customer satisfaction score >4.2/5 on agent interactions</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">built_in</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Policy Interpretation</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Insurance policy analysis</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Parse coverage limits, deductibles, and exclusions</span>
+      - <span class="yaml-value">Apply policy terms to specific claim scenarios</span>
+      - <span class="yaml-value">Identify coverage gaps or ambiguities requiring human review</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Policy System]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Coverage determination matches adjuster interpretation 95%+</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">built_in</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">on_the_loop</span>
+
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">High-Value Approval</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">Claim amount > $10,000</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">approval</span>
+      <span class="yaml-key">timeout:</span> <span class="yaml-value">Route to senior adjuster after 24h</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Fraud Escalation</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">Fraud score > 0.7</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">review</span>
+      <span class="yaml-key">timeout:</span> <span class="yaml-value">Hold claim, alert supervisor</span>
+
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">Agent confidence < 60%, customer complaint, system error</span>
+    <span class="yaml-key">channel:</span> <span class="yaml-value">Adjuster queue with full context package</span>
+
+<span class="yaml-key">collaboration:</span>
+  <span class="yaml-key">role:</span> <span class="yaml-value">worker</span>
+  <span class="yaml-key">reports_to:</span> <span class="yaml-value">Claims Supervisor Agent</span>
+  <span class="yaml-key">peers:</span>
+    - <span class="yaml-key">agent:</span> <span class="yaml-value">Customer Service Agent</span>
+      <span class="yaml-key">interaction:</span> <span class="yaml-value">Request/Response (customer context handoff)</span>
+
+<span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">Correctly categorizes claim type with 95% accuracy</span>
+    - <span class="yaml-value">Identifies missing documentation within 5 minutes of submission</span>
+    - <span class="yaml-value">Routes fraud-risk claims to review 100% of the time</span>
+
+  <span class="yaml-key">quality:</span>
+    - <span class="yaml-value">Initial assessment completes in < 2 minutes</span>
+    - <span class="yaml-value">Customer receives first contact within 1 hour</span>
+
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">Never auto-approve claims exceeding policy limits</span>
+    - <span class="yaml-value">Never communicate denial without human review</span>
+    - <span class="yaml-value">All customer PII handled per data retention policy</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Guidelines -->
+            <div id="guidelines" class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-pen-ruler text-brand-secondary"></i>
+                    Writing Guidelines
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Start Simple -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-3">Start Simple</h3>
+                        <p class="text-gray-300 text-sm">Begin with just the core story. Add annotations only when:</p>
+                        <ul class="text-sm text-gray-400 mt-2 space-y-1 ml-4">
+                            <li>- The behavior isn't obvious from the core story</li>
+                            <li>- There are specific constraints that must be captured</li>
+                            <li>- Multiple teams need to coordinate on implementation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Autonomy Levels -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-3">Use the Right Autonomy Level</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="border-b border-white/10">
+                                        <th class="text-left py-3 px-4 text-brand-accent font-bold">Level</th>
+                                        <th class="text-left py-3 px-4 text-brand-accent font-bold">Human Role</th>
+                                        <th class="text-left py-3 px-4 text-brand-accent font-bold">Agent Authority</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-300 text-xs">
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-2 px-4 font-bold">Full</td>
+                                        <td class="py-2 px-4">None during execution</td>
+                                        <td class="py-2 px-4">Complete decision authority</td>
+                                    </tr>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-2 px-4 font-bold">Supervised</td>
+                                        <td class="py-2 px-4">Monitors, intervenes on exception</td>
+                                        <td class="py-2 px-4">Executes within guardrails</td>
+                                    </tr>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-2 px-4 font-bold">Collaborative</td>
+                                        <td class="py-2 px-4">Active participant in decisions</td>
+                                        <td class="py-2 px-4">Proposes, human confirms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 font-bold">Directed</td>
+                                        <td class="py-2 px-4">Initiates and guides each step</td>
+                                        <td class="py-2 px-4">Executes specific instructions</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Behavior Types -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-3">Capture Behavior Appropriately</h3>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li><strong class="text-white">Workflow:</strong> Use stages when the agent follows a predictable path</li>
+                            <li><strong class="text-white">Adaptive:</strong> Use capabilities when the agent decides its approach at runtime</li>
+                            <li><strong class="text-white">Hybrid:</strong> Use both when some structure exists but flexibility is needed</li>
+                        </ul>
+                    </div>
+
+                    <!-- Acceptance Criteria -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-3">Keep Acceptance Criteria Observable</h3>
+                        <p class="text-gray-300 text-sm">
+                            Every criterion should be something you can actually verify. <span class="text-gray-500">"Processes claims correctly"</span> is not testable. <span class="text-brand-success">"Correctly categorizes claim type with 95% accuracy"</span> is.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relationship to Other Artifacts -->
+            <div id="relationships" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-diagram-project text-brand-accent"></i>
+                    Relationship to Other Artifacts
+                </h2>
+
+                <div class="diagram-block text-sm mb-6">
+<pre class="whitespace-pre">
++-------------------------------------------------------------+
+|                    Product Vision                           |
++-------------------------------------------------------------+
+                              |
+                              v
++-------------------------------------------------------------+
+|                    Agent Stories                            |
+|         (What agents do and why - this document)            |
++-------------------------------------------------------------+
+                              |
+              +---------------+---------------+
+              v               v               v
++-------------------+ +-------------+ +---------------------+
+|  Behavior Specs   | | Tool Specs  | |  Integration Specs  |
+| (Detailed flows,  | | (MCP server | | (A2A protocols,     |
+|  prompts, logic)  | |  contracts) | |  event schemas)     |
++-------------------+ +-------------+ +---------------------+
+</pre>
+                </div>
+
+                <p class="text-gray-300 text-sm">
+                    Agent Stories sit between high-level vision and implementation details. They should be:
+                </p>
+                <ul class="text-sm text-gray-400 mt-3 space-y-1 ml-4">
+                    <li>- <strong class="text-white">Stable</strong> enough to guide development</li>
+                    <li>- <strong class="text-white">Abstract</strong> enough to allow implementation flexibility</li>
+                    <li>- <strong class="text-white">Complete</strong> enough to enable estimation and planning</li>
+                </ul>
+            </div>
+
+            <!-- Quick Reference Card -->
+            <div id="quick-reference" class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-bolt text-gray-400"></i>
+                    Quick Reference Card
+                </h2>
+                <div class="bg-black/40 p-6 rounded-lg font-mono text-xs overflow-x-auto">
+<pre class="whitespace-pre text-gray-300">
++------------------------------------------------------------+
+|  AGENT STORY QUICK REFERENCE                               |
++------------------------------------------------------------+
+|                                                            |
+|  <span class="text-brand-secondary font-bold">CORE (Required)</span>                                           |
+|  -----------------                                         |
+|  - Role: What the agent is                                 |
+|  - Trigger: What activates it                              |
+|  - Action: What it does                                    |
+|  - Outcome: Why it matters                                 |
+|  - Autonomy: Full|Supervised|Collaborative|Directed        |
+|                                                            |
+|  <span class="text-brand-success font-bold">ANNOTATIONS (As Needed)</span>                                   |
+|  -----------------------                                   |
+|  - trigger: Event details, conditions, examples            |
+|  - behavior: Stages, capabilities, planning approach       |
+|  - reasoning: Decision points, iteration, fallbacks        |
+|  - memory: Working, persistent, learning                   |
+|  - tools: MCP servers, permissions, conditions             |
+|  - skills: Competencies, proficiencies, quality bars       |
+|  - human_interaction: Mode, checkpoints, escalation        |
+|  - collaboration: Role, coordinates/reports_to, peers      |
+|  - acceptance: Functional, quality, guardrails             |
+|                                                            |
+|  <span class="text-brand-accent font-bold">SKILL ACQUISITION TYPES</span>                                   |
+|  -----------------------                                   |
+|  - built_in: Core competency the agent is designed with    |
+|  - learned: Acquired through training or feedback          |
+|  - delegated: Performed by another agent or service        |
+|                                                            |
+|  <span class="text-brand-alert font-bold">TIPS</span>                                                      |
+|  ----                                                      |
+|  * Start with core only, add complexity as needed          |
+|  * Make acceptance criteria observable and testable        |
+|  * Guardrails are things that must NEVER happen            |
+|  * One story = one coherent agent responsibility           |
+|  * Skills can be reused across multiple agents             |
+|                                                            |
++------------------------------------------------------------+
+</pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities. HAP Analysis ensures humans remain empowered and accountable in an age of intelligent automation.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

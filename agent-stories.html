@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent Stories | HAP Analysis</title>
-    <meta name="description" content="Understanding Agent Stories - requirements artifacts for autonomous AI agents and background automation.">
+    <meta name="description" content="Agent Stories extend User Stories to capture autonomous AI agent behavior, conditional autonomy, and collaborative intelligence.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,6 +134,13 @@
             border-radius: 4px;
             text-transform: uppercase;
         }
+
+        .format-card {
+            transition: all 0.3s ease;
+        }
+        .format-card:hover {
+            transform: translateY(-4px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -176,7 +183,7 @@
                 Agent Stories
             </h1>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Requirements artifacts for autonomous agents and background automation systems.
+                Extending User Stories to capture autonomous AI behavior, conditional autonomy, and collaborative intelligence.
             </p>
         </div>
     </header>
@@ -185,150 +192,204 @@
     <section class="py-12 px-6 relative">
         <div class="max-w-5xl mx-auto space-y-12">
 
-            <!-- Approach Section -->
+            <!-- Philosophy Section -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <i class="fa-solid fa-compass text-brand-secondary"></i>
-                    The Approach
+                    Philosophy
                 </h2>
                 <div class="space-y-4 text-gray-300 leading-relaxed">
                     <p>
-                        Agent Stories extend traditional user stories to capture the behavior of autonomous AI agents. Unlike user stories that focus on human-initiated actions, Agent Stories describe what an AI system does <strong class="text-white">independently</strong>—often in the background, without direct human involvement.
+                        An Agent Story extends the User Story paradigm to capture autonomous and semi-autonomous AI behavior. Where User Stories focus on human intent ("As a user, I want..."), Agent Stories must capture <strong class="text-white">emergent behavior</strong>, <strong class="text-white">conditional autonomy</strong>, and <strong class="text-white">collaborative intelligence</strong>.
                     </p>
                     <p>
-                        This artifact introduces the concept of <strong class="text-white">temporal capability</strong>: distinguishing between what the agent can do today versus what it will be able to do as it matures. Agent Stories also formalize <strong class="text-white">triggers</strong>—the conditions or events that cause the agent to act autonomously.
+                        Agent Stories recognize that modern AI agents operate through <strong class="text-white">stages and state transitions</strong>, leverage <strong class="text-white">logical reasoning</strong> defined by prompts, maintain <strong class="text-white">memory</strong> for learning and context, utilize <strong class="text-white">tools</strong> via MCP connections, and respond to <strong class="text-white">triggers</strong> ranging from messages to scheduled events.
                     </p>
                     <p>
-                        Agent Stories are ideal for automation systems, background processors, monitoring agents, and any AI that operates with minimal human oversight. They capture the agent as an independent actor, though they don't fully address collaborative dynamics where human and agent work as partners.
+                        The format follows a principle of <strong class="text-white">progressive disclosure</strong>: the core story remains simple and readable, while structured annotations capture complexity only where it exists.
                     </p>
                 </div>
             </div>
 
-            <!-- Outline Section -->
+            <!-- The Core Format -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-list-check text-brand-secondary"></i>
-                    Artifact Outline
+                    <i class="fa-solid fa-file-lines text-brand-secondary"></i>
+                    The Core Format
                 </h2>
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                            <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                                <i class="fa-solid fa-clock text-brand-secondary"></i>
-                            </div>
-                            <h4 class="font-bold text-white mb-2">Current Capabilities</h4>
-                            <p class="text-sm text-gray-400">What the agent can reliably do today with existing training, data, and integrations.</p>
-                        </div>
-                        <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                            <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                                <i class="fa-solid fa-rocket text-brand-secondary"></i>
-                            </div>
-                            <h4 class="font-bold text-white mb-2">Future Capabilities</h4>
-                            <p class="text-sm text-gray-400">Abilities expected post-maturity: after more training, data accumulation, or system upgrades.</p>
-                        </div>
-                        <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                            <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                                <i class="fa-solid fa-bolt text-brand-secondary"></i>
-                            </div>
-                            <h4 class="font-bold text-white mb-2">Triggers</h4>
-                            <p class="text-sm text-gray-400">Events, conditions, or thresholds that activate the agent's autonomous behavior.</p>
-                        </div>
-                    </div>
+                <p class="text-gray-300 mb-6">Every Agent Story starts with this human-readable core. Additional annotations are added only where complexity exists.</p>
+                <div class="code-block">
+                    <div class="code-label">Core Format</div>
+<pre class="whitespace-pre-wrap">AGENT STORY: <span class="text-brand-accent">[ID]</span>
 
-                    <div class="bg-black/40 p-6 rounded-lg">
-                        <h3 class="text-lg font-bold text-white mb-4 font-mono">Standard Format</h3>
-                        <div class="space-y-3 text-gray-300 font-mono text-sm">
-                            <div>
-                                <span class="text-brand-secondary font-bold">AGENT:</span> <span class="text-gray-400">[Agent name/type]</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">CURRENT:</span> <span class="text-gray-400">[What it can do now]</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">FUTURE:</span> <span class="text-gray-400">[What it will do post-maturity]</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">TRIGGERS:</span> <span class="text-gray-400">[Activation conditions]</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">CONSTRAINTS:</span> <span class="text-gray-400">[Boundaries and limitations]</span>
-                            </div>
-                        </div>
-                    </div>
+As <span class="text-brand-accent">[Agent Role]</span>,
+triggered by <span class="text-brand-accent">[Event]</span>,
+I <span class="text-brand-accent">[Action/Goal]</span>,
+so that <span class="text-brand-accent">[Outcome/Value]</span>.
 
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                        <h4 class="font-bold text-white mb-3">Optional Components</h4>
-                        <ul class="space-y-2 text-sm text-gray-400">
-                            <li class="flex items-start gap-2">
-                                <div class="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2"></div>
-                                <span><strong class="text-gray-300">Fallback Behavior:</strong> What happens when the agent cannot complete its task</span>
+Autonomy: <span class="text-brand-secondary">[Full | Supervised | Collaborative | Directed]</span></pre>
+                </div>
+            </div>
+
+            <!-- Two Formats Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-code-branch text-brand-accent"></i>
+                    Choose Your Format
+                </h2>
+                <p class="text-gray-300 mb-8">Agent Stories come in two formats to match your needs:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Light Format Card -->
+                    <a href="agent-story-light.html" class="format-card block glass-card p-6 rounded-xl border-l-4 border-brand-success hover:border-green-400">
+                        <div class="flex items-center gap-3 mb-4 text-brand-success">
+                            <i class="fa-solid fa-feather text-2xl"></i>
+                            <span class="uppercase tracking-widest text-xs font-bold">Streamlined</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Agent Story: Light</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            For simple agents, early-stage design, and quick stakeholder communication.
+                        </p>
+                        <ul class="text-xs text-gray-500 space-y-1 mb-4">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-success"></i>
+                                Single-purpose agents
                             </li>
-                            <li class="flex items-start gap-2">
-                                <div class="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2"></div>
-                                <span><strong class="text-gray-300">Escalation Path:</strong> When and how to involve human oversight</span>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-success"></i>
+                                Ideation & prototyping
                             </li>
-                            <li class="flex items-start gap-2">
-                                <div class="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2"></div>
-                                <span><strong class="text-gray-300">Success Metrics:</strong> How agent performance is measured</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <div class="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2"></div>
-                                <span><strong class="text-gray-300">Learning Objectives:</strong> What the agent should improve over time</span>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-success"></i>
+                                Straightforward behavior
                             </li>
                         </ul>
+                        <span class="inline-flex items-center gap-2 text-sm text-brand-success hover:text-white transition-colors">
+                            View Light Format <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+
+                    <!-- Full Format Card -->
+                    <a href="agent-story-full.html" class="format-card block glass-card p-6 rounded-xl border-l-4 border-brand-secondary hover:border-purple-400">
+                        <div class="flex items-center gap-3 mb-4 text-brand-secondary">
+                            <i class="fa-solid fa-layer-group text-2xl"></i>
+                            <span class="uppercase tracking-widest text-xs font-bold">Comprehensive</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Agent Story: Full</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            For complex agents requiring detailed specifications and engineering handoff.
+                        </p>
+                        <ul class="text-xs text-gray-500 space-y-1 mb-4">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-secondary"></i>
+                                Multi-skill workflows
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-secondary"></i>
+                                State transitions & memory
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-secondary"></i>
+                                Human & agent collaboration
+                            </li>
+                        </ul>
+                        <span class="inline-flex items-center gap-2 text-sm text-brand-secondary hover:text-white transition-colors">
+                            View Full Format <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Key Concepts -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-lightbulb text-brand-secondary"></i>
+                    Key Concepts
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-bolt text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Triggers</h4>
+                        <p class="text-sm text-gray-400">Events that activate agents: messages (A2A), resource changes, schedules (cron), cascades, or manual activation.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-diagram-project text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Behavior Models</h4>
+                        <p class="text-sm text-gray-400">Workflow (predictable stages), Adaptive (runtime decisions), or Hybrid (structured flexibility).</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-brain text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Skills & Reasoning</h4>
+                        <p class="text-sm text-gray-400">Composable competencies with proficiencies, quality bars, and acquisition types (built-in, learned, delegated).</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-people-arrows text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Human Collaboration</h4>
+                        <p class="text-sm text-gray-400">In-the-loop (every decision), On-the-loop (monitoring), or Out-of-loop (fully autonomous).</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-database text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Memory & Learning</h4>
+                        <p class="text-sm text-gray-400">Working memory (ephemeral), persistent stores (KB, vector, relational), and learning signals (feedback, reinforcement).</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-network-wired text-brand-secondary"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Agent Collaboration</h4>
+                        <p class="text-sm text-gray-400">Supervisor (coordinates), Worker (executes), or Peer (collaborates) roles with defined communication patterns.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Example Section -->
+            <!-- Autonomy Levels -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-code text-brand-secondary"></i>
-                    Example
+                    <i class="fa-solid fa-sliders text-brand-secondary"></i>
+                    Autonomy Levels
                 </h2>
-                <div class="space-y-6">
-                    <div class="code-block">
-                        <div class="code-label">Agent Story</div>
-                        <div class="space-y-4 text-sm">
-                            <div>
-                                <span class="text-brand-secondary font-bold">AGENT:</span> Support Ticket Triage Agent
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">CURRENT:</span><br>
-                                <span class="text-gray-400 ml-4 block">- Categorize incoming tickets by type (billing, technical, general)</span>
-                                <span class="text-gray-400 ml-4 block">- Assign urgency scores based on keyword analysis</span>
-                                <span class="text-gray-400 ml-4 block">- Suggest response templates from knowledge base</span>
-                                <span class="text-gray-400 ml-4 block">- Route tickets to appropriate team queues</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">FUTURE:</span><br>
-                                <span class="text-gray-400 ml-4 block">- Detect customer sentiment trends across ticket volume</span>
-                                <span class="text-gray-400 ml-4 block">- Predict ticket escalation likelihood</span>
-                                <span class="text-gray-400 ml-4 block">- Initiate proactive outreach for at-risk accounts</span>
-                                <span class="text-gray-400 ml-4 block">- Auto-resolve routine issues without human review</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">TRIGGERS:</span><br>
-                                <span class="text-gray-400 ml-4 block">- New ticket submitted to support system</span>
-                                <span class="text-gray-400 ml-4 block">- Sentiment score drops below threshold</span>
-                                <span class="text-gray-400 ml-4 block">- Ticket age exceeds 24 hours without response</span>
-                                <span class="text-gray-400 ml-4 block">- Customer marked as VIP or enterprise tier</span>
-                            </div>
-                            <div>
-                                <span class="text-brand-secondary font-bold">CONSTRAINTS:</span><br>
-                                <span class="text-gray-400 ml-4 block">- Cannot access customer payment information</span>
-                                <span class="text-gray-400 ml-4 block">- Must escalate legal/compliance issues to human</span>
-                                <span class="text-gray-400 ml-4 block">- Cannot modify account status or issue refunds</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                        <h4 class="font-bold text-white mb-3">Why This Works for Automation</h4>
-                        <p class="text-sm text-gray-400 leading-relaxed">
-                            This Agent Story captures an autonomous system that acts independently based on defined triggers. The temporal split between current and future capabilities enables incremental rollout—the agent starts with safe categorization tasks and graduates to more autonomous actions as it proves reliability. The constraints establish hard boundaries that don't require human-in-the-loop for every action.
-                        </p>
-                    </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Level</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Human Role</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Agent Authority</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-bold text-white">Full</td>
+                                <td class="py-3 px-4">None during execution</td>
+                                <td class="py-3 px-4">Complete decision authority</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-bold text-white">Supervised</td>
+                                <td class="py-3 px-4">Monitors, intervenes on exception</td>
+                                <td class="py-3 px-4">Executes within guardrails</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-bold text-white">Collaborative</td>
+                                <td class="py-3 px-4">Active participant in decisions</td>
+                                <td class="py-3 px-4">Proposes, human confirms</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-bold text-white">Directed</td>
+                                <td class="py-3 px-4">Initiates and guides each step</td>
+                                <td class="py-3 px-4">Executes specific instructions</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -362,14 +423,18 @@
                                 <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
                                 <span>Event-driven workflows</span>
                             </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Multi-agent coordination</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="bg-white/5 p-5 rounded-lg border border-white/5">
-                        <h4 class="font-bold text-white mb-3 text-sm uppercase tracking-wide">Not Ideal For</h4>
+                        <h4 class="font-bold text-white mb-3 text-sm uppercase tracking-wide">Consider HAP Plan Instead For</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-alert rounded-full mt-2"></div>
-                                <span>Deep human-agent collaboration</span>
+                                <span>Deep human-agent partnership evolution</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-alert rounded-full mt-2"></div>
@@ -385,14 +450,29 @@
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-alert rounded-full mt-2"></div>
-                                <span>Human judgment integration</span>
+                                <span>Future capability roadmaps</span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <p class="text-gray-400 mt-6 text-sm">
-                    For collaborative systems where humans and agents work as partners, consider the <a href="hap-plan.html" class="text-brand-accent hover:text-white transition-colors">HAP Plan</a>.
+                    Agent Stories focus on <strong class="text-white">what the agent does today</strong>. For planning how capabilities evolve over time and how trust develops between humans and agents, use the <a href="hap-plan.html" class="text-brand-accent hover:text-white transition-colors">HAP Plan</a>.
                 </p>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center py-8">
+                <h3 class="text-xl font-bold text-white mb-6">Ready to write your first Agent Story?</h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="agent-story-light.html" class="px-8 py-4 bg-brand-success text-brand-dark font-bold rounded-lg hover:bg-green-300 transition-colors">
+                        <i class="fa-solid fa-feather mr-2"></i>
+                        Start with Light
+                    </a>
+                    <a href="agent-story-full.html" class="px-8 py-4 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors">
+                        <i class="fa-solid fa-layer-group mr-2"></i>
+                        Go Full Spec
+                    </a>
+                </div>
             </div>
 
         </div>
