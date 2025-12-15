@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Story: Light | HAP Analysis</title>
+    <meta name="description" content="Streamlined Agent Story format for simple agents and early-stage design.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(192, 132, 252, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(192, 132, 252, 0.3);
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .code-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #c084fc;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+        }
+
+        .code-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #c084fc;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .yaml-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #34d399;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+        }
+
+        .yaml-key { color: #38bdf8; }
+        .yaml-value { color: #a5f3fc; }
+        .yaml-comment { color: #6b7280; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="agent-stories.html" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Agent Stories
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-secondary">
+                <i class="fa-solid fa-feather"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Streamlined Format</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                Agent Story: <span class="text-gradient">Light</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                For simple agents, early-stage design, and quick stakeholder communication.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-12 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-12">
+
+            <!-- When to Use Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-brand-secondary"></i>
+                    When to Use Light vs. Full
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-brand-success font-bold">Use Light when...</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Use Full when...</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Early-stage design / ideation</td>
+                                <td class="py-3 px-4">Implementation-ready specification</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Simple, single-purpose agents</td>
+                                <td class="py-3 px-4">Multi-skill, complex workflows</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Quick communication with stakeholders</td>
+                                <td class="py-3 px-4">Detailed handoff to engineering</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">Agents with straightforward behavior</td>
+                                <td class="py-3 px-4">Agents with nuanced human collaboration</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- The Format Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-file-lines text-brand-secondary"></i>
+                    The Format
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Core Story -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-secondary rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">1</span>
+                            Core Story (Required)
+                        </h3>
+                        <div class="code-block">
+                            <div class="code-label">Core Format</div>
+<pre class="whitespace-pre-wrap">AGENT STORY: [ID]
+
+As <span class="text-brand-accent">[Agent Role]</span>,
+triggered by <span class="text-brand-accent">[Event]</span>,
+I <span class="text-brand-accent">[Action/Goal]</span>,
+so that <span class="text-brand-accent">[Outcome/Value]</span>.
+
+Autonomy: <span class="text-brand-secondary">[Full | Supervised | Collaborative | Directed]</span></pre>
+                        </div>
+                    </div>
+
+                    <!-- Essential Annotations -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 bg-brand-secondary rounded-full flex items-center justify-center text-xs font-bold text-brand-dark">2</span>
+                            Essential Annotations (Include as needed)
+                        </h3>
+                        <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-comment"># What activates the agent</span>
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[message | resource_change | schedule | cascade | manual]</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">[Where the trigger comes from]</span>
+
+<span class="yaml-comment"># What the agent knows how to do (at least one required)</span>
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Skill Name]</span>
+    <span class="yaml-key">does:</span> <span class="yaml-value">[What this skill accomplishes - one line]</span>
+    <span class="yaml-key">tools:</span> <span class="yaml-value">[Tools used, if any]</span>
+
+<span class="yaml-comment"># What external resources the agent uses</span>
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-value">[Tool/MCP Server Name]: [Purpose]</span>
+
+<span class="yaml-comment"># How humans are involved</span>
+<span class="yaml-key">human_role:</span> <span class="yaml-value">[in_the_loop | on_the_loop | out_of_loop]</span>
+<span class="yaml-key">escalates_when:</span> <span class="yaml-value">[Condition that requires human involvement]</span>
+
+<span class="yaml-comment"># How we know it's working</span>
+<span class="yaml-key">success:</span> <span class="yaml-value">[Primary measurable outcome]</span>
+<span class="yaml-key">guardrails:</span>
+  - <span class="yaml-value">[Thing the agent must NEVER do]</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Example -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-code text-brand-success"></i>
+                    Complete Example
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- Core Story Example -->
+                    <div class="code-block">
+                        <div class="code-label">Core Story</div>
+<pre class="whitespace-pre-wrap">AGENT STORY: EXPENSE-001
+
+As an <span class="text-brand-accent">Expense Report Agent</span>,
+triggered by <span class="text-brand-accent">employee expense submission</span>,
+I <span class="text-brand-accent">validate receipts, check policy compliance, and route for approval</span>,
+so that <span class="text-brand-accent">employees are reimbursed quickly and accurately</span>.
+
+Autonomy: <span class="text-brand-secondary">Supervised</span></pre>
+                    </div>
+
+                    <!-- YAML Example -->
+                    <div class="yaml-block">
+<pre class="whitespace-pre-wrap"><span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">message</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Expense management system</span>
+
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Receipt Validation</span>
+    <span class="yaml-key">does:</span> <span class="yaml-value">Extracts and verifies receipt data against submission</span>
+    <span class="yaml-key">tools:</span> <span class="yaml-value">[Document Analysis MCP]</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Policy Compliance</span>
+    <span class="yaml-key">does:</span> <span class="yaml-value">Checks expenses against company policy limits and categories</span>
+    <span class="yaml-key">tools:</span> <span class="yaml-value">[Policy Database]</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Approval Routing</span>
+    <span class="yaml-key">does:</span> <span class="yaml-value">Determines correct approver based on amount and department</span>
+    <span class="yaml-key">tools:</span> <span class="yaml-value">[Org Chart API]</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-value">Document Analysis MCP: Extract data from receipt images</span>
+  - <span class="yaml-value">Policy Database: Company expense policies and limits</span>
+  - <span class="yaml-value">Org Chart API: Manager lookup and approval chains</span>
+
+<span class="yaml-key">human_role:</span> <span class="yaml-value">on_the_loop</span>
+<span class="yaml-key">escalates_when:</span> <span class="yaml-value">Expense exceeds $500 or policy exception requested</span>
+
+<span class="yaml-key">success:</span> <span class="yaml-value">90% of compliant expenses auto-processed within 4 hours</span>
+<span class="yaml-key">guardrails:</span>
+  - <span class="yaml-value">Never approve expenses exceeding policy without human review</span>
+  - <span class="yaml-value">Never expose employee financial data in logs</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graduating to Full -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-arrow-up-right-dots text-brand-accent"></i>
+                    Graduating to Full
+                </h2>
+                <p class="text-gray-300 mb-6">When your Light story needs more detail, expand these mappings:</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-brand-secondary font-bold">Light Element</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Full Expansion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">trigger.type + source</td>
+                                <td class="py-3 px-4">Full <code class="text-brand-accent">trigger:</code> block with conditions and examples</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">skills[].does</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">proficiencies[]</code>, <code class="text-brand-accent">quality_bar</code>, <code class="text-brand-accent">acquired</code></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">tools[]</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">permissions</code>, <code class="text-brand-accent">conditions</code></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">human_role + escalates_when</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">human_interaction:</code> with checkpoints, timeouts</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">success</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">acceptance.functional[]</code> + <code class="text-brand-accent">acceptance.quality[]</code></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4 font-mono text-xs">guardrails</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">acceptance.guardrails[]</code></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-mono text-xs italic text-gray-500">(not in Light)</td>
+                                <td class="py-3 px-4"><code class="text-brand-accent">behavior:</code> stages/transitions, <code class="text-brand-accent">memory:</code>, <code class="text-brand-accent">reasoning:</code>, <code class="text-brand-accent">collaboration:</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6">
+                    <a href="agent-story-full.html" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        View Full Format
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-bolt text-gray-400"></i>
+                    Quick Reference
+                </h2>
+                <div class="bg-black/40 p-6 rounded-lg font-mono text-sm">
+<pre class="whitespace-pre-wrap text-gray-300">
+<span class="text-white font-bold">AGENT STORY LIGHT - QUICK REFERENCE</span>
+
+<span class="text-brand-secondary font-bold">CORE (Always include)</span>
+  - Role: What the agent is
+  - Trigger: What activates it
+  - Action: What it does
+  - Outcome: Why it matters
+  - Autonomy: Full|Supervised|Collaborative|Directed
+
+<span class="text-brand-success font-bold">ESSENTIALS (Include as needed)</span>
+  - trigger: type + source
+  - skills: name + does + tools
+  - tools: name + purpose
+  - human_role + escalates_when
+  - success + guardrails
+
+<span class="text-brand-accent font-bold">AUTONOMY LEVELS</span>
+  - Full: No human involvement during execution
+  - Supervised: Human monitors, intervenes on exception
+  - Collaborative: Human confirms agent proposals
+  - Directed: Human guides each step
+
+<span class="text-brand-alert font-bold">WHEN TO GRADUATE TO FULL</span>
+  - Need to specify workflow stages or state transitions
+  - Agent has persistent memory or learning loops
+  - Complex multi-agent collaboration
+  - Detailed reasoning logic required
+</pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities. HAP Analysis ensures humans remain empowered and accountable in an age of intelligent automation.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
