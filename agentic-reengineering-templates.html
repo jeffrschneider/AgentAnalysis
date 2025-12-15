@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Reengineering Templates | HAP Analysis</title>
+    <meta name="description" content="YAML templates and worked examples for designing AI agent workflows using the Agentic Reengineering method.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #030712; color: #f8fafc; overflow-x: hidden; }
+        .text-gradient { background: linear-gradient(to right, #38bdf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+        .glass-card:hover { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 20px rgba(56, 189, 248, 0.15); transform: translateY(-2px); transition: all 0.3s ease; }
+        .grid-bg { background-size: 40px 40px; mask-image: linear-gradient(to bottom, transparent, black, transparent); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #38bdf8; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .template-block { position: relative; background: #0f172a; border-left: 4px solid #38bdf8; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #e2e8f0; border-radius: 0.5rem; overflow-x: auto; }
+        .template-label { position: absolute; top: -10px; right: 10px; background: #38bdf8; color: #0f172a; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+        .example-block { position: relative; background: #0f172a; border-left: 4px solid #34d399; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #e2e8f0; border-radius: 0.5rem; overflow-x: auto; }
+        .example-label { position: absolute; top: -10px; right: 10px; background: #34d399; color: #0f172a; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+        .agent-story-block { position: relative; background: #0f172a; border-left: 4px solid #c084fc; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #e2e8f0; border-radius: 0.5rem; overflow-x: auto; }
+        .agent-story-label { position: absolute; top: -10px; right: 10px; background: #c084fc; color: #0f172a; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+        .yaml-key { color: #38bdf8; }
+        .yaml-value { color: #a5f3fc; }
+        .yaml-comment { color: #6b7280; }
+        .step-number { width: 24px; height: 24px; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem; color: #38bdf8; flex-shrink: 0; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">Start Analysis</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-8 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="agentic-reengineering.html" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Agentic Reengineering Guide
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-accent">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Reference Materials</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Agentic Reengineering Templates</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Copy-paste templates and a complete worked example for designing AI agent workflows.
+            </p>
+        </div>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="py-4 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-4 rounded-xl">
+                <p class="text-sm text-gray-400 mb-3"><strong class="text-white">Jump to:</strong></p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#classification-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Task Classification</a>
+                    <a href="#trigger-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Trigger Design</a>
+                    <a href="#skill-design-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Skill Design</a>
+                    <a href="#oversight-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Human Oversight</a>
+                    <a href="#worked-example" class="text-xs px-3 py-1 bg-brand-success/20 hover:bg-brand-success/30 rounded-full text-brand-success hover:text-white transition-colors">Worked Example</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-8 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-10">
+
+            <!-- Task Classification Template -->
+            <div id="classification-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">1</div>
+                    Task Classification Template
+                </h2>
+                <p class="text-gray-300 mb-6">Classify each skill from your Agentic Replica into automate, augment, or human-only categories.</p>
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TASK CLASSIFICATION:</span> <span class="yaml-value">[Role ID from Replica]</span>
+
+<span class="yaml-key">classifications:</span>
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">[From replica]</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">[From replica]</span>
+    <span class="yaml-key">classification:</span> <span class="yaml-value">[automate | augment | human_only]</span>
+    <span class="yaml-key">rationale:</span> <span class="yaml-value">"[Why this classification?]"</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">[low | medium | high]</span>
+    <span class="yaml-key">error_cost:</span> <span class="yaml-value">[low | medium | high | catastrophic]</span>
+    <span class="yaml-key">time_sensitivity:</span> <span class="yaml-value">[real-time | same-day | flexible]</span>
+    <span class="yaml-key">data_accessible:</span> <span class="yaml-value">[true | partial | false]</span>
+    <span class="yaml-key">agent_story_id:</span> <span class="yaml-value">[ID for resulting agent story]</span>
+
+<span class="yaml-key">summary:</span>
+  <span class="yaml-key">automate_count:</span> <span class="yaml-value">[Number]</span>
+  <span class="yaml-key">augment_count:</span> <span class="yaml-value">[Number]</span>
+  <span class="yaml-key">human_only_count:</span> <span class="yaml-value">[Number]</span></pre>
+                </div>
+            </div>
+
+            <!-- Trigger Design Template -->
+            <div id="trigger-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">2</div>
+                    Trigger Design Template
+                </h2>
+                <p class="text-gray-300 mb-6">Define what activates each agent. Maps to trigger specification in Agent Story: Full.</p>
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TRIGGER DESIGN:</span> <span class="yaml-value">[Agent Story ID]</span>
+
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[message | resource_change | schedule | cascade | manual]</span>
+  <span class="yaml-key">source:</span>
+    <span class="yaml-key">system:</span> <span class="yaml-value">[System name or "human"]</span>
+    <span class="yaml-key">channel:</span> <span class="yaml-value">[API endpoint, queue, email, etc.]</span>
+  <span class="yaml-key">conditions:</span>
+    <span class="yaml-key">required:</span>
+      - <span class="yaml-value">"[Condition that MUST be true]"</span>
+  <span class="yaml-key">examples:</span>
+    <span class="yaml-key">should_trigger:</span>
+      - <span class="yaml-value">"[Example that should activate agent]"</span>
+    <span class="yaml-key">should_not_trigger:</span>
+      - <span class="yaml-value">"[Similar example that should NOT activate]"</span></pre>
+                </div>
+            </div>
+
+            <!-- Skill Design Template -->
+            <div id="skill-design-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">3</div>
+                    Agent Skill Design Template
+                </h2>
+                <p class="text-gray-300 mb-6">Transform each automated/augmented task into a detailed skill specification.</p>
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">SKILL DESIGN:</span> <span class="yaml-value">[Skill Name]</span>
+
+<span class="yaml-key">skill:</span>
+  <span class="yaml-key">name:</span> <span class="yaml-value">[Skill Name]</span>
+  <span class="yaml-key">domain:</span> <span class="yaml-value">[Knowledge domain]</span>
+  <span class="yaml-key">proficiencies:</span>
+    - <span class="yaml-value">"[Specific capability #1]"</span>
+    - <span class="yaml-value">"[Specific capability #2]"</span>
+  <span class="yaml-key">tools_required:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Tool/MCP server name]</span>
+      <span class="yaml-key">permissions:</span> <span class="yaml-value">[read | write | execute]</span>
+  <span class="yaml-key">reasoning:</span>
+    <span class="yaml-key">strategy:</span> <span class="yaml-value">[rule_based | llm_guided | hybrid]</span>
+    <span class="yaml-key">decision_points:</span>
+      - <span class="yaml-key">name:</span> <span class="yaml-value">[Decision name]</span>
+        <span class="yaml-key">approach:</span> <span class="yaml-value">[How decision is made]</span>
+        <span class="yaml-key">fallback:</span> <span class="yaml-value">[What happens if decision fails]</span>
+  <span class="yaml-key">memory:</span>
+    <span class="yaml-key">working:</span> <span class="yaml-value">[Context during execution]</span>
+    <span class="yaml-key">persistent:</span>
+      - <span class="yaml-key">name:</span> <span class="yaml-value">[Memory store]</span>
+        <span class="yaml-key">type:</span> <span class="yaml-value">[kb | vector | relational]</span>
+  <span class="yaml-key">quality_bar:</span> <span class="yaml-value">"[Measurable standard]"</span></pre>
+                </div>
+            </div>
+
+            <!-- Human Oversight Template -->
+            <div id="oversight-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">4</div>
+                    Human Oversight Design Template
+                </h2>
+                <p class="text-gray-300 mb-6">Define when and how humans stay in the loop.</p>
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">HUMAN OVERSIGHT:</span> <span class="yaml-value">[Agent Story ID]</span>
+
+<span class="yaml-key">autonomy:</span>
+  <span class="yaml-key">level:</span> <span class="yaml-value">[Full | Supervised | Collaborative | Directed]</span>
+  <span class="yaml-key">rationale:</span> <span class="yaml-value">"[Why this level?]"</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">[in_the_loop | on_the_loop | out_of_loop]</span>
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Checkpoint name]</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">[When human involvement needed]</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">[approval | input | review | escalation]</span>
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span>
+      - <span class="yaml-value">"[Condition that triggers escalation]"</span>
+
+<span class="yaml-key">guardrails:</span>
+  - <span class="yaml-value">"[Thing agent must NEVER do]"</span></pre>
+                </div>
+            </div>
+
+            <!-- Worked Example -->
+            <div id="worked-example" class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-file-code text-brand-success"></i>
+                    Complete Worked Example: Financial Analyst Reengineering
+                </h2>
+                <p class="text-gray-300 mb-6">How we reengineer the Financial Analyst role from Agentic Replica into Agent Stories.</p>
+
+                <!-- Task Classification Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="step-number">1</div>
+                        Task Classification
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TASK CLASSIFICATION:</span> <span class="yaml-value">FIN-ANALYST-001</span>
+
+<span class="yaml-key">classifications:</span>
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-001</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
+    <span class="yaml-key">classification:</span> <span class="yaml-value">augment</span>
+    <span class="yaml-key">rationale:</span> <span class="yaml-value">"High judgment in root cause analysis. Agent handles data prep, human interprets."</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">error_cost:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">agent_story_id:</span> <span class="yaml-value">VARIANCE-ANALYST-001</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-002</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Weekly Cash Flow Reporting</span>
+    <span class="yaml-key">classification:</span> <span class="yaml-value">automate</span>
+    <span class="yaml-key">rationale:</span> <span class="yaml-value">"Low judgment, mechanical data aggregation. Same process every week."</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
+    <span class="yaml-key">error_cost:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">agent_story_id:</span> <span class="yaml-value">CASHFLOW-REPORTER-001</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-006</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Stakeholder Communication</span>
+    <span class="yaml-key">classification:</span> <span class="yaml-value">human_only</span>
+    <span class="yaml-key">rationale:</span> <span class="yaml-value">"Relationship-dependent, political sensitivity requires human judgment."</span>
+
+<span class="yaml-key">summary:</span>
+  <span class="yaml-key">automate_count:</span> <span class="yaml-value">2</span>
+  <span class="yaml-key">augment_count:</span> <span class="yaml-value">3</span>
+  <span class="yaml-key">human_only_count:</span> <span class="yaml-value">1</span>
+  <span class="yaml-key">automation_potential:</span> <span class="yaml-value">"~40% fully automated, ~45% augmented"</span></pre>
+                    </div>
+                </div>
+
+                <!-- Agent Story Example: Cash Flow Reporter -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-robot text-brand-success"></i>
+                        Resulting Agent Story: Cash Flow Reporter (Automate)
+                    </h4>
+                    <div class="agent-story-block">
+                        <div class="agent-story-label">Agent Story</div>
+<pre class="whitespace-pre-wrap text-xs"><span class="yaml-key">AGENT STORY:</span> <span class="yaml-value">CASHFLOW-REPORTER-001</span>
+
+<span class="yaml-value">As a Cash Flow Reporting Agent,
+triggered by weekly schedule (Monday 7 AM),
+I aggregate cash position data from banking and ERP systems,
+so that finance leadership has accurate liquidity visibility.</span>
+
+<span class="yaml-key">Autonomy:</span> <span class="yaml-value">Full</span>
+
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">schedule</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Scheduler (cron: 0 7 * * 1)</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Banking API MCP</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">NetSuite MCP</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Email MCP</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">execute</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">Only pre-approved distribution list</span>
+
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Cash Position Aggregation</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Treasury operations</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Connect to multiple banking APIs</span>
+      - <span class="yaml-value">Reconcile bank balances to GL</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">100% accounts, reconciliation within $1K</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">out_of_loop</span>
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span>
+      - <span class="yaml-value">Reconciliation difference > $10K</span>
+      - <span class="yaml-value">Bank API unavailable after retries</span>
+
+<span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">Report delivered by 8 AM every Monday</span>
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">Never send outside approved list</span>
+    - <span class="yaml-value">Never modify historical data</span></pre>
+                    </div>
+                </div>
+
+                <!-- Agent Story Example: Variance Analyst -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-people-arrows text-brand-secondary"></i>
+                        Resulting Agent Story: Variance Analyst (Augment)
+                    </h4>
+                    <div class="agent-story-block">
+                        <div class="agent-story-label">Agent Story</div>
+<pre class="whitespace-pre-wrap text-xs"><span class="yaml-key">AGENT STORY:</span> <span class="yaml-value">VARIANCE-ANALYST-001</span>
+
+<span class="yaml-value">As a Variance Analysis Agent,
+triggered by month-end close completion,
+I identify material variances, gather context, and draft commentary,
+so that the analyst can focus on interpretation.</span>
+
+<span class="yaml-key">Autonomy:</span> <span class="yaml-value">Collaborative</span>
+
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">cascade</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Month-end close notification</span>
+
+<span class="yaml-key">reasoning:</span>
+  <span class="yaml-key">strategy:</span> <span class="yaml-value">hybrid</span>
+  <span class="yaml-key">decision_points:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Variance Materiality</span>
+      <span class="yaml-key">approach:</span> <span class="yaml-value">Rule-based: flag if > $10K OR > 10%</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Root Cause Hypothesis</span>
+      <span class="yaml-key">approach:</span> <span class="yaml-value">LLM-guided pattern matching</span>
+      <span class="yaml-key">fallback:</span> <span class="yaml-value">Flag as "requires human investigation"</span>
+
+<span class="yaml-key">memory:</span>
+  <span class="yaml-key">persistent:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Variance History KB</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">vector</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Similar variance retrieval</span>
+  <span class="yaml-key">learning:</span>
+    - <span class="yaml-key">type:</span> <span class="yaml-value">feedback_loop</span>
+      <span class="yaml-key">signal:</span> <span class="yaml-value">Analyst edits to draft commentary</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">in_the_loop</span>
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Draft Review</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">All drafts complete</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">review</span>
+
+<span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">Identifies 100% of variances meeting threshold</span>
+  <span class="yaml-key">quality:</span>
+    - <span class="yaml-value">Draft requires < 20% editing on average</span>
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">Never finalize without human approval</span>
+    - <span class="yaml-value">Never post to external channels</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Guide CTA -->
+            <div class="text-center py-8">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="agentic-reengineering.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to the Step-by-Step Guide
+                    </a>
+                    <a href="agent-story-full.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors">
+                        <i class="fa-solid fa-scroll"></i>
+                        Agent Story: Full Reference
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work.
+                </p>
+            </div>
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
