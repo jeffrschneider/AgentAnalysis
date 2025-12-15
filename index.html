@@ -183,14 +183,6 @@
                 <span class="text-white font-semibold">collaborative entities</span> consisting of a human and an AI agent working together, evolving over time.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="definitions.html" class="px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors shadow-[0_0_20px_rgba(56,189,248,0.3)]">
-                    Explore Definitions
-                </a>
-                <a href="#artifacts" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-lg transition-colors font-medium">
-                    View Artifacts
-                </a>
-            </div>
         </div>
     </header>
 
@@ -198,18 +190,110 @@
     <section class="py-16 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
-                <h2 class="text-2xl font-bold text-white mb-4">Why New Analysis Methods?</h2>
+                <h2 class="text-2xl font-bold text-white mb-4">Why Agentic Analysis?</h2>
                 <p class="text-gray-300 leading-relaxed">
-                    Traditional requirements methodologies—user stories, use cases, and personas—were designed for a world where humans acted alone and software was a passive tool. As AI agents become active collaborators capable of learning, adapting, and taking initiative, these frameworks fail to capture the dynamic, evolving nature of human-agent partnerships. We need new artifacts that model not just what users want, but how trust develops, responsibilities shift, and emergent capabilities arise when humans and agents work together over time.
+                    Traditional requirements methodologies—user stories, use cases, and personas—were designed for a world where humans acted alone and software was a passive tool. As AI agents become active collaborators capable of learning, adapting, and taking initiative, these frameworks fail to capture the dynamic, evolving nature of human-agent partnerships. Agentic Analysis provides a complete toolkit: methods to understand current work (Agentic Replica), envision optimized futures (Agentic Reengineering), and artifacts that model how trust develops, responsibilities shift, and emergent capabilities arise when humans and agents work together over time.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Evolution of Artifacts -->
+    <!-- Methods Section -->
+    <section id="methods" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">How to do Agentic Analysis</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Two complementary approaches for understanding work and designing human-agent collaboration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+
+                <!-- Agentic Replica Card -->
+                <a href="agentic-replica.html" class="block glass-card p-8 rounded-2xl border-l-4 border-amber-500 hover:border-amber-400 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-magnifying-glass-chart text-8xl"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4 text-amber-500">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <span class="uppercase tracking-widest text-xs font-bold">Current State Analysis</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Agentic Replica</h3>
+                    <p class="text-gray-400 mb-6">
+                        Map the as-is workflow of human employees. Treat the job as a "black box" to catalog inputs, transformations, and outputs—creating a factual baseline for AI agent development.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <h4 class="text-xs text-gray-500 uppercase mb-1">Focus</h4>
+                            <p class="text-sm text-white">What exists today</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <h4 class="text-xs text-gray-500 uppercase mb-1">Output</h4>
+                            <p class="text-sm text-white">IPO diagrams</p>
+                        </div>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-sm text-amber-500 hover:text-white transition-colors">
+                        Learn the method <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </span>
+                </a>
+
+                <!-- Agentic Reengineering Card -->
+                <a href="agentic-reengineering.html" class="block glass-card p-8 rounded-2xl border-l-4 border-brand-accent hover:border-cyan-400 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-wand-magic-sparkles text-8xl"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4 text-brand-accent">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span class="uppercase tracking-widest text-xs font-bold">Future State Vision</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Agentic Reengineering</h3>
+                    <p class="text-gray-400 mb-6">
+                        Envision how job areas could be optimized with AI agents. Restructure workflows for efficiency, scalability, and innovation—designing the to-be state.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <h4 class="text-xs text-gray-500 uppercase mb-1">Focus</h4>
+                            <p class="text-sm text-white">What could be</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <h4 class="text-xs text-gray-500 uppercase mb-1">Output</h4>
+                            <p class="text-sm text-white">Reengineered workflows</p>
+                        </div>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-sm text-brand-accent hover:text-white transition-colors">
+                        Learn the method <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </span>
+                </a>
+
+            </div>
+
+            <!-- Methods Matrix CTA -->
+            <div class="glass-card p-6 rounded-xl border border-brand-secondary/30 text-center">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-table-cells text-brand-secondary text-2xl"></i>
+                        <div class="text-left">
+                            <h4 class="font-bold text-white">Methods Matrix</h4>
+                            <p class="text-sm text-gray-400">See how methods map to Light and Full artifact formats</p>
+                        </div>
+                    </div>
+                    <a href="methods-matrix.html" class="px-6 py-3 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors whitespace-nowrap">
+                        <i class="fa-solid fa-arrow-right mr-2"></i>
+                        View Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Agentic Analysis Artifacts -->
     <section id="artifacts" class="py-20 px-6 bg-brand-surface/30 border-y border-white/5">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 text-center">Evolution of Artifacts</h2>
+            <h2 class="text-3xl font-bold mb-4 text-center">The Agentic Analysis Artifacts</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-center mb-16">
+                From traditional user stories to collaborative HAP Plans, these artifacts capture the full spectrum of human-agent requirements.
+            </p>
 
             <div class="space-y-8">
 
@@ -343,95 +427,6 @@
                     </div>
                 </a>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Methods Section -->
-    <section id="methods" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Methods: The How</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Two complementary approaches for understanding work and designing human-agent collaboration.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-
-                <!-- Agentic Replica Card -->
-                <a href="agentic-replica.html" class="block glass-card p-8 rounded-2xl border-l-4 border-amber-500 hover:border-amber-400 transition-all cursor-pointer relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i class="fa-solid fa-magnifying-glass-chart text-8xl"></i>
-                    </div>
-                    <div class="flex items-center gap-3 mb-4 text-amber-500">
-                        <i class="fa-solid fa-magnifying-glass-chart"></i>
-                        <span class="uppercase tracking-widest text-xs font-bold">Current State Analysis</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white">Agentic Replica</h3>
-                    <p class="text-gray-400 mb-6">
-                        Map the as-is workflow of human employees. Treat the job as a "black box" to catalog inputs, transformations, and outputs—creating a factual baseline for AI agent development.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-white/5 p-3 rounded-lg">
-                            <h4 class="text-xs text-gray-500 uppercase mb-1">Focus</h4>
-                            <p class="text-sm text-white">What exists today</p>
-                        </div>
-                        <div class="bg-white/5 p-3 rounded-lg">
-                            <h4 class="text-xs text-gray-500 uppercase mb-1">Output</h4>
-                            <p class="text-sm text-white">IPO diagrams</p>
-                        </div>
-                    </div>
-                    <span class="inline-flex items-center gap-2 text-sm text-amber-500 hover:text-white transition-colors">
-                        Learn the method <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-
-                <!-- Agentic Reengineering Card -->
-                <a href="agentic-reengineering.html" class="block glass-card p-8 rounded-2xl border-l-4 border-brand-accent hover:border-cyan-400 transition-all cursor-pointer relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i class="fa-solid fa-wand-magic-sparkles text-8xl"></i>
-                    </div>
-                    <div class="flex items-center gap-3 mb-4 text-brand-accent">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span class="uppercase tracking-widest text-xs font-bold">Future State Vision</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white">Agentic Reengineering</h3>
-                    <p class="text-gray-400 mb-6">
-                        Envision how job areas could be optimized with AI agents. Restructure workflows for efficiency, scalability, and innovation—designing the to-be state.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-white/5 p-3 rounded-lg">
-                            <h4 class="text-xs text-gray-500 uppercase mb-1">Focus</h4>
-                            <p class="text-sm text-white">What could be</p>
-                        </div>
-                        <div class="bg-white/5 p-3 rounded-lg">
-                            <h4 class="text-xs text-gray-500 uppercase mb-1">Output</h4>
-                            <p class="text-sm text-white">Reengineered workflows</p>
-                        </div>
-                    </div>
-                    <span class="inline-flex items-center gap-2 text-sm text-brand-accent hover:text-white transition-colors">
-                        Learn the method <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-
-            </div>
-
-            <!-- Methods Matrix CTA -->
-            <div class="glass-card p-6 rounded-xl border border-brand-secondary/30 text-center">
-                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-table-cells text-brand-secondary text-2xl"></i>
-                        <div class="text-left">
-                            <h4 class="font-bold text-white">Methods Matrix</h4>
-                            <p class="text-sm text-gray-400">See how methods map to Light and Full artifact formats</p>
-                        </div>
-                    </div>
-                    <a href="methods-matrix.html" class="px-6 py-3 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors whitespace-nowrap">
-                        <i class="fa-solid fa-arrow-right mr-2"></i>
-                        View Matrix
-                    </a>
-                </div>
             </div>
         </div>
     </section>
