@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Replica | HAP Analysis</title>
+    <meta name="description" content="Map the as-is workflow of human employees through systematic current state analysis for AI agent development.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #f59e0b, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b, #fb923c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #030712;
+            flex-shrink: 0;
+        }
+
+        .ipo-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 146, 60, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="index.html#methods" class="inline-flex items-center gap-2 text-brand-amber hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Methods
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-amber">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Current State Analysis</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Agentic Replica</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Mapping the as-is workflow of human employees to create a factual baseline for AI agent development.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-12 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-12">
+
+            <!-- Philosophy Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-brand-amber"></i>
+                    The Approach
+                </h2>
+                <div class="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                        Agentic Replica focuses on understanding the <strong class="text-white">existing role without proposing changes</strong>—treating the job as a "black box" to catalog inputs, transformations, and outputs. The goal is to create a factual baseline for white-collar roles like analysts, managers, or coordinators, emphasizing aspects AI agents could observe or replicate.
+                    </p>
+                    <p>
+                        This approach draws from <strong class="text-white">systems thinking</strong> and traditional job analysis but prioritizes <strong class="text-white">non-intrusive, data-driven methods</strong> to avoid bias from self-reporting. Rather than interviewing employees about what they think they do, we observe what actually happens.
+                    </p>
+                </div>
+            </div>
+
+            <!-- IPO Model Visual -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-diagram-project text-brand-amber"></i>
+                    The IPO Model
+                </h2>
+                <p class="text-gray-300 mb-8">The analysis yields an Input-Process-Output (IPO) diagram, highlighting AI-replicable patterns:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="ipo-box p-6 rounded-xl text-center">
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-inbox text-brand-amber text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Inputs</h4>
+                        <p class="text-sm text-gray-400">Data, requests, or resources entering the system</p>
+                    </div>
+                    <div class="ipo-box p-6 rounded-xl text-center relative">
+                        <div class="hidden md:block absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <i class="fa-solid fa-arrow-right text-brand-amber"></i>
+                        </div>
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-gears text-brand-amber text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Transformations</h4>
+                        <p class="text-sm text-gray-400">Cognitive or procedural work, including tacit knowledge</p>
+                    </div>
+                    <div class="ipo-box p-6 rounded-xl text-center relative">
+                        <div class="hidden md:block absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <i class="fa-solid fa-arrow-right text-brand-amber"></i>
+                        </div>
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-file-export text-brand-amber text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Outputs</h4>
+                        <p class="text-sm text-gray-400">Deliverables, decisions, or communications produced</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Process Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fa-solid fa-list-check text-brand-amber"></i>
+                    Core Process
+                </h2>
+                <p class="text-gray-400 mb-8">A 4-step iterative cycle, starting with passive data collection and ending with validation. Use this for quick, objective insights, involving HR, IT, or the employee minimally.</p>
+
+                <div class="space-y-6">
+                    <!-- Step 1 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">1</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Identify Inputs</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Catalog what flows into the role: emails, meetings, data feeds (e.g., CRM updates), documents, or queries from colleagues. Review org charts to trace upstream sources and handoffs.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Example:</strong> A financial analyst's inputs might include market data APIs, stakeholder requests via Slack, and regulatory alerts.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">2</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Map Transformations</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Break down how inputs are processed: decision rules, tools used (e.g., Excel for modeling), and tacit elements like judgment calls. Use black-box inference—analyze logs or assets without deep employee involvement.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Example:</strong> Examine spreadsheets to infer formulas or logic; monitor system usage (ethically) to see time on apps like email vs. analysis tools.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">3</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Document Outputs</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                List what emerges: reports, recommendations, approvals, or updated records. Trace downstream impacts. Quantify where possible (e.g., frequency of outputs via email archives).
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Example:</strong> A marketer's campaign draft leads to team feedback loops, approval chains, and published content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">4</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Validate and Refine</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Cross-check with light interviews or shadow sessions to confirm the black-box model. Use LLMs to simulate based on captured data.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Example:</strong> "Based on these email samples, infer the transformation steps" — using AI to validate your model against real artifacts.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Techniques -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-orange-400">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-toolbox text-orange-400"></i>
+                    Optional / Enhancing Techniques
+                </h2>
+                <p class="text-gray-400 mb-6">Secondary methods to deepen your research when the core process needs supplementation:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-desktop text-orange-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Digital Tracing</h4>
+                        <p class="text-sm text-gray-400">
+                            Ethically monitor computer activity (e.g., app logs, keystroke patterns) to quantify transformations without observation bias.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-folder-open text-orange-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Artifact Audit</h4>
+                        <p class="text-sm text-gray-400">
+                            Dive into working assets (spreadsheets, docs) to externalize tacit knowledge, using cognitive mapping to verbalize implied rules.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-bullseye text-orange-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">JTBD Lite</h4>
+                        <p class="text-sm text-gray-400">
+                            Apply a simplified Jobs to Be Done to frame transformations as "hired jobs" (e.g., "transform raw data into actionable insights"), focusing on current behaviors only.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-wrench text-gray-400"></i>
+                    Recommended Tools
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-sitemap text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Workflow Diagramming</p>
+                        <p class="text-xs text-gray-500">Visio, Miro, Lucidchart</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-table text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Data Tracking</p>
+                        <p class="text-xs text-gray-500">Spreadsheets, Airtable</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-chart-line text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Activity Analysis</p>
+                        <p class="text-xs text-gray-500">Time Doctor, RescueTime</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-robot text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">LLM Validation</p>
+                        <p class="text-xs text-gray-500">Claude, GPT-4</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-check-circle text-brand-success"></i>
+                    What You'll Produce
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Primary Deliverable</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Input-Process-Output (IPO) diagram</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Catalog of inputs with sources and frequencies</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Transformation rules (explicit and inferred)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Output inventory with downstream dependencies</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Enables</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Agent Story development (Light or Full)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Automation opportunity identification</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Baseline for reengineering efforts</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Training data collection strategy</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center py-8">
+                <h3 class="text-xl font-bold text-white mb-6">Ready to envision the future state?</h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="agentic-reengineering.html" class="px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        <i class="fa-solid fa-arrow-right mr-2"></i>
+                        Agentic Reengineering
+                    </a>
+                    <a href="methods-matrix.html" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-lg transition-colors font-medium">
+                        <i class="fa-solid fa-table-cells mr-2"></i>
+                        View Methods Matrix
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities. HAP Analysis ensures humans remain empowered and accountable in an age of intelligent automation.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
