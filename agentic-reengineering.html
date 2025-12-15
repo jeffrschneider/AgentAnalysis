@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Reengineering | HAP Analysis</title>
+    <meta name="description" content="Envision and design optimized workflows for human-agent pairing, restructuring roles for efficiency, scalability, and innovation.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #38bdf8, #c084fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #030712;
+            flex-shrink: 0;
+        }
+
+        .task-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .task-automate {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34d399;
+        }
+        .task-augment {
+            background: rgba(192, 132, 252, 0.2);
+            color: #c084fc;
+        }
+        .task-human {
+            background: rgba(244, 114, 182, 0.2);
+            color: #f472b6;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="index.html#methods" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Methods
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-accent">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Future State Vision</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Agentic Reengineering</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Envisioning how job areas can be optimized with AI agents—restructuring workflows for efficiency, scalability, and innovation.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-12 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-12">
+
+            <!-- Philosophy Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-brand-accent"></i>
+                    The Approach
+                </h2>
+                <div class="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                        Agentic Reengineering shifts to <strong class="text-white">speculative redesign</strong>, imagining how the job area could be optimized with AI agents—potentially restructuring workflows, roles, and handoffs for efficiency, scalability, or innovation.
+                    </p>
+                    <p>
+                        Inspired by <strong class="text-white">Business Process Reengineering (BPR)</strong>, this approach assumes radical changes like automating handoffs or augmenting human creativity, while considering ethical factors such as job displacement. The approach is <strong class="text-white">forward-looking</strong>, using simulations and benchmarks to prototype AI-driven alternatives.
+                    </p>
+                    <p>
+                        This process is kept <strong class="text-white">separate from the current state</strong> to avoid conflating "as-is" with "to-be"—ensuring clear thinking about what's possible versus what exists today.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Task Decomposition Visual -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-object-ungroup text-brand-accent"></i>
+                    Task Decomposition Model
+                </h2>
+                <p class="text-gray-300 mb-8">From the black-box model, tasks are categorized into three types:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-brand-success/10 border border-brand-success/30 p-6 rounded-xl">
+                        <div class="w-16 h-16 bg-brand-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-robot text-brand-success text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Automatable</h4>
+                        <p class="text-sm text-gray-400 text-center mb-4">Tasks agents can handle autonomously</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>• Data aggregation</li>
+                            <li>• Report generation</li>
+                            <li>• Email triage</li>
+                            <li>• Status updates</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-secondary/10 border border-brand-secondary/30 p-6 rounded-xl">
+                        <div class="w-16 h-16 bg-brand-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-people-arrows text-brand-secondary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Augmentable</h4>
+                        <p class="text-sm text-gray-400 text-center mb-4">Tasks enhanced by AI assistance</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>• AI-assisted decisions</li>
+                            <li>• Draft generation</li>
+                            <li>• Research synthesis</li>
+                            <li>• Anomaly detection</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-alert/10 border border-brand-alert/30 p-6 rounded-xl">
+                        <div class="w-16 h-16 bg-brand-alert/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-user text-brand-alert text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Human-Only</h4>
+                        <p class="text-sm text-gray-400 text-center mb-4">Tasks requiring human judgment</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>• Ethical decisions</li>
+                            <li>• Relationship building</li>
+                            <li>• Creative direction</li>
+                            <li>• Final accountability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Process Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fa-solid fa-list-check text-brand-accent"></i>
+                    Core Process
+                </h2>
+                <p class="text-gray-400 mb-8">A 5-step creative cycle, building on current state data but emphasizing experimentation. Involve cross-functional teams (e.g., AI devs, domain experts) in workshops.</p>
+
+                <div class="space-y-6">
+                    <!-- Step 1 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">1</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Envision Redesign Goals</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Define objectives based on pain points from the current state (e.g., reduce handoff delays). Use BPR principles: question assumptions, integrate processes end-to-end, and prioritize customer/value outcomes.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Key questions:</strong> What takes too long? Where do errors occur? What would 10x improvement look like?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">2</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Decompose and Reassign Tasks</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                From the black-box model, break tasks into automatable, augmentable, and human-only categories. Imagine multi-agent systems for complex workflows.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Example:</strong> A "planner agent" coordinating with "executor agents" for a marketing campaign workflow.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">3</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Simulate AI-Enabled Workflows</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Prototype with LLMs: prompt to reimagine roles. Model handoffs as agent-to-agent or agent-to-human. Use agent-building tools like AutoGen for complex prototypes.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Prompt example:</strong> "Redesign a marketing coordinator's workflow with AI agents handling email triage and content drafting."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">4</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Evaluate Feasibility and Impact</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Assess using metrics like automation potential (e.g., via McKinsey frameworks) or ROI simulations. Test prototypes on sample data from current assets.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Metrics to consider:</strong> Time saved, error reduction, scalability factor, human satisfaction, cost delta.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="flex gap-4">
+                        <div class="step-number">5</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-white mb-2">Iterate and Document the To-Be Model</h4>
+                            <p class="text-gray-400 text-sm mb-3">
+                                Refine based on simulations, creating blueprints for implementation (e.g., agent specs: tools, reasoning chains). Address risks like AI hallucinations through human oversight loops.
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <p class="text-xs text-gray-500 italic">
+                                    <strong class="text-gray-400">Output:</strong> Reengineered process map showing streamlined flows (e.g., AI automating 60% of transformations).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Techniques -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-toolbox text-brand-secondary"></i>
+                    Optional / Enhancing Techniques
+                </h2>
+                <p class="text-gray-400 mb-6">Secondary methods to enrich your future state vision:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-route text-brand-secondary text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Scenario Planning</h4>
+                        <p class="text-sm text-gray-400">
+                            Use foresight methods to explore multiple futures (e.g., full automation vs. hybrid), incorporating trends like advanced LLMs.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-vial text-brand-secondary text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Multi-Agent Benchmarks</h4>
+                        <p class="text-sm text-gray-400">
+                            Draw from AI research (e.g., AgentBench) to test redesigned workflows in simulated environments before deployment.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-scale-balanced text-brand-secondary text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">Ethical Review</h4>
+                        <p class="text-sm text-gray-400">
+                            Integrate impact assessments to balance efficiency with job equity, ensuring reengineering enhances rather than eliminates roles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-Agent Architecture -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-network-wired text-brand-accent"></i>
+                    Multi-Agent Architecture Patterns
+                </h2>
+                <p class="text-gray-300 mb-6">When redesigning workflows, consider these common multi-agent patterns:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-sitemap text-brand-accent"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Planner-Executor</h4>
+                        </div>
+                        <p class="text-sm text-gray-400">One agent plans and delegates, others execute specific tasks. Good for complex workflows with clear decomposition.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-arrows-spin text-brand-accent"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Pipeline</h4>
+                        </div>
+                        <p class="text-sm text-gray-400">Sequential handoffs where each agent's output feeds the next. Ideal for linear processes with clear stages.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-users text-brand-accent"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Peer Collaboration</h4>
+                        </div>
+                        <p class="text-sm text-gray-400">Agents work as equals, sharing information and coordinating dynamically. Suited for creative or research tasks.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-user-tie text-brand-accent"></i>
+                            </div>
+                            <h4 class="font-bold text-white">Human-in-the-Loop</h4>
+                        </div>
+                        <p class="text-sm text-gray-400">Human oversees and intervenes at key decision points. Essential for high-stakes or novel situations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-wrench text-gray-400"></i>
+                    Recommended Tools
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-robot text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Agent Frameworks</p>
+                        <p class="text-xs text-gray-500">AutoGen, LangGraph, CrewAI</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-flask text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Simulation</p>
+                        <p class="text-xs text-gray-500">AgentBench, custom sandboxes</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-diagram-project text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">Process Modeling</p>
+                        <p class="text-xs text-gray-500">BPMN tools, Miro</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
+                        <i class="fa-solid fa-calculator text-gray-400 text-2xl mb-2"></i>
+                        <p class="text-sm text-gray-300">ROI Analysis</p>
+                        <p class="text-xs text-gray-500">Spreadsheets, custom models</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-check-circle text-brand-success"></i>
+                    What You'll Produce
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Primary Deliverable</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Reengineered process map (To-Be model)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Task decomposition matrix (automate/augment/human)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Agent specifications (roles, tools, reasoning chains)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
+                                <span>Feasibility and ROI assessment</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Enables</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Comprehensive Agent Stories (Full format)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>HAP Plan development</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Implementation roadmap</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
+                                <span>Change management planning</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center py-8">
+                <h3 class="text-xl font-bold text-white mb-6">See how methods map to artifacts</h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="methods-matrix.html" class="px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        <i class="fa-solid fa-table-cells mr-2"></i>
+                        View Methods Matrix
+                    </a>
+                    <a href="agentic-replica.html" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-lg transition-colors font-medium">
+                        <i class="fa-solid fa-arrow-left mr-2"></i>
+                        Agentic Replica
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities. HAP Analysis ensures humans remain empowered and accountable in an age of intelligent automation.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

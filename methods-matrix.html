@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods Matrix | HAP Analysis</title>
+    <meta name="description" content="See how Agentic Replica and Agentic Reengineering methods map to Agent Story Light and Full artifact formats.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(192, 132, 252, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #c084fc, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(192, 132, 252, 0.3);
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .matrix-cell {
+            transition: all 0.3s ease;
+        }
+        .matrix-cell:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .fit-excellent {
+            background: rgba(52, 211, 153, 0.15);
+            border-color: rgba(52, 211, 153, 0.4);
+        }
+        .fit-good {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+        .fit-possible {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .fit-limited {
+            background: rgba(107, 114, 128, 0.15);
+            border-color: rgba(107, 114, 128, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="index.html#methods" class="inline-flex items-center gap-2 text-brand-secondary hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Methods
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-secondary">
+                <i class="fa-solid fa-table-cells"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Reference Guide</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Methods Matrix</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                How Agentic Replica and Agentic Reengineering map to Agent Story formats—choosing the right combination for your needs.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-12 px-6 relative">
+        <div class="max-w-6xl mx-auto space-y-12">
+
+            <!-- Overview Section -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-brand-secondary"></i>
+                    Understanding the Matrix
+                </h2>
+                <div class="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                        The <strong class="text-white">methods</strong> (Agentic Replica and Agentic Reengineering) describe <em>how you research and analyze</em> work. The <strong class="text-white">artifacts</strong> (Agent Story Light and Full) describe <em>how you document</em> the resulting agent specifications.
+                    </p>
+                    <p>
+                        There is no single "correct" pairing—the right combination depends on your project's complexity, timeline, and goals. This matrix helps you understand which combinations work best for different scenarios.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Matrix -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-grid text-brand-accent"></i>
+                    Method-Artifact Matrix
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr>
+                                <th class="p-4 text-left border-b border-white/10"></th>
+                                <th class="p-4 text-center border-b border-white/10">
+                                    <div class="flex flex-col items-center gap-2">
+                                        <div class="w-10 h-10 bg-brand-success/20 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-feather text-brand-success"></i>
+                                        </div>
+                                        <span class="font-bold text-white">Agent Story: Light</span>
+                                        <span class="text-xs text-gray-500">Streamlined documentation</span>
+                                    </div>
+                                </th>
+                                <th class="p-4 text-center border-b border-white/10">
+                                    <div class="flex flex-col items-center gap-2">
+                                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-layer-group text-brand-secondary"></i>
+                                        </div>
+                                        <span class="font-bold text-white">Agent Story: Full</span>
+                                        <span class="text-xs text-gray-500">Comprehensive specification</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-4 border-b border-white/10">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-magnifying-glass-chart text-brand-amber"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-bold text-white block">Agentic Replica</span>
+                                            <span class="text-xs text-gray-500">Current state analysis</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4 border-b border-white/10">
+                                    <div class="fit-excellent matrix-cell p-4 rounded-lg border">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="fa-solid fa-star text-brand-success"></i>
+                                            <span class="font-bold text-brand-success text-xs uppercase">Excellent Fit</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 mb-2">
+                                            Quick documentation of existing workflows. Perfect for capturing the "as-is" state efficiently.
+                                        </p>
+                                        <ul class="text-xs text-gray-400 space-y-1">
+                                            <li>• Single-purpose agents</li>
+                                            <li>• Proof of concept</li>
+                                            <li>• Rapid prototyping</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="p-4 border-b border-white/10">
+                                    <div class="fit-possible matrix-cell p-4 rounded-lg border">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="fa-solid fa-circle-half-stroke text-brand-amber"></i>
+                                            <span class="font-bold text-brand-amber text-xs uppercase">Situational</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 mb-2">
+                                            Detailed documentation of complex existing roles. Use when the current workflow itself is sophisticated.
+                                        </p>
+                                        <ul class="text-xs text-gray-400 space-y-1">
+                                            <li>• Complex existing processes</li>
+                                            <li>• Compliance requirements</li>
+                                            <li>• Knowledge preservation</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-wand-magic-sparkles text-brand-accent"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-bold text-white block">Agentic Reengineering</span>
+                                            <span class="text-xs text-gray-500">Future state vision</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="fit-good matrix-cell p-4 rounded-lg border">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="fa-solid fa-check-circle text-brand-accent"></i>
+                                            <span class="font-bold text-brand-accent text-xs uppercase">Good Fit</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 mb-2">
+                                            High-level vision documentation for stakeholder alignment and early-stage planning.
+                                        </p>
+                                        <ul class="text-xs text-gray-400 space-y-1">
+                                            <li>• Executive communication</li>
+                                            <li>• Initial feasibility review</li>
+                                            <li>• Scope definition</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="fit-excellent matrix-cell p-4 rounded-lg border">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="fa-solid fa-star text-brand-success"></i>
+                                            <span class="font-bold text-brand-success text-xs uppercase">Excellent Fit</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 mb-2">
+                                            Comprehensive specification for implementation. The natural progression for production-ready agents.
+                                        </p>
+                                        <ul class="text-xs text-gray-400 space-y-1">
+                                            <li>• Multi-agent systems</li>
+                                            <li>• Engineering handoff</li>
+                                            <li>• Production deployment</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Detailed Scenarios -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-route text-brand-success"></i>
+                    Recommended Pathways
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- Pathway 1 -->
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-brand-success">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Quick Automation Assessment</h4>
+                                <p class="text-sm text-gray-400 mb-3">
+                                    Need to rapidly evaluate whether a role can be automated and get a working prototype.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-3 py-1 bg-amber-500/20 text-brand-amber rounded-full text-xs font-bold">Agentic Replica</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-success/20 text-brand-success rounded-full text-xs font-bold">Agent Story: Light</span>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    <strong>Timeline:</strong> 1-2 weeks | <strong>Best for:</strong> Proof of concept, feasibility studies
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pathway 2 -->
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-brand-success">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Full Transformation Project</h4>
+                                <p class="text-sm text-gray-400 mb-3">
+                                    Complete analysis and redesign of a job area, culminating in production-ready specifications.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-3 py-1 bg-amber-500/20 text-brand-amber rounded-full text-xs font-bold">Agentic Replica</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold">Agentic Reengineering</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-secondary/20 text-brand-secondary rounded-full text-xs font-bold">Agent Story: Full</span>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    <strong>Timeline:</strong> 4-8 weeks | <strong>Best for:</strong> Strategic transformation, complex roles
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pathway 3 -->
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-brand-success">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Greenfield Agent Design</h4>
+                                <p class="text-sm text-gray-400 mb-3">
+                                    Designing new AI-native workflows without an existing human process to replicate.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold">Agentic Reengineering</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-secondary/20 text-brand-secondary rounded-full text-xs font-bold">Agent Story: Full</span>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    <strong>Timeline:</strong> 3-6 weeks | <strong>Best for:</strong> New capabilities, AI-native processes
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pathway 4 -->
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-brand-success">4</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Iterative Refinement</h4>
+                                <p class="text-sm text-gray-400 mb-3">
+                                    Start simple and progressively elaborate as the project matures and requirements become clear.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-3 py-1 bg-amber-500/20 text-brand-amber rounded-full text-xs font-bold">Agentic Replica</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-success/20 text-brand-success rounded-full text-xs font-bold">Agent Story: Light</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold">Reengineering</span>
+                                    <span class="text-gray-500">→</span>
+                                    <span class="px-3 py-1 bg-brand-secondary/20 text-brand-secondary rounded-full text-xs font-bold">Agent Story: Full</span>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    <strong>Timeline:</strong> Ongoing | <strong>Best for:</strong> Agile teams, evolving requirements
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Mapping: What Each Method Contributes -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-arrows-to-dot text-brand-secondary"></i>
+                    What Each Method Contributes to Artifacts
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Agentic Replica Contributions -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass-chart text-brand-amber"></i>
+                            </div>
+                            <h3 class="font-bold text-white">From Agentic Replica</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <h4 class="text-sm font-bold text-brand-success mb-2">→ Agent Story: Light</h4>
+                                <ul class="text-xs text-gray-400 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Core story (trigger, action, outcome)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Skills inventory from observed tools</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Basic trigger patterns from inputs</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Success criteria from outputs</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <h4 class="text-sm font-bold text-brand-secondary mb-2">→ Agent Story: Full</h4>
+                                <ul class="text-xs text-gray-400 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Detailed trigger specifications</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Behavior model from transformations</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Human interaction patterns</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Baseline acceptance criteria</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agentic Reengineering Contributions -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-wand-magic-sparkles text-brand-accent"></i>
+                            </div>
+                            <h3 class="font-bold text-white">From Agentic Reengineering</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <h4 class="text-sm font-bold text-brand-success mb-2">→ Agent Story: Light</h4>
+                                <ul class="text-xs text-gray-400 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Optimized autonomy level</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Refined human role definition</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Escalation conditions</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-success mt-0.5"></i>
+                                        <span>Guardrails from ethical review</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                                <h4 class="text-sm font-bold text-brand-secondary mb-2">→ Agent Story: Full</h4>
+                                <ul class="text-xs text-gray-400 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Complete reasoning strategies</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Memory and learning design</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Multi-agent collaboration patterns</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brand-secondary mt-0.5"></i>
+                                        <span>Quality metrics and benchmarks</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decision Guide -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-alert">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-question-circle text-brand-alert"></i>
+                    Quick Decision Guide
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">If you need to...</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Use this method</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">With this artifact</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Quickly assess automation potential</td>
+                                <td class="py-3 px-4"><span class="text-brand-amber">Agentic Replica</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-success">Light</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Document a complex existing role</td>
+                                <td class="py-3 px-4"><span class="text-brand-amber">Agentic Replica</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-secondary">Full</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Pitch a redesign to stakeholders</td>
+                                <td class="py-3 px-4"><span class="text-brand-accent">Agentic Reengineering</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-success">Light</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Build production multi-agent system</td>
+                                <td class="py-3 px-4"><span class="text-brand-accent">Agentic Reengineering</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-secondary">Full</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 px-4">Start simple, elaborate later</td>
+                                <td class="py-3 px-4"><span class="text-brand-amber">Replica</span> → <span class="text-brand-accent">Reengineering</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-success">Light</span> → <span class="text-brand-secondary">Full</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">Design AI-native process (no human baseline)</td>
+                                <td class="py-3 px-4"><span class="text-brand-accent">Agentic Reengineering</span></td>
+                                <td class="py-3 px-4"><span class="text-brand-secondary">Full</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center py-8">
+                <h3 class="text-xl font-bold text-white mb-6">Ready to begin your analysis?</h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="agentic-replica.html" class="px-8 py-4 bg-brand-amber text-brand-dark font-bold rounded-lg hover:bg-amber-300 transition-colors">
+                        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i>
+                        Start with Replica
+                    </a>
+                    <a href="agentic-reengineering.html" class="px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>
+                        Start with Reengineering
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities. HAP Analysis ensures humans remain empowered and accountable in an age of intelligent automation.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
