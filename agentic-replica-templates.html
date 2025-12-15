@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Replica Templates | HAP Analysis</title>
+    <meta name="description" content="YAML templates and worked examples for documenting human roles using the Agentic Replica method.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #f59e0b, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .template-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .template-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #f59e0b;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .example-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #34d399;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .example-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #34d399;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .yaml-key { color: #f59e0b; }
+        .yaml-value { color: #fcd34d; }
+        .yaml-comment { color: #6b7280; }
+
+        .skill-number {
+            width: 24px;
+            height: 24px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: #f59e0b;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-8 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="agentic-replica.html" class="inline-flex items-center gap-2 text-brand-amber hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Agentic Replica Guide
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-amber">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Reference Materials</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Agentic Replica Templates</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Copy-paste YAML templates and a complete worked example for documenting human roles.
+            </p>
+        </div>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="py-4 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-4 rounded-xl">
+                <p class="text-sm text-gray-400 mb-3"><strong class="text-white">Jump to:</strong></p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#role-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-amber/20 rounded-full text-gray-300 hover:text-white transition-colors">Role Definition</a>
+                    <a href="#skills-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-amber/20 rounded-full text-gray-300 hover:text-white transition-colors">Skills Inventory</a>
+                    <a href="#skill-detail-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-amber/20 rounded-full text-gray-300 hover:text-white transition-colors">Skill Detail</a>
+                    <a href="#patterns-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-amber/20 rounded-full text-gray-300 hover:text-white transition-colors">Cross-Cutting Patterns</a>
+                    <a href="#worked-example" class="text-xs px-3 py-1 bg-brand-success/20 hover:bg-brand-success/30 rounded-full text-brand-success hover:text-white transition-colors">Worked Example</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-8 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-10">
+
+            <!-- Role Definition Template -->
+            <div id="role-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">1</div>
+                    Role Definition Template
+                </h2>
+                <p class="text-gray-300 mb-6">Use this template to establish the boundaries and context of the role you're documenting.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENTIC REPLICA:</span> <span class="yaml-value">[Role ID]</span>
+
+<span class="yaml-key">role_title:</span> <span class="yaml-value">[Official job title or functional name]</span>
+<span class="yaml-key">department:</span> <span class="yaml-value">[Where this role sits in the org]</span>
+<span class="yaml-key">reports_to:</span> <span class="yaml-value">[Who oversees this role]</span>
+<span class="yaml-key">scope:</span> <span class="yaml-value">[Brief description of what this role is responsible for]</span>
+
+<span class="yaml-comment"># Who/what does this role interact with?</span>
+<span class="yaml-key">upstream_dependencies:</span>
+  - <span class="yaml-value">[Role/system that provides inputs to this role]</span>
+  - <span class="yaml-value">[Another source of inputs]</span>
+
+<span class="yaml-key">downstream_consumers:</span>
+  - <span class="yaml-value">[Role/system that uses this role's outputs]</span>
+  - <span class="yaml-value">[Another consumer]</span>
+
+<span class="yaml-key">primary_systems:</span>
+  - <span class="yaml-value">[Main software/tools this role uses daily]</span></pre>
+                </div>
+            </div>
+
+            <!-- Skills Inventory Template -->
+            <div id="skills-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">2</div>
+                    Skills Inventory Template
+                </h2>
+                <p class="text-gray-300 mb-6">List all distinct capabilities the person performs before documenting each one in detail.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">skills_inventory:</span>
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-001</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">[Short name for this skill]</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">[daily | weekly | monthly | on-demand | event-driven]</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">[Approximate % of role or hours/week]</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">[low | medium | high]</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">[low | medium | high]</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-002</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">[Next skill...]</span>
+    <span class="yaml-comment"># ...repeat for each skill</span></pre>
+                </div>
+
+                <div class="mt-4 p-4 bg-black/30 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-amber">Tip:</strong> Most white-collar roles have 5-15 distinct skills. If you have fewer than 5, you may be grouping too broadly. If you have more than 15, you may be splitting too finely.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skill Detail Template -->
+            <div id="skill-detail-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">3</div>
+                    Skill Detail Template
+                </h2>
+                <p class="text-gray-300 mb-6">Complete this template for each skill in your inventory. This is the core work of Agentic Replica.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+<span class="yaml-key">SKILL:</span> <span class="yaml-value">[SKILL-001]</span>
+<span class="yaml-key">name:</span> <span class="yaml-value">[Descriptive name]</span>
+<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+
+<span class="yaml-comment"># TRIGGER: What causes this skill to be activated?</span>
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[message | schedule | event | request | data_change]</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">[Where does the trigger come from?]</span>
+  <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often does this trigger occur?]</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">"[Specific example of a trigger]"</span>
+    - <span class="yaml-value">"[Another example]"</span>
+
+<span class="yaml-comment"># INPUTS: What information/resources does this skill need?</span>
+<span class="yaml-key">inputs:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Input name]</span>
+    <span class="yaml-key">source:</span> <span class="yaml-value">[Where it comes from]</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">[email | document | database | API | verbal | etc.]</span>
+    <span class="yaml-key">required:</span> <span class="yaml-value">[true | false]</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another input...]</span>
+
+<span class="yaml-comment"># PROCESS: How is the work actually done?</span>
+<span class="yaml-key">process:</span>
+  <span class="yaml-key">steps:</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">1</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">[What they do]</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Software/systems used]</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">[How long this usually takes]</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">2</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">[Next action...]</span>
+
+  <span class="yaml-comment"># Tacit knowledge: The unwritten rules and judgment calls</span>
+  <span class="yaml-key">decision_points:</span>
+    - <span class="yaml-key">decision:</span> <span class="yaml-value">"[What decision needs to be made?]"</span>
+      <span class="yaml-key">criteria:</span> <span class="yaml-value">"[How do they decide? What factors matter?]"</span>
+      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">[routine | situational | expert]</span>
+
+  <span class="yaml-key">exceptions:</span>
+    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"[When things don't follow the normal path]"</span>
+      <span class="yaml-key">handling:</span> <span class="yaml-value">"[What do they do instead?]"</span>
+
+<span class="yaml-comment"># TOOLS: What systems/resources are used?</span>
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Tool/system name]</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">[What they use it for in this skill]</span>
+    <span class="yaml-key">access_level:</span> <span class="yaml-value">[read | write | admin]</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another tool...]</span>
+
+<span class="yaml-comment"># OUTPUTS: What does this skill produce?</span>
+<span class="yaml-key">outputs:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Output name]</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">[report | email | database_update | decision | etc.]</span>
+    <span class="yaml-key">recipient:</span> <span class="yaml-value">[Who receives this output?]</span>
+    <span class="yaml-key">sla:</span> <span class="yaml-value">[Expected turnaround time]</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another output...]</span>
+
+<span class="yaml-comment"># ESCALATION: When does this need human intervention?</span>
+<span class="yaml-key">escalation:</span>
+  <span class="yaml-key">triggers:</span>
+    - <span class="yaml-value">"[Condition that requires escalation]"</span>
+    - <span class="yaml-value">"[Another escalation condition]"</span>
+  <span class="yaml-key">escalate_to:</span> <span class="yaml-value">[Who handles escalations?]</span>
+  <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often do escalations occur? e.g., "~5% of cases"]</span>
+
+<span class="yaml-comment"># QUALITY: How do we know this was done well?</span>
+<span class="yaml-key">quality_indicators:</span>
+  - <span class="yaml-value">[Metric or signal that indicates success]</span>
+  - <span class="yaml-value">[Another quality indicator]</span>
+
+<span class="yaml-key">failure_modes:</span>
+  - <span class="yaml-value">[Common way this skill fails or produces poor results]</span>
+  - <span class="yaml-value">[Another failure mode]</span></pre>
+                </div>
+            </div>
+
+            <!-- Cross-Cutting Patterns Template -->
+            <div id="patterns-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">4</div>
+                    Cross-Cutting Patterns Template
+                </h2>
+                <p class="text-gray-300 mb-6">After documenting all skills, identify patterns that apply across the entire role.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+<span class="yaml-key">CROSS-CUTTING PATTERNS</span>
+<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+
+<span class="yaml-comment"># Tools used across multiple skills</span>
+<span class="yaml-key">common_tools:</span>
+  - <span class="yaml-key">tool:</span> <span class="yaml-value">[Tool name]</span>
+    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-003, SKILL-005]</span>
+    <span class="yaml-key">access_needs:</span> <span class="yaml-value">[What permissions would an agent need?]</span>
+
+<span class="yaml-comment"># Common escalation patterns</span>
+<span class="yaml-key">escalation_patterns:</span>
+  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"[Description of common escalation type]"</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often across all skills]</span>
+    <span class="yaml-key">resolution:</span> <span class="yaml-value">[How are these typically resolved?]</span>
+
+<span class="yaml-comment"># Dependencies between skills</span>
+<span class="yaml-key">skill_dependencies:</span>
+  - <span class="yaml-value">"SKILL-002 often triggers SKILL-004"</span>
+  - <span class="yaml-value">"SKILL-001 output is input to SKILL-003"</span>
+
+<span class="yaml-comment"># Knowledge requirements</span>
+<span class="yaml-key">domain_knowledge:</span>
+  - <span class="yaml-key">area:</span> <span class="yaml-value">[Knowledge domain]</span>
+    <span class="yaml-key">depth:</span> <span class="yaml-value">[basic | intermediate | expert]</span>
+    <span class="yaml-key">documentation:</span> <span class="yaml-value">[Where is this knowledge documented, if anywhere?]</span>
+
+<span class="yaml-comment"># Time allocation summary</span>
+<span class="yaml-key">time_distribution:</span>
+  <span class="yaml-key">high_frequency_skills:</span> <span class="yaml-value">[Skills done daily]</span>
+  <span class="yaml-key">high_impact_skills:</span> <span class="yaml-value">[Skills that matter most to outcomes]</span>
+  <span class="yaml-key">automation_candidates:</span> <span class="yaml-value">[Skills with low judgment + high frequency]</span>
+
+<span class="yaml-comment"># Guardrails observed</span>
+<span class="yaml-key">observed_guardrails:</span>
+  - <span class="yaml-value">"[Thing this person never does / always checks]"</span>
+  - <span class="yaml-value">"[Policy or rule they consistently follow]"</span></pre>
+                </div>
+            </div>
+
+            <!-- Complete Worked Example -->
+            <div id="worked-example" class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-file-code text-brand-success"></i>
+                    Complete Worked Example: Financial Analyst
+                </h2>
+                <p class="text-gray-300 mb-6">Here's a complete Agentic Replica for a Senior Financial Analyst role, showing how each template is filled out in practice.</p>
+
+                <!-- Role Definition Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">1</div>
+                        Role Definition
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENTIC REPLICA:</span> <span class="yaml-value">FIN-ANALYST-001</span>
+
+<span class="yaml-key">role_title:</span> <span class="yaml-value">Senior Financial Analyst</span>
+<span class="yaml-key">department:</span> <span class="yaml-value">FP&A (Financial Planning & Analysis)</span>
+<span class="yaml-key">reports_to:</span> <span class="yaml-value">Director of Finance</span>
+<span class="yaml-key">scope:</span> <span class="yaml-value">Prepares financial reports, analyzes variances, supports budgeting</span>
+
+<span class="yaml-key">upstream_dependencies:</span>
+  - <span class="yaml-value">Accounting (GL data, month-end close)</span>
+  - <span class="yaml-value">Sales (pipeline forecasts, bookings)</span>
+  - <span class="yaml-value">Operations (headcount, cost inputs)</span>
+
+<span class="yaml-key">downstream_consumers:</span>
+  - <span class="yaml-value">CFO (executive summaries)</span>
+  - <span class="yaml-value">Department heads (budget vs. actual)</span>
+  - <span class="yaml-value">Board (quarterly reporting package)</span>
+
+<span class="yaml-key">primary_systems:</span>
+  - <span class="yaml-value">NetSuite (ERP)</span>
+  - <span class="yaml-value">Adaptive Insights (planning)</span>
+  - <span class="yaml-value">Excel (modeling)</span>
+  - <span class="yaml-value">Salesforce (pipeline data)</span></pre>
+                    </div>
+                </div>
+
+                <!-- Skills Inventory Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">2</div>
+                        Skills Inventory
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">skills_inventory:</span>
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-001</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">monthly</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">25%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-002</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Weekly Cash Flow Reporting</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">weekly</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">15%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-003</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Ad-hoc Analysis Requests</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">on-demand</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">20%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">variable</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-004</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Budget Preparation Support</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">quarterly (heavy in Q4)</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">20%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">medium</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-005</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Data Quality Monitoring</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">daily</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">low</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
+
+  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-006</span>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Stakeholder Communication</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">daily</span>
+    <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
+    <span class="yaml-key">complexity:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">medium</span></pre>
+                    </div>
+                </div>
+
+                <!-- Detailed Skill Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">3</div>
+                        Detailed Skill Documentation (SKILL-001)
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+<span class="yaml-key">SKILL:</span> <span class="yaml-value">SKILL-001</span>
+<span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
+<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">schedule + event</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Accounting month-end close completion</span>
+  <span class="yaml-key">frequency:</span> <span class="yaml-value">Monthly, business day 5-7</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">"Email from Controller: 'January books are closed'"</span>
+    - <span class="yaml-value">"Slack notification from #accounting: 'GL ready for FP&A'"</span>
+
+<span class="yaml-key">inputs:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">General Ledger Export</span>
+    <span class="yaml-key">source:</span> <span class="yaml-value">NetSuite</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">CSV export, ~15,000 rows</span>
+    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Budget File</span>
+    <span class="yaml-key">source:</span> <span class="yaml-value">Adaptive Insights</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">Excel workbook</span>
+    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Prior Month Actuals</span>
+    <span class="yaml-key">source:</span> <span class="yaml-value">Internal SharePoint</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">Last month's variance report</span>
+    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Department Context</span>
+    <span class="yaml-key">source:</span> <span class="yaml-value">Slack conversations, meeting notes</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">Unstructured</span>
+    <span class="yaml-key">required:</span> <span class="yaml-value">false (helpful for commentary)</span>
+
+<span class="yaml-key">process:</span>
+  <span class="yaml-key">steps:</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">1</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Export GL data from NetSuite using saved search "FPA Monthly"</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">NetSuite</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">10 minutes</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">2</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Import GL into variance template, run pivot refresh</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Excel</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">15 minutes</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">3</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Identify variances > $10K or > 10% from budget</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Excel (conditional formatting flags these)</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">20 minutes</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">4</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Research root causes for flagged variances</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">NetSuite drill-down, Slack, Email</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">2-4 hours (varies by month)</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">5</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Write variance commentary for each flagged item</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Word/Excel</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">1-2 hours</span>
+    - <span class="yaml-key">step:</span> <span class="yaml-value">6</span>
+      <span class="yaml-key">action:</span> <span class="yaml-value">Send draft to Director for review</span>
+      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Email</span>
+      <span class="yaml-key">time_typical:</span> <span class="yaml-value">5 minutes</span>
+
+  <span class="yaml-key">decision_points:</span>
+    - <span class="yaml-key">decision:</span> <span class="yaml-value">"Which variances need investigation vs. known/expected?"</span>
+      <span class="yaml-key">criteria:</span> <span class="yaml-value">"Known items (e.g., approved overspend) are noted but not investigated. Unexpected items get full root cause."</span>
+      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">situational</span>
+    - <span class="yaml-key">decision:</span> <span class="yaml-value">"How much detail in commentary?"</span>
+      <span class="yaml-key">criteria:</span> <span class="yaml-value">"More detail for items CFO will ask about. Less for operational noise."</span>
+      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">expert</span>
+    - <span class="yaml-key">decision:</span> <span class="yaml-value">"Flag as concerning or just informational?"</span>
+      <span class="yaml-key">criteria:</span> <span class="yaml-value">"Concerning = trend likely to continue, or one-time but significant. Informational = isolated, expected to normalize."</span>
+      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">expert</span>
+
+  <span class="yaml-key">exceptions:</span>
+    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"GL data has obvious errors (negative revenue, missing cost centers)"</span>
+      <span class="yaml-key">handling:</span> <span class="yaml-value">"Stop analysis, email Controller immediately, document in report"</span>
+    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"Can't reach department head for explanation"</span>
+      <span class="yaml-key">handling:</span> <span class="yaml-value">"Note as 'pending explanation' and follow up next day"</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">NetSuite</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">GL export, transaction drill-down</span>
+    <span class="yaml-key">access_level:</span> <span class="yaml-value">read (financial reports role)</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Excel</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Variance calculations, pivot tables, formatting</span>
+    <span class="yaml-key">access_level:</span> <span class="yaml-value">local application</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Adaptive Insights</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Budget data retrieval</span>
+    <span class="yaml-key">access_level:</span> <span class="yaml-value">read (analyst role)</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Slack</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Quick questions to department heads</span>
+    <span class="yaml-key">access_level:</span> <span class="yaml-value">member of finance, department channels</span>
+
+<span class="yaml-key">outputs:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Report</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">Excel workbook + PDF summary</span>
+    <span class="yaml-key">recipient:</span> <span class="yaml-value">Director of Finance, CFO</span>
+    <span class="yaml-key">sla:</span> <span class="yaml-value">Business day 8 of month</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Department Variance Summaries</span>
+    <span class="yaml-key">format:</span> <span class="yaml-value">Email with attached Excel slice</span>
+    <span class="yaml-key">recipient:</span> <span class="yaml-value">Individual department heads</span>
+    <span class="yaml-key">sla:</span> <span class="yaml-value">Business day 10 of month</span>
+
+<span class="yaml-key">escalation:</span>
+  <span class="yaml-key">triggers:</span>
+    - <span class="yaml-value">"Variance > $100K with unknown cause"</span>
+    - <span class="yaml-value">"Potential fraud indicators (duplicate payments, unusual vendors)"</span>
+    - <span class="yaml-value">"Data quality issues blocking analysis"</span>
+  <span class="yaml-key">escalate_to:</span> <span class="yaml-value">Director of Finance</span>
+  <span class="yaml-key">frequency:</span> <span class="yaml-value">~2-3 times per year</span>
+
+<span class="yaml-key">quality_indicators:</span>
+  - <span class="yaml-value">Report delivered by SLA (measured)</span>
+  - <span class="yaml-value">CFO has no follow-up questions on documented items (feedback)</span>
+  - <span class="yaml-value">Variances correctly categorized (audit check)</span>
+
+<span class="yaml-key">failure_modes:</span>
+  - <span class="yaml-value">Missing a material variance that CFO discovers in board meeting</span>
+  - <span class="yaml-value">Commentary that contradicts department head's understanding</span>
+  - <span class="yaml-value">Late delivery delaying executive review cycle</span></pre>
+                    </div>
+                </div>
+
+                <!-- Cross-Cutting Patterns Example -->
+                <div>
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">4</div>
+                        Cross-Cutting Patterns
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+<span class="yaml-key">CROSS-CUTTING PATTERNS</span>
+<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+
+<span class="yaml-key">common_tools:</span>
+  - <span class="yaml-key">tool:</span> <span class="yaml-value">NetSuite</span>
+    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-002, SKILL-003, SKILL-005]</span>
+    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Read access to GL, AP, AR modules; saved search execution</span>
+  - <span class="yaml-key">tool:</span> <span class="yaml-value">Excel</span>
+    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[All skills]</span>
+    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Full Excel capabilities, macro execution</span>
+  - <span class="yaml-key">tool:</span> <span class="yaml-value">Slack</span>
+    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-003, SKILL-006]</span>
+    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Message in #finance, DM to department heads</span>
+
+<span class="yaml-key">escalation_patterns:</span>
+  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"Data quality issues in source systems"</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">Monthly (during close)</span>
+    <span class="yaml-key">resolution:</span> <span class="yaml-value">Controller fixes in NetSuite, analyst re-runs</span>
+  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"Executive requests conflicting with existing priorities"</span>
+    <span class="yaml-key">frequency:</span> <span class="yaml-value">~2x per month</span>
+    <span class="yaml-key">resolution:</span> <span class="yaml-value">Director triages and re-prioritizes</span>
+
+<span class="yaml-key">skill_dependencies:</span>
+  - <span class="yaml-value">"SKILL-001 completion triggers SKILL-006 (distribute to stakeholders)"</span>
+  - <span class="yaml-value">"SKILL-005 issues can block SKILL-001 and SKILL-002"</span>
+  - <span class="yaml-value">"SKILL-003 often informs SKILL-004 assumptions"</span>
+
+<span class="yaml-key">domain_knowledge:</span>
+  - <span class="yaml-key">area:</span> <span class="yaml-value">GAAP accounting principles</span>
+    <span class="yaml-key">depth:</span> <span class="yaml-value">intermediate</span>
+    <span class="yaml-key">documentation:</span> <span class="yaml-value">Company accounting policy manual</span>
+  - <span class="yaml-key">area:</span> <span class="yaml-value">Company cost structure and business model</span>
+    <span class="yaml-key">depth:</span> <span class="yaml-value">expert</span>
+    <span class="yaml-key">documentation:</span> <span class="yaml-value">Tacit / learned on job</span>
+  - <span class="yaml-key">area:</span> <span class="yaml-value">NetSuite navigation and reporting</span>
+    <span class="yaml-key">depth:</span> <span class="yaml-value">expert</span>
+    <span class="yaml-key">documentation:</span> <span class="yaml-value">Internal wiki + vendor docs</span>
+
+<span class="yaml-key">time_distribution:</span>
+  <span class="yaml-key">high_frequency_skills:</span> <span class="yaml-value">[SKILL-005, SKILL-006]</span>
+  <span class="yaml-key">high_impact_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-004]</span>
+  <span class="yaml-key">automation_candidates:</span> <span class="yaml-value">[SKILL-002, SKILL-005 - low judgment, high frequency]</span>
+
+<span class="yaml-key">observed_guardrails:</span>
+  - <span class="yaml-value">"Never share unreviewed numbers with non-finance stakeholders"</span>
+  - <span class="yaml-value">"Always verify GL totals match trial balance before analysis"</span>
+  - <span class="yaml-value">"Never discuss board-level financials outside exec team"</span>
+  - <span class="yaml-value">"Always CC Director on communications to C-suite"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Guide CTA -->
+            <div class="text-center py-8">
+                <a href="agentic-replica.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-amber text-brand-dark font-bold rounded-lg hover:bg-amber-400 transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to the Step-by-Step Guide
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities.
+                </p>
+            </div>
+
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
+
+            animatedElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

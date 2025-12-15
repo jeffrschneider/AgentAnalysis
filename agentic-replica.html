@@ -112,69 +112,6 @@
             width: 100%;
         }
 
-        .yaml-block {
-            position: relative;
-            background: #0f172a;
-            border-left: 4px solid #f59e0b;
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            border-radius: 0.5rem;
-        }
-
-        .yaml-key { color: #f59e0b; }
-        .yaml-value { color: #fcd34d; }
-        .yaml-comment { color: #6b7280; }
-
-        .template-block {
-            position: relative;
-            background: #0f172a;
-            border-left: 4px solid #f59e0b;
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            border-radius: 0.5rem;
-        }
-
-        .template-label {
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: #f59e0b;
-            color: #0f172a;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .example-block {
-            position: relative;
-            background: #0f172a;
-            border-left: 4px solid #34d399;
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            border-radius: 0.5rem;
-        }
-
-        .example-label {
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: #34d399;
-            color: #0f172a;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
         .step-number {
             width: 32px;
             height: 32px;
@@ -186,21 +123,6 @@
             font-weight: bold;
             font-size: 0.875rem;
             color: #030712;
-            flex-shrink: 0;
-        }
-
-        .skill-number {
-            width: 24px;
-            height: 24px;
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid #f59e0b;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.75rem;
-            color: #f59e0b;
             flex-shrink: 0;
         }
 
@@ -250,14 +172,14 @@
                 <span class="text-gradient">Agentic Replica</span>
             </h1>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                A step-by-step guide to document how a human role works today, producing the raw material for Agent Story creation.
+                A step-by-step guide to documenting how a human role works today, producing the raw material for Agent Story creation.
             </p>
         </div>
     </header>
 
     <!-- Content -->
     <section class="py-8 px-6 relative">
-        <div class="max-w-5xl mx-auto space-y-10">
+        <div class="max-w-4xl mx-auto space-y-10">
 
             <!-- Purpose Section -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
@@ -266,11 +188,14 @@
                     What You're Trying to Do
                 </h2>
                 <p class="text-gray-300 leading-relaxed mb-4">
-                    You're documenting an existing human role <strong class="text-white">as it actually operates today</strong>. The goal is to create a structured inventory of everything the person does, which you'll later use to design an AI agent that can perform some or all of these capabilities.
+                    Your goal is to document an existing human role <strong class="text-white">exactly as it operates today</strong>. Think of it like creating a detailed photograph of how someone actually does their job, not how they're supposed to do it according to the job description.
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    You're creating a structured inventory of everything the person does: what triggers their work, what information they need, how they make decisions, what tools they use, and what they produce. This becomes the foundation for designing an AI agent that can handle some or all of these responsibilities.
                 </p>
                 <div class="bg-black/30 p-4 rounded-lg border border-white/5">
                     <p class="text-sm text-gray-400">
-                        <strong class="text-brand-amber">Key principle:</strong> Don't propose changes or improvements yet. Capture the current state objectively. You'll redesign later in Agentic Reengineering.
+                        <strong class="text-brand-amber">Key principle:</strong> Don't propose changes or improvements yet. Your job right now is to capture the current state objectively. You'll redesign later during Agentic Reengineering.
                     </p>
                 </div>
             </div>
@@ -279,10 +204,10 @@
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
                 <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
                     <i class="fa-solid fa-route text-brand-amber"></i>
-                    The Process
+                    The Four-Step Process
                 </h2>
                 <p class="text-gray-300 mb-6">
-                    For each role you analyze, you'll complete this template by identifying all the distinct skills/capabilities the person uses, then documenting each one in detail.
+                    For each role you analyze, you'll work through four stages. Each builds on the previous one to create a complete picture of the role.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center text-sm">
                     <div class="bg-white/5 p-4 rounded-lg border border-white/10">
@@ -306,6 +231,13 @@
                         <p class="text-gray-500 text-xs mt-1">Escalations, judgment, tools</p>
                     </div>
                 </div>
+
+                <div class="mt-6 text-center">
+                    <a href="agentic-replica-templates.html" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-amber text-brand-dark font-bold rounded-lg hover:bg-amber-400 transition-colors text-sm">
+                        <i class="fa-solid fa-file-code"></i>
+                        View Templates & Worked Example
+                    </a>
+                </div>
             </div>
 
             <!-- STEP 1: Role Definition -->
@@ -314,43 +246,43 @@
                     <div class="step-number">1</div>
                     Define the Role
                 </h2>
-                <p class="text-gray-300 mb-6">Start by establishing the boundaries of what you're analyzing. This becomes the header of your Agentic Replica document.</p>
+                <p class="text-gray-300 mb-6">
+                    Start by establishing the boundaries of what you're analyzing. You need to understand where this role sits in the organization and who it interacts with.
+                </p>
 
-                <div class="template-block mb-6">
-                    <div class="template-label">Template</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENTIC REPLICA:</span> <span class="yaml-value">[Role ID]</span>
+                <h4 class="font-bold text-white mb-3">What to capture:</h4>
+                <ul class="space-y-3 text-gray-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-user-tie text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Role basics:</strong> The official title, which department they're in, and who they report to. This establishes organizational context.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-arrow-right-to-bracket text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Upstream dependencies:</strong> Who or what provides inputs to this role? This could be other people, systems, or external sources. For example, a financial analyst depends on accounting to close the books before they can do variance analysis.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-arrow-right-from-bracket text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Downstream consumers:</strong> Who receives what this role produces? Understanding the consumers helps you understand what "success" looks like for this role.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-desktop text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Primary systems:</strong> What software and tools does this person use every day? This becomes critical later when you're designing what an agent would need access to.</span>
+                    </li>
+                </ul>
 
-<span class="yaml-key">role_title:</span> <span class="yaml-value">[Official job title or functional name]</span>
-<span class="yaml-key">department:</span> <span class="yaml-value">[Where this role sits in the org]</span>
-<span class="yaml-key">reports_to:</span> <span class="yaml-value">[Who oversees this role]</span>
-<span class="yaml-key">scope:</span> <span class="yaml-value">[Brief description of what this role is responsible for]</span>
-
-<span class="yaml-comment"># Who/what does this role interact with?</span>
-<span class="yaml-key">upstream_dependencies:</span>
-  - <span class="yaml-value">[Role/system that provides inputs to this role]</span>
-  - <span class="yaml-value">[Another source of inputs]</span>
-
-<span class="yaml-key">downstream_consumers:</span>
-  - <span class="yaml-value">[Role/system that uses this role's outputs]</span>
-  - <span class="yaml-value">[Another consumer]</span>
-
-<span class="yaml-key">primary_systems:</span>
-  - <span class="yaml-value">[Main software/tools this role uses daily]</span></pre>
-                </div>
-
-                <h4 class="font-bold text-white mb-3 text-sm">How to gather this:</h4>
+                <h4 class="font-bold text-white mb-3">How to gather this information:</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span>Review org charts and job descriptions (HR has these)</span>
+                        <span>Review org charts and job descriptions from HR. These give you the official structure, even if reality differs.</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span>Check system access logs to see what tools they use (IT can provide)</span>
+                        <span>Check system access logs with IT. What applications are they actually logging into? This reveals tools that might not be on the official list.</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span>Map communication flows: who emails/messages this person, and who do they contact?</span>
+                        <span>Map communication flows: who emails this person frequently, and who do they reach out to? Email patterns reveal the true working relationships.</span>
                     </li>
                 </ul>
             </div>
@@ -362,47 +294,48 @@
                     Inventory All Skills
                 </h2>
                 <p class="text-gray-300 mb-6">
-                    Before going deep on any single skill, list <strong class="text-white">all the distinct capabilities</strong> this person performs. A "skill" is a discrete unit of work that has its own trigger, process, and output.
+                    Before going deep on any single skill, step back and list <strong class="text-white">all the distinct capabilities</strong> this person performs. A "skill" is a discrete unit of work that has its own trigger, process, and output.
                 </p>
 
-                <div class="template-block mb-6">
-                    <div class="template-label">Template</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-key">skills_inventory:</span>
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-001</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">[Short name for this skill]</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">[daily | weekly | monthly | on-demand | event-driven]</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">[Approximate % of role or hours/week]</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">[low | medium | high]</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">[low | medium | high]</span>
+                <h4 class="font-bold text-white mb-3">For each skill, note:</h4>
+                <ul class="space-y-3 text-gray-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-clock text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Frequency:</strong> How often does this happen? Daily, weekly, monthly, or only when triggered by specific events?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-hourglass-half text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Time spent:</strong> Roughly what percentage of their time goes to this skill? This helps prioritize which skills to document most thoroughly.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-brain text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Judgment required:</strong> Is this mostly mechanical (follow the steps), or does it require significant thinking and decision-making? Low-judgment skills are often the best candidates for automation.</span>
+                    </li>
+                </ul>
 
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-002</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">[Next skill...]</span>
-    <span class="yaml-comment"># ...repeat for each skill</span></pre>
-                </div>
-
-                <h4 class="font-bold text-white mb-3 text-sm">How to identify skills:</h4>
+                <h4 class="font-bold text-white mb-3">How to identify skills:</h4>
                 <ul class="space-y-2 text-sm text-gray-400 mb-6">
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span><strong class="text-gray-300">Review a week of calendar:</strong> What types of meetings do they attend? Each recurring type may represent a skill.</span>
+                        <span><strong class="text-gray-300">Review a week of their calendar:</strong> What types of meetings do they attend? Each recurring meeting type often represents a skill being exercised.</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span><strong class="text-gray-300">Analyze email folders/labels:</strong> How do they categorize their work? Each category often maps to a skill.</span>
+                        <span><strong class="text-gray-300">Analyze their email folders and labels:</strong> How do they categorize their work? Each category often maps to a distinct skill.</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span><strong class="text-gray-300">Look at deliverables:</strong> What distinct types of outputs do they produce? Work backwards from outputs to skills.</span>
+                        <span><strong class="text-gray-300">Look at their deliverables:</strong> What distinct types of outputs do they produce? Work backwards from outputs to understand the skills that create them.</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <i class="fa-solid fa-check text-brand-amber mt-1 text-xs"></i>
-                        <span><strong class="text-gray-300">Check ticketing/task systems:</strong> What categories of work items are assigned to them?</span>
+                        <span><strong class="text-gray-300">Check ticketing or task systems:</strong> What categories of work items are assigned to them? Each category usually represents a different skill.</span>
                     </li>
                 </ul>
 
                 <div class="bg-black/30 p-4 rounded-lg border border-white/5">
                     <p class="text-sm text-gray-400">
-                        <strong class="text-brand-amber">Tip:</strong> Most white-collar roles have 5-15 distinct skills. If you have fewer than 5, you may be grouping too broadly. If you have more than 15, you may be splitting too finely.
+                        <strong class="text-brand-amber">Calibration tip:</strong> Most white-collar roles have between 5 and 15 distinct skills. If you've identified fewer than 5, you're probably grouping too broadly and missing important distinctions. If you have more than 15, you may be splitting too finely and capturing variations of the same skill rather than truly different capabilities.
                     </p>
                 </div>
             </div>
@@ -414,133 +347,100 @@
                     Document Each Skill in Detail
                 </h2>
                 <p class="text-gray-300 mb-6">
-                    This is the core work. For each skill in your inventory, complete this detailed template. This structure maps directly to what you'll need for Agent Story creation.
+                    This is where the real work happens. For each skill in your inventory, you need to understand and document six key dimensions.
                 </p>
 
-                <div class="template-block mb-8">
-                    <div class="template-label">Skill Detail Template</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-<span class="yaml-key">SKILL:</span> <span class="yaml-value">[SKILL-001]</span>
-<span class="yaml-key">name:</span> <span class="yaml-value">[Descriptive name]</span>
-<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+                <div class="space-y-6">
+                    <!-- Triggers -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            Triggers: What Causes This Work to Start?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            Every skill is activated by something. It might be a scheduled event (the first Monday of each month), a message (an email from a customer), or a system event (a threshold being crossed in a dashboard).
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Review their email inbox for patterns. What types of messages initiate work? Check their calendar for recurring triggers. Look at their ticketing system for request types that come in.
+                        </p>
+                    </div>
 
-<span class="yaml-comment"># TRIGGER: What causes this skill to be activated?</span>
-<span class="yaml-key">trigger:</span>
-  <span class="yaml-key">type:</span> <span class="yaml-value">[message | schedule | event | request | data_change]</span>
-  <span class="yaml-key">source:</span> <span class="yaml-value">[Where does the trigger come from?]</span>
-  <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often does this trigger occur?]</span>
-  <span class="yaml-key">examples:</span>
-    - <span class="yaml-value">"[Specific example of a trigger]"</span>
-    - <span class="yaml-value">"[Another example]"</span>
+                    <!-- Inputs -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-download"></i>
+                            Inputs: What Information and Resources Are Needed?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            Once triggered, what does this person need to do the work? This includes data from systems, documents from colleagues, verbal context from conversations, and reference materials.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Analyze file access logs to see what documents they open when doing this work. Review their sent email folder to see what they request from others. Check database query logs if available.
+                        </p>
+                    </div>
 
-<span class="yaml-comment"># INPUTS: What information/resources does this skill need?</span>
-<span class="yaml-key">inputs:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Input name]</span>
-    <span class="yaml-key">source:</span> <span class="yaml-value">[Where it comes from]</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">[email | document | database | API | verbal | etc.]</span>
-    <span class="yaml-key">required:</span> <span class="yaml-value">[true | false]</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another input...]</span>
+                    <!-- Process -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i>
+                            Process: How Is the Work Actually Done?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            Document the step-by-step actions this person takes. Be specific about what tools they use at each step and roughly how long each step takes. Don't just describe the happy path, note the variations that happen in practice.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Examine their work artifacts (spreadsheets, documents) to reverse-engineer the steps. Look at file version history to see the sequence of changes. A brief shadow session of 30-60 minutes can fill gaps.
+                        </p>
+                    </div>
 
-<span class="yaml-comment"># PROCESS: How is the work actually done?</span>
-<span class="yaml-key">process:</span>
-  <span class="yaml-key">steps:</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">1</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">[What they do]</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Software/systems used]</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">[How long this usually takes]</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">2</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">[Next action...]</span>
+                    <!-- Decision Points -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-code-branch"></i>
+                            Decision Points: Where Does Judgment Come In?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            This is often the most valuable part to document. Where does the person have to think rather than just follow steps? What factors do they consider? What rules of thumb have they developed over time? This tacit knowledge is exactly what you need to capture for agent design.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Ask "when do you have to think about this versus just doing it?" Look for conditional logic in their spreadsheets and documents. Review escalation patterns to see what triggered them to ask for help.
+                        </p>
+                    </div>
 
-  <span class="yaml-comment"># Tacit knowledge: The unwritten rules and judgment calls</span>
-  <span class="yaml-key">decision_points:</span>
-    - <span class="yaml-key">decision:</span> <span class="yaml-value">"[What decision needs to be made?]"</span>
-      <span class="yaml-key">criteria:</span> <span class="yaml-value">"[How do they decide? What factors matter?]"</span>
-      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">[routine | situational | expert]</span>
+                    <!-- Outputs -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-upload"></i>
+                            Outputs: What Does This Skill Produce?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            What are the deliverables? Who receives them? What format are they in? What's the expected turnaround time? Understanding outputs helps you understand what "done" looks like.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Review sent emails to see what they send and to whom. Check shared folders to see what they publish. Ask downstream consumers directly: "What do you receive from this person?"
+                        </p>
+                    </div>
 
-  <span class="yaml-key">exceptions:</span>
-    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"[When things don't follow the normal path]"</span>
-      <span class="yaml-key">handling:</span> <span class="yaml-value">"[What do they do instead?]"</span>
-
-<span class="yaml-comment"># TOOLS: What systems/resources are used?</span>
-<span class="yaml-key">tools:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Tool/system name]</span>
-    <span class="yaml-key">purpose:</span> <span class="yaml-value">[What they use it for in this skill]</span>
-    <span class="yaml-key">access_level:</span> <span class="yaml-value">[read | write | admin]</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another tool...]</span>
-
-<span class="yaml-comment"># OUTPUTS: What does this skill produce?</span>
-<span class="yaml-key">outputs:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Output name]</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">[report | email | database_update | decision | etc.]</span>
-    <span class="yaml-key">recipient:</span> <span class="yaml-value">[Who receives this output?]</span>
-    <span class="yaml-key">sla:</span> <span class="yaml-value">[Expected turnaround time]</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">[Another output...]</span>
-
-<span class="yaml-comment"># ESCALATION: When does this need human intervention?</span>
-<span class="yaml-key">escalation:</span>
-  <span class="yaml-key">triggers:</span>
-    - <span class="yaml-value">"[Condition that requires escalation]"</span>
-    - <span class="yaml-value">"[Another escalation condition]"</span>
-  <span class="yaml-key">escalate_to:</span> <span class="yaml-value">[Who handles escalations?]</span>
-  <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often do escalations occur? e.g., "~5% of cases"]</span>
-
-<span class="yaml-comment"># QUALITY: How do we know this was done well?</span>
-<span class="yaml-key">quality_indicators:</span>
-  - <span class="yaml-value">[Metric or signal that indicates success]</span>
-  - <span class="yaml-value">[Another quality indicator]</span>
-
-<span class="yaml-key">failure_modes:</span>
-  - <span class="yaml-value">[Common way this skill fails or produces poor results]</span>
-  - <span class="yaml-value">[Another failure mode]</span></pre>
+                    <!-- Escalation -->
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-brand-amber mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-dots"></i>
+                            Escalation: When Does This Need Human Intervention?
+                        </h4>
+                        <p class="text-gray-300 mb-3">
+                            Even the most capable person sometimes needs to escalate. What conditions trigger that? Who do they escalate to? How often does it happen? This directly informs what guardrails and human oversight an agent would need.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <strong>How to find this:</strong> Look at their messages to their manager or more senior colleagues. What were they asking about? Review any exception logs or incident reports.
+                        </p>
+                    </div>
                 </div>
 
-                <h4 class="font-bold text-white mb-4 text-sm">Data Collection Methods (by section):</h4>
-
-                <div class="space-y-4">
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                        <h5 class="font-bold text-brand-amber mb-2 text-sm">For Triggers:</h5>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>- Review email inbox patterns: what types of messages initiate work?</li>
-                            <li>- Check calendar for recurring triggers (meetings, deadlines)</li>
-                            <li>- Look at ticketing system for request types</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                        <h5 class="font-bold text-brand-amber mb-2 text-sm">For Inputs:</h5>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>- Analyze file access logs: what documents do they open when doing this work?</li>
-                            <li>- Review sent email folders: what do they request from others?</li>
-                            <li>- Check database query logs if available</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                        <h5 class="font-bold text-brand-amber mb-2 text-sm">For Process:</h5>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>- Examine work artifacts (spreadsheets, documents) to reverse-engineer steps</li>
-                            <li>- Look at file version history to see sequence of changes</li>
-                            <li>- One brief shadow session (30-60 min) to fill gaps</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                        <h5 class="font-bold text-brand-amber mb-2 text-sm">For Decision Points (Tacit Knowledge):</h5>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>- Ask: "When do you have to think about this vs. just doing it?"</li>
-                            <li>- Look for conditional logic in their spreadsheets/documents</li>
-                            <li>- Review escalation patterns: what triggered them to ask for help?</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                        <h5 class="font-bold text-brand-amber mb-2 text-sm">For Outputs:</h5>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>- Review sent emails: what do they send, to whom, how often?</li>
-                            <li>- Check shared folders: what do they publish?</li>
-                            <li>- Ask downstream consumers: "What do you receive from this person?"</li>
-                        </ul>
-                    </div>
+                <div class="mt-6 text-center">
+                    <a href="agentic-replica-templates.html#skill-detail-template" class="inline-flex items-center gap-2 text-brand-amber hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-file-code"></i>
+                        See the detailed skill template
+                    </a>
                 </div>
             </div>
 
@@ -551,330 +451,37 @@
                     Identify Cross-Cutting Patterns
                 </h2>
                 <p class="text-gray-300 mb-6">
-                    After documenting all skills, step back and identify patterns that apply across the role. These inform the overall agent design.
+                    After documenting all the individual skills, step back and look at the role as a whole. What patterns emerge across multiple skills? These patterns are essential for designing a coherent agent rather than a collection of disconnected capabilities.
                 </p>
 
-                <div class="template-block mb-6">
-                    <div class="template-label">Patterns Template</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-<span class="yaml-key">CROSS-CUTTING PATTERNS</span>
-<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
+                <h4 class="font-bold text-white mb-3">Look for:</h4>
+                <ul class="space-y-3 text-gray-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-toolbox text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Common tools:</strong> Which systems are used across multiple skills? These become the core integrations an agent would need.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-triangle-exclamation text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Escalation patterns:</strong> Are there common types of situations that always require human judgment? These inform the boundaries of what an agent should attempt autonomously.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-link text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Skill dependencies:</strong> Which skills feed into others? Understanding these chains helps you design agents that can handle workflows, not just isolated tasks.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-graduation-cap text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Domain knowledge:</strong> What does this person need to know that isn't written down anywhere? This tacit knowledge must either be documented for an agent or flagged as a reason for human involvement.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-shield-halved text-brand-amber mt-1"></i>
+                        <span><strong class="text-white">Observed guardrails:</strong> What does this person never do? What do they always check before acting? These become the safety constraints for any agent taking over these responsibilities.</span>
+                    </li>
+                </ul>
 
-<span class="yaml-comment"># Tools used across multiple skills</span>
-<span class="yaml-key">common_tools:</span>
-  - <span class="yaml-key">tool:</span> <span class="yaml-value">[Tool name]</span>
-    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-003, SKILL-005]</span>
-    <span class="yaml-key">access_needs:</span> <span class="yaml-value">[What permissions would an agent need?]</span>
-
-<span class="yaml-comment"># Common escalation patterns</span>
-<span class="yaml-key">escalation_patterns:</span>
-  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"[Description of common escalation type]"</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">[How often across all skills]</span>
-    <span class="yaml-key">resolution:</span> <span class="yaml-value">[How are these typically resolved?]</span>
-
-<span class="yaml-comment"># Dependencies between skills</span>
-<span class="yaml-key">skill_dependencies:</span>
-  - <span class="yaml-value">"SKILL-002 often triggers SKILL-004"</span>
-  - <span class="yaml-value">"SKILL-001 output is input to SKILL-003"</span>
-
-<span class="yaml-comment"># Knowledge requirements</span>
-<span class="yaml-key">domain_knowledge:</span>
-  - <span class="yaml-key">area:</span> <span class="yaml-value">[Knowledge domain]</span>
-    <span class="yaml-key">depth:</span> <span class="yaml-value">[basic | intermediate | expert]</span>
-    <span class="yaml-key">documentation:</span> <span class="yaml-value">[Where is this knowledge documented, if anywhere?]</span>
-
-<span class="yaml-comment"># Time allocation summary</span>
-<span class="yaml-key">time_distribution:</span>
-  <span class="yaml-key">high_frequency_skills:</span> <span class="yaml-value">[Skills done daily]</span>
-  <span class="yaml-key">high_impact_skills:</span> <span class="yaml-value">[Skills that matter most to outcomes]</span>
-  <span class="yaml-key">automation_candidates:</span> <span class="yaml-value">[Skills with low judgment + high frequency]</span>
-
-<span class="yaml-comment"># Guardrails observed</span>
-<span class="yaml-key">observed_guardrails:</span>
-  - <span class="yaml-value">"[Thing this person never does / always checks]"</span>
-  - <span class="yaml-value">"[Policy or rule they consistently follow]"</span></pre>
-                </div>
-            </div>
-
-            <!-- Complete Worked Example -->
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-file-code text-brand-success"></i>
-                    Complete Worked Example
-                </h2>
-                <p class="text-gray-300 mb-6">Here's an Agentic Replica for a <strong class="text-white">Financial Analyst</strong> role, showing how to complete each section:</p>
-
-                <!-- Role Definition Example -->
-                <div class="mb-8">
-                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                        <div class="skill-number">1</div>
-                        Role Definition
-                    </h4>
-                    <div class="example-block">
-                        <div class="example-label">Example</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENTIC REPLICA:</span> <span class="yaml-value">FIN-ANALYST-001</span>
-
-<span class="yaml-key">role_title:</span> <span class="yaml-value">Senior Financial Analyst</span>
-<span class="yaml-key">department:</span> <span class="yaml-value">FP&A (Financial Planning & Analysis)</span>
-<span class="yaml-key">reports_to:</span> <span class="yaml-value">Director of Finance</span>
-<span class="yaml-key">scope:</span> <span class="yaml-value">Prepares financial reports, analyzes variances, supports budgeting</span>
-
-<span class="yaml-key">upstream_dependencies:</span>
-  - <span class="yaml-value">Accounting (GL data, month-end close)</span>
-  - <span class="yaml-value">Sales (pipeline forecasts, bookings)</span>
-  - <span class="yaml-value">Operations (headcount, cost inputs)</span>
-
-<span class="yaml-key">downstream_consumers:</span>
-  - <span class="yaml-value">CFO (executive summaries)</span>
-  - <span class="yaml-value">Department heads (budget vs. actual)</span>
-  - <span class="yaml-value">Board (quarterly reporting package)</span>
-
-<span class="yaml-key">primary_systems:</span>
-  - <span class="yaml-value">NetSuite (ERP)</span>
-  - <span class="yaml-value">Adaptive Insights (planning)</span>
-  - <span class="yaml-value">Excel (modeling)</span>
-  - <span class="yaml-value">Salesforce (pipeline data)</span></pre>
-                    </div>
-                </div>
-
-                <!-- Skills Inventory Example -->
-                <div class="mb-8">
-                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                        <div class="skill-number">2</div>
-                        Skills Inventory
-                    </h4>
-                    <div class="example-block">
-                        <div class="example-label">Example</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-key">skills_inventory:</span>
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-001</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">monthly</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">25%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">high</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
-
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-002</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Weekly Cash Flow Reporting</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">weekly</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">15%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">medium</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
-
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-003</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Ad-hoc Analysis Requests</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">on-demand</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">20%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">variable</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
-
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-004</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Budget Preparation Support</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">quarterly (heavy in Q4)</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">20%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">high</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">medium</span>
-
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-005</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Data Quality Monitoring</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">daily</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">low</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
-
-  - <span class="yaml-key">id:</span> <span class="yaml-value">SKILL-006</span>
-    <span class="yaml-key">name:</span> <span class="yaml-value">Stakeholder Communication</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">daily</span>
-    <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
-    <span class="yaml-key">complexity:</span> <span class="yaml-value">medium</span>
-    <span class="yaml-key">judgment_required:</span> <span class="yaml-value">medium</span></pre>
-                    </div>
-                </div>
-
-                <!-- Detailed Skill Example -->
-                <div class="mb-8">
-                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                        <div class="skill-number">3</div>
-                        Detailed Skill Documentation (SKILL-001)
-                    </h4>
-                    <div class="example-block">
-                        <div class="example-label">Example</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-<span class="yaml-key">SKILL:</span> <span class="yaml-value">SKILL-001</span>
-<span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
-<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-
-<span class="yaml-key">trigger:</span>
-  <span class="yaml-key">type:</span> <span class="yaml-value">schedule + event</span>
-  <span class="yaml-key">source:</span> <span class="yaml-value">Accounting month-end close completion</span>
-  <span class="yaml-key">frequency:</span> <span class="yaml-value">Monthly, business day 5-7</span>
-  <span class="yaml-key">examples:</span>
-    - <span class="yaml-value">"Email from Controller: 'January books are closed'"</span>
-    - <span class="yaml-value">"Slack notification from #accounting: 'GL ready for FP&A'"</span>
-
-<span class="yaml-key">inputs:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">General Ledger Export</span>
-    <span class="yaml-key">source:</span> <span class="yaml-value">NetSuite</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">CSV export, ~15,000 rows</span>
-    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Budget File</span>
-    <span class="yaml-key">source:</span> <span class="yaml-value">Adaptive Insights</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">Excel workbook</span>
-    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Prior Month Actuals</span>
-    <span class="yaml-key">source:</span> <span class="yaml-value">Internal SharePoint</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">Last month's variance report</span>
-    <span class="yaml-key">required:</span> <span class="yaml-value">true</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Department Context</span>
-    <span class="yaml-key">source:</span> <span class="yaml-value">Slack conversations, meeting notes</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">Unstructured</span>
-    <span class="yaml-key">required:</span> <span class="yaml-value">false (helpful for commentary)</span>
-
-<span class="yaml-key">process:</span>
-  <span class="yaml-key">steps:</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">1</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Export GL data from NetSuite using saved search "FPA Monthly"</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">NetSuite</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">10 minutes</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">2</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Import GL into variance template, run pivot refresh</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Excel</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">15 minutes</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">3</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Identify variances > $10K or > 10% from budget</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Excel (conditional formatting flags these)</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">20 minutes</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">4</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Research root causes for flagged variances</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">NetSuite drill-down, Slack, Email</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">2-4 hours (varies by month)</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">5</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Write variance commentary for each flagged item</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Word/Excel</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">1-2 hours</span>
-    - <span class="yaml-key">step:</span> <span class="yaml-value">6</span>
-      <span class="yaml-key">action:</span> <span class="yaml-value">Send draft to Director for review</span>
-      <span class="yaml-key">tools_used:</span> <span class="yaml-value">Email</span>
-      <span class="yaml-key">time_typical:</span> <span class="yaml-value">5 minutes</span>
-
-  <span class="yaml-key">decision_points:</span>
-    - <span class="yaml-key">decision:</span> <span class="yaml-value">"Which variances need investigation vs. known/expected?"</span>
-      <span class="yaml-key">criteria:</span> <span class="yaml-value">"Known items (e.g., approved overspend) are noted but not investigated. Unexpected items get full root cause."</span>
-      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">situational</span>
-    - <span class="yaml-key">decision:</span> <span class="yaml-value">"How much detail in commentary?"</span>
-      <span class="yaml-key">criteria:</span> <span class="yaml-value">"More detail for items CFO will ask about. Less for operational noise."</span>
-      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">expert</span>
-    - <span class="yaml-key">decision:</span> <span class="yaml-value">"Flag as concerning or just informational?"</span>
-      <span class="yaml-key">criteria:</span> <span class="yaml-value">"Concerning = trend likely to continue, or one-time but significant. Informational = isolated, expected to normalize."</span>
-      <span class="yaml-key">judgment_level:</span> <span class="yaml-value">expert</span>
-
-  <span class="yaml-key">exceptions:</span>
-    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"GL data has obvious errors (negative revenue, missing cost centers)"</span>
-      <span class="yaml-key">handling:</span> <span class="yaml-value">"Stop analysis, email Controller immediately, document in report"</span>
-    - <span class="yaml-key">scenario:</span> <span class="yaml-value">"Can't reach department head for explanation"</span>
-      <span class="yaml-key">handling:</span> <span class="yaml-value">"Note as 'pending explanation' and follow up next day"</span>
-
-<span class="yaml-key">tools:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">NetSuite</span>
-    <span class="yaml-key">purpose:</span> <span class="yaml-value">GL export, transaction drill-down</span>
-    <span class="yaml-key">access_level:</span> <span class="yaml-value">read (financial reports role)</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Excel</span>
-    <span class="yaml-key">purpose:</span> <span class="yaml-value">Variance calculations, pivot tables, formatting</span>
-    <span class="yaml-key">access_level:</span> <span class="yaml-value">local application</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Adaptive Insights</span>
-    <span class="yaml-key">purpose:</span> <span class="yaml-value">Budget data retrieval</span>
-    <span class="yaml-key">access_level:</span> <span class="yaml-value">read (analyst role)</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Slack</span>
-    <span class="yaml-key">purpose:</span> <span class="yaml-value">Quick questions to department heads</span>
-    <span class="yaml-key">access_level:</span> <span class="yaml-value">member of finance, department channels</span>
-
-<span class="yaml-key">outputs:</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Monthly Variance Report</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">Excel workbook + PDF summary</span>
-    <span class="yaml-key">recipient:</span> <span class="yaml-value">Director of Finance, CFO</span>
-    <span class="yaml-key">sla:</span> <span class="yaml-value">Business day 8 of month</span>
-  - <span class="yaml-key">name:</span> <span class="yaml-value">Department Variance Summaries</span>
-    <span class="yaml-key">format:</span> <span class="yaml-value">Email with attached Excel slice</span>
-    <span class="yaml-key">recipient:</span> <span class="yaml-value">Individual department heads</span>
-    <span class="yaml-key">sla:</span> <span class="yaml-value">Business day 10 of month</span>
-
-<span class="yaml-key">escalation:</span>
-  <span class="yaml-key">triggers:</span>
-    - <span class="yaml-value">"Variance > $100K with unknown cause"</span>
-    - <span class="yaml-value">"Potential fraud indicators (duplicate payments, unusual vendors)"</span>
-    - <span class="yaml-value">"Data quality issues blocking analysis"</span>
-  <span class="yaml-key">escalate_to:</span> <span class="yaml-value">Director of Finance</span>
-  <span class="yaml-key">frequency:</span> <span class="yaml-value">~2-3 times per year</span>
-
-<span class="yaml-key">quality_indicators:</span>
-  - <span class="yaml-value">Report delivered by SLA (measured)</span>
-  - <span class="yaml-value">CFO has no follow-up questions on documented items (feedback)</span>
-  - <span class="yaml-value">Variances correctly categorized (audit check)</span>
-
-<span class="yaml-key">failure_modes:</span>
-  - <span class="yaml-value">Missing a material variance that CFO discovers in board meeting</span>
-  - <span class="yaml-value">Commentary that contradicts department head's understanding</span>
-  - <span class="yaml-value">Late delivery delaying executive review cycle</span></pre>
-                    </div>
-                </div>
-
-                <!-- Cross-Cutting Patterns Example -->
-                <div>
-                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                        <div class="skill-number">4</div>
-                        Cross-Cutting Patterns
-                    </h4>
-                    <div class="example-block">
-                        <div class="example-label">Example</div>
-<pre class="whitespace-pre-wrap"><span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-<span class="yaml-key">CROSS-CUTTING PATTERNS</span>
-<span class="yaml-comment"># ═══════════════════════════════════════════════════════════════</span>
-
-<span class="yaml-key">common_tools:</span>
-  - <span class="yaml-key">tool:</span> <span class="yaml-value">NetSuite</span>
-    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-002, SKILL-003, SKILL-005]</span>
-    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Read access to GL, AP, AR modules; saved search execution</span>
-  - <span class="yaml-key">tool:</span> <span class="yaml-value">Excel</span>
-    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[All skills]</span>
-    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Full Excel capabilities, macro execution</span>
-  - <span class="yaml-key">tool:</span> <span class="yaml-value">Slack</span>
-    <span class="yaml-key">used_in_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-003, SKILL-006]</span>
-    <span class="yaml-key">access_needs:</span> <span class="yaml-value">Message in #finance, DM to department heads</span>
-
-<span class="yaml-key">escalation_patterns:</span>
-  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"Data quality issues in source systems"</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">Monthly (during close)</span>
-    <span class="yaml-key">resolution:</span> <span class="yaml-value">Controller fixes in NetSuite, analyst re-runs</span>
-  - <span class="yaml-key">pattern:</span> <span class="yaml-value">"Executive requests conflicting with existing priorities"</span>
-    <span class="yaml-key">frequency:</span> <span class="yaml-value">~2x per month</span>
-    <span class="yaml-key">resolution:</span> <span class="yaml-value">Director triages and re-prioritizes</span>
-
-<span class="yaml-key">skill_dependencies:</span>
-  - <span class="yaml-value">"SKILL-001 completion triggers SKILL-006 (distribute to stakeholders)"</span>
-  - <span class="yaml-value">"SKILL-005 issues can block SKILL-001 and SKILL-002"</span>
-  - <span class="yaml-value">"SKILL-003 often informs SKILL-004 assumptions"</span>
-
-<span class="yaml-key">domain_knowledge:</span>
-  - <span class="yaml-key">area:</span> <span class="yaml-value">GAAP accounting principles</span>
-    <span class="yaml-key">depth:</span> <span class="yaml-value">intermediate</span>
-    <span class="yaml-key">documentation:</span> <span class="yaml-value">Company accounting policy manual</span>
-  - <span class="yaml-key">area:</span> <span class="yaml-value">Company cost structure and business model</span>
-    <span class="yaml-key">depth:</span> <span class="yaml-value">expert</span>
-    <span class="yaml-key">documentation:</span> <span class="yaml-value">Tacit / learned on job</span>
-  - <span class="yaml-key">area:</span> <span class="yaml-value">NetSuite navigation and reporting</span>
-    <span class="yaml-key">depth:</span> <span class="yaml-value">expert</span>
-    <span class="yaml-key">documentation:</span> <span class="yaml-value">Internal wiki + vendor docs</span>
-
-<span class="yaml-key">time_distribution:</span>
-  <span class="yaml-key">high_frequency_skills:</span> <span class="yaml-value">[SKILL-005, SKILL-006]</span>
-  <span class="yaml-key">high_impact_skills:</span> <span class="yaml-value">[SKILL-001, SKILL-004]</span>
-  <span class="yaml-key">automation_candidates:</span> <span class="yaml-value">[SKILL-002, SKILL-005 - low judgment, high frequency]</span>
-
-<span class="yaml-key">observed_guardrails:</span>
-  - <span class="yaml-value">"Never share unreviewed numbers with non-finance stakeholders"</span>
-  - <span class="yaml-value">"Always verify GL totals match trial balance before analysis"</span>
-  - <span class="yaml-value">"Never discuss board-level financials outside exec team"</span>
-  - <span class="yaml-value">"Always CC Director on communications to C-suite"</span></pre>
-                    </div>
+                <div class="bg-black/30 p-4 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-amber">Automation candidates:</strong> Pay special attention to skills that are high frequency but low judgment. These are often the best candidates for full automation. Conversely, skills that are low frequency but require expert judgment are usually best left to humans.
+                    </p>
                 </div>
             </div>
 
@@ -882,76 +489,73 @@
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <i class="fa-solid fa-arrow-right-arrow-left text-brand-accent"></i>
-                    How This Maps to Agent Story
+                    From Replica to Agent Story
                 </h2>
-                <p class="text-gray-300 mb-6">Your completed Agentic Replica provides the raw material for creating an Agent Story. Here's the mapping:</p>
+                <p class="text-gray-300 mb-6">
+                    Your completed Agentic Replica provides the raw material for creating Agent Stories. The mapping is direct: triggers become agent triggers, skills become agent skills, tools become agent tools, escalation patterns become human oversight rules, and observed guardrails become agent guardrails.
+                </p>
 
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto mb-6">
                     <table class="w-full text-sm">
                         <thead>
                             <tr class="border-b border-white/10">
-                                <th class="text-left py-3 px-4 text-brand-amber font-bold">Agentic Replica Section</th>
+                                <th class="text-left py-3 px-4 text-brand-amber font-bold">Agentic Replica</th>
                                 <th class="text-center py-3 px-4 text-gray-500"><i class="fa-solid fa-arrow-right"></i></th>
-                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Agent Story Element</th>
+                                <th class="text-left py-3 px-4 text-brand-accent font-bold">Agent Story</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-300">
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">role_title + scope</td>
+                                <td class="py-3 px-4">Role title + scope</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">As [Agent Role]</code></td>
+                                <td class="py-3 px-4">As [Agent Role]</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skill.trigger</td>
+                                <td class="py-3 px-4">Skill triggers</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">trigger:</code> block</td>
+                                <td class="py-3 px-4">Trigger block</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skills_inventory + skill details</td>
+                                <td class="py-3 px-4">Skills inventory</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">skills:</code> array</td>
+                                <td class="py-3 px-4">Skills array</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skill.tools + common_tools</td>
+                                <td class="py-3 px-4">Tools used</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">tools:</code> array</td>
+                                <td class="py-3 px-4">Tools array</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skill.escalation</td>
+                                <td class="py-3 px-4">Escalation patterns</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">human_role</code> + <code class="text-brand-accent">escalates_when</code></td>
+                                <td class="py-3 px-4">Human role + escalates_when</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skill.quality_indicators</td>
+                                <td class="py-3 px-4">Quality indicators</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">success:</code> criteria</td>
+                                <td class="py-3 px-4">Success criteria</td>
                             </tr>
                             <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">observed_guardrails</td>
+                                <td class="py-3 px-4">Observed guardrails</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">guardrails:</code> array</td>
-                            </tr>
-                            <tr class="border-b border-white/5">
-                                <td class="py-3 px-4 font-mono text-xs">skill.decision_points</td>
-                                <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">Autonomy:</code> level determination</td>
+                                <td class="py-3 px-4">Guardrails array</td>
                             </tr>
                             <tr>
-                                <td class="py-3 px-4 font-mono text-xs">skill.outputs</td>
+                                <td class="py-3 px-4">Decision points</td>
                                 <td class="py-3 px-4 text-center mapping-arrow"><i class="fa-solid fa-arrow-right"></i></td>
-                                <td class="py-3 px-4"><code class="text-brand-accent">I [Action/Goal]</code> + <code class="text-brand-accent">so that [Outcome]</code></td>
+                                <td class="py-3 px-4">Autonomy level determination</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="mt-6 p-4 bg-black/30 rounded-lg border border-white/5">
+                <div class="p-4 bg-black/30 rounded-lg border border-white/5 mb-6">
                     <p class="text-sm text-gray-400">
-                        <strong class="text-brand-accent">Key insight:</strong> One human role often maps to multiple Agent Stories. A skill with <code>judgment_required: low</code> might become a fully autonomous agent, while <code>judgment_required: high</code> skills might become supervised or collaborative agents.
+                        <strong class="text-brand-accent">Key insight:</strong> One human role often maps to multiple Agent Stories. A skill with low judgment required might become a fully autonomous agent, while high-judgment skills might become supervised or collaborative agents with significant human oversight.
                     </p>
                 </div>
 
-                <div class="mt-6 flex flex-wrap gap-4">
+                <div class="flex flex-wrap gap-4">
                     <a href="agent-story-light.html" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors text-sm">
                         <i class="fa-solid fa-feather"></i>
                         Agent Story Light
@@ -963,64 +567,82 @@
                 </div>
             </div>
 
-            <!-- Data Collection Tips -->
+            <!-- Data Collection Best Practices -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <i class="fa-solid fa-lightbulb text-gray-400"></i>
-                    Data Collection Best Practices
+                    Best Practices for Data Collection
                 </h2>
+                <p class="text-gray-300 mb-6">
+                    How you gather information matters as much as what you gather. Here's guidance on doing this well.
+                </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h4 class="font-bold text-brand-success mb-3">Do</h4>
+                        <h4 class="font-bold text-brand-success mb-3">What works well</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-check text-brand-success mt-1 text-xs"></i>
-                                <span>Start with digital artifacts (emails, files, logs) before interviews</span>
+                                <span><strong class="text-gray-300">Start with digital artifacts</strong> (emails, files, logs) before conducting interviews. Let the data guide your questions.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-check text-brand-success mt-1 text-xs"></i>
-                                <span>Ask "show me" not "tell me" when possible</span>
+                                <span><strong class="text-gray-300">Ask "show me" not "tell me"</strong> when possible. Watching someone do the work reveals details they'd never think to mention.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-check text-brand-success mt-1 text-xs"></i>
-                                <span>Document what you observe, not what's "supposed to" happen</span>
+                                <span><strong class="text-gray-300">Document what you observe,</strong> not what's "supposed to" happen. The gap between policy and practice is often where the interesting insights live.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-check text-brand-success mt-1 text-xs"></i>
-                                <span>Capture exceptions and edge cases—they reveal judgment</span>
+                                <span><strong class="text-gray-300">Capture exceptions and edge cases</strong> carefully. They reveal where judgment is really being exercised.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-check text-brand-success mt-1 text-xs"></i>
-                                <span>Note time estimates even if rough</span>
+                                <span><strong class="text-gray-300">Note time estimates</strong> even if rough. They help prioritize automation opportunities.</span>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold text-brand-alert mb-3">Avoid</h4>
+                        <h4 class="font-bold text-brand-alert mb-3">Common mistakes to avoid</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-brand-alert mt-1 text-xs"></i>
-                                <span>Suggesting improvements while documenting (save for Reengineering)</span>
+                                <span><strong class="text-gray-300">Suggesting improvements while documenting.</strong> Save your optimization ideas for Agentic Reengineering. Right now you're just observing.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-brand-alert mt-1 text-xs"></i>
-                                <span>Relying solely on self-reported information</span>
+                                <span><strong class="text-gray-300">Relying solely on self-reported information.</strong> People often don't accurately describe their own work. Verify with data.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-brand-alert mt-1 text-xs"></i>
-                                <span>Skipping the "boring" routine tasks</span>
+                                <span><strong class="text-gray-300">Skipping the "boring" routine tasks.</strong> These are often the best automation candidates and deserve thorough documentation.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-brand-alert mt-1 text-xs"></i>
-                                <span>Treating job descriptions as accurate (they're usually outdated)</span>
+                                <span><strong class="text-gray-300">Treating job descriptions as accurate.</strong> They're usually outdated. The real job has evolved.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-brand-alert mt-1 text-xs"></i>
-                                <span>Invasive monitoring without consent</span>
+                                <span><strong class="text-gray-300">Invasive monitoring without consent.</strong> Be transparent about what you're observing and why. Trust matters.</span>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+
+            <!-- Templates & Example CTA -->
+            <div class="glass-card p-8 rounded-2xl bg-gradient-to-br from-brand-amber/10 to-transparent border-brand-amber/30">
+                <div class="text-center">
+                    <i class="fa-solid fa-file-code text-brand-amber text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Ready to start documenting?</h3>
+                    <p class="text-gray-400 mb-6 max-w-lg mx-auto">
+                        Get the copy-paste templates and see a complete worked example showing how all the pieces fit together for a real role.
+                    </p>
+                    <a href="agentic-replica-templates.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-amber text-brand-dark font-bold rounded-lg hover:bg-amber-400 transition-colors">
+                        <i class="fa-solid fa-file-code"></i>
+                        View Templates & Worked Example
+                    </a>
                 </div>
             </div>
 
