@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Reengineering Templates | HAP Analysis</title>
+    <meta name="description" content="Templates and worked examples for redesigning workflows with AI agents.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='8' r='6' fill='url(%23g1)'/%3E%3Ccircle cx='32' cy='56' r='6' fill='url(%23g1)'/%3E%3Cpath d='M26 14 C26 28 38 28 38 32 C38 36 26 36 26 50' stroke='%2338bdf8' stroke-width='3' fill='none'/%3E%3Cpath d='M38 14 C38 28 26 28 26 32 C26 36 38 36 38 50' stroke='%23c084fc' stroke-width='3' fill='none'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f472b6'/%3E%3C/svg%3E">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            surface: '#111827',
+                            accent: '#38bdf8',
+                            secondary: '#c084fc',
+                            alert: '#f472b6',
+                            success: '#34d399',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 0) 70%)",
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .template-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #38bdf8;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .template-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .example-block {
+            position: relative;
+            background: #0f172a;
+            border-left: 4px solid #34d399;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .example-label {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #34d399;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .yaml-key { color: #38bdf8; }
+        .yaml-value { color: #a5f3fc; }
+        .yaml-comment { color: #6b7280; }
+
+        .skill-number {
+            width: 24px;
+            height: 24px;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: #38bdf8;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] grid-bg opacity-20 pointer-events-none bg-grid-pattern h-full w-full"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <i class="fa-solid fa-dna text-brand-accent text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">HAP<span class="font-light text-gray-400">analysis</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="definitions.html" class="nav-link hover:text-white transition-colors">Core Definitions</a>
+                <a href="index.html#artifacts" class="nav-link hover:text-white transition-colors">Artifacts</a>
+                <a href="index.html#methods" class="nav-link hover:text-white transition-colors">Methods</a>
+            </div>
+            <a href="index.html#contact" class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-semibold">
+                Start Analysis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-8 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="agentic-reengineering.html" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors mb-6 text-sm">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Agentic Reengineering Guide
+            </a>
+            <div class="flex items-center justify-center gap-3 mb-4 text-brand-accent">
+                <i class="fa-solid fa-file-code"></i>
+                <span class="uppercase tracking-widest text-xs font-bold">Reference Materials</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="text-gradient">Reengineering Templates</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Copy-paste templates and a complete worked example for redesigning workflows with AI agents.
+            </p>
+        </div>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="py-4 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-4 rounded-xl">
+                <p class="text-sm text-gray-400 mb-3"><strong class="text-white">Jump to:</strong></p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#decomposition-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Task Decomposition</a>
+                    <a href="#workflow-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Workflow Design</a>
+                    <a href="#agent-spec-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Agent Specification</a>
+                    <a href="#feasibility-template" class="text-xs px-3 py-1 bg-white/5 hover:bg-brand-accent/20 rounded-full text-gray-300 hover:text-white transition-colors">Feasibility Assessment</a>
+                    <a href="#worked-example" class="text-xs px-3 py-1 bg-brand-success/20 hover:bg-brand-success/30 rounded-full text-brand-success hover:text-white transition-colors">Worked Example</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-8 px-6 relative">
+        <div class="max-w-5xl mx-auto space-y-10">
+
+            <!-- Task Decomposition Template -->
+            <div id="decomposition-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">1</div>
+                    Task Decomposition Matrix
+                </h2>
+                <p class="text-gray-300 mb-6">For each skill from your Agentic Replica, decide how it should be handled in the future state.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TASK DECOMPOSITION:</span> <span class="yaml-value">[Role ID]</span>
+
+<span class="yaml-key">skills_assessment:</span>
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">[From Agentic Replica]</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">[Name]</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">[% or hours/week]</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">[low | medium | high]</span>
+      <span class="yaml-key">error_rate:</span> <span class="yaml-value">[If known]</span>
+      <span class="yaml-key">pain_points:</span>
+        - <span class="yaml-value">[What's frustrating or inefficient?]</span>
+
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">[automate | augment | human_only]</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">[Why this classification?]</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">[What the agent does, if any]</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">[What the human does, if any]</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">[Full | Supervised | Collaborative | Directed]</span>
+
+<span class="yaml-comment"># Summary counts</span>
+<span class="yaml-key">summary:</span>
+  <span class="yaml-key">automate:</span> <span class="yaml-value">[count] skills, [%] of time</span>
+  <span class="yaml-key">augment:</span> <span class="yaml-value">[count] skills, [%] of time</span>
+  <span class="yaml-key">human_only:</span> <span class="yaml-value">[count] skills, [%] of time</span></pre>
+                </div>
+
+                <div class="mt-4 p-4 bg-black/30 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-accent">Classification guide:</strong>
+                    </p>
+                    <ul class="text-sm text-gray-400 mt-2 space-y-1">
+                        <li><span class="text-brand-success">Automate:</span> Low judgment, repetitive, clear rules, high volume</li>
+                        <li><span class="text-brand-secondary">Augment:</span> Medium judgment, benefits from AI assistance, human makes final call</li>
+                        <li><span class="text-brand-alert">Human-only:</span> High judgment, ethical decisions, relationship-dependent, novel situations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Workflow Design Template -->
+            <div id="workflow-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">2</div>
+                    To-Be Workflow Design
+                </h2>
+                <p class="text-gray-300 mb-6">Design the reengineered workflow showing how agents and humans collaborate.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TO-BE WORKFLOW:</span> <span class="yaml-value">[Workflow Name]</span>
+
+<span class="yaml-key">overview:</span>
+  <span class="yaml-key">goal:</span> <span class="yaml-value">[What this workflow accomplishes]</span>
+  <span class="yaml-key">trigger:</span> <span class="yaml-value">[What initiates the workflow]</span>
+  <span class="yaml-key">outcome:</span> <span class="yaml-value">[Successful end state]</span>
+
+<span class="yaml-key">participants:</span>
+  <span class="yaml-key">agents:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Agent Name]</span>
+      <span class="yaml-key">role:</span> <span class="yaml-value">[supervisor | worker | peer]</span>
+      <span class="yaml-key">responsibilities:</span>
+        - <span class="yaml-value">[What this agent handles]</span>
+  <span class="yaml-key">humans:</span>
+    - <span class="yaml-key">role:</span> <span class="yaml-value">[Human Role]</span>
+      <span class="yaml-key">involvement:</span> <span class="yaml-value">[in_the_loop | on_the_loop | out_of_loop]</span>
+      <span class="yaml-key">responsibilities:</span>
+        - <span class="yaml-value">[What this human handles]</span>
+
+<span class="yaml-key">stages:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Stage Name]</span>
+    <span class="yaml-key">owner:</span> <span class="yaml-value">[Agent or Human]</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">[What this stage accomplishes]</span>
+    <span class="yaml-key">inputs:</span>
+      - <span class="yaml-value">[What's needed to start]</span>
+    <span class="yaml-key">outputs:</span>
+      - <span class="yaml-value">[What's produced]</span>
+    <span class="yaml-key">tools_used:</span>
+      - <span class="yaml-value">[Systems/APIs involved]</span>
+    <span class="yaml-key">transitions:</span>
+      - <span class="yaml-key">to:</span> <span class="yaml-value">[Next Stage]</span>
+        <span class="yaml-key">when:</span> <span class="yaml-value">[Condition]</span>
+    <span class="yaml-key">escalation:</span>
+      <span class="yaml-key">conditions:</span> <span class="yaml-value">[When to escalate]</span>
+      <span class="yaml-key">to:</span> <span class="yaml-value">[Who handles escalation]</span>
+
+<span class="yaml-key">handoffs:</span>
+  - <span class="yaml-key">from:</span> <span class="yaml-value">[Source]</span>
+    <span class="yaml-key">to:</span> <span class="yaml-value">[Destination]</span>
+    <span class="yaml-key">type:</span> <span class="yaml-value">[agent_to_agent | agent_to_human | human_to_agent]</span>
+    <span class="yaml-key">data_passed:</span> <span class="yaml-value">[What information transfers]</span>
+
+<span class="yaml-key">guardrails:</span>
+  - <span class="yaml-value">[Thing that must never happen]</span>
+  - <span class="yaml-value">[Constraint that must always hold]</span></pre>
+                </div>
+            </div>
+
+            <!-- Agent Specification Template -->
+            <div id="agent-spec-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">3</div>
+                    Agent Specification (Agent Story Full Format)
+                </h2>
+                <p class="text-gray-300 mb-6">Define each agent using the Agent Story Full format. This becomes your implementation blueprint.</p>
+
+                <div class="template-block mb-6">
+                    <div class="template-label">Core Story</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENT STORY:</span> <span class="yaml-value">[ID]</span>
+
+As <span class="yaml-value">[Agent Role]</span>,
+triggered by <span class="yaml-value">[Event]</span>,
+I <span class="yaml-value">[Action/Goal]</span>,
+so that <span class="yaml-value">[Outcome/Value]</span>.
+
+Autonomy: <span class="yaml-value">[Full | Supervised | Collaborative | Directed]</span></pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-label">Full Specification</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[message | resource_change | schedule | cascade | manual]</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">[Where trigger originates]</span>
+  <span class="yaml-key">conditions:</span> <span class="yaml-value">[Guard conditions]</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">"[Specific example]"</span>
+
+<span class="yaml-key">behavior:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">[workflow | adaptive | hybrid]</span>
+  <span class="yaml-key">stages:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Stage Name]</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">[What this stage does]</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">[Next Stage]</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">[Condition]</span>
+  <span class="yaml-key">planning:</span> <span class="yaml-value">[none | local | delegated | emergent]</span>
+
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Skill Name]</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">[Knowledge domain]</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">[What the skill enables]</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Tools this skill leverages]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">[Success standard]</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">[built_in | learned | delegated]</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">[Tool/MCP Server]</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">[Why agent uses this]</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">[read | write | execute | admin]</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">[in_the_loop | on_the_loop | out_of_loop]</span>
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">[Checkpoint Name]</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">[When human needed]</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">[approval | input | review | escalation]</span>
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">[When to escalate]</span>
+    <span class="yaml-key">channel:</span> <span class="yaml-value">[How escalation occurs]</span>
+
+<span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">[Observable success behavior]</span>
+  <span class="yaml-key">quality:</span>
+    - <span class="yaml-value">[Non-functional requirements]</span>
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">[Must never violate]</span></pre>
+                </div>
+
+                <div class="mt-4">
+                    <a href="agent-story-full.html" class="inline-flex items-center gap-2 text-brand-secondary hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-external-link"></i>
+                        See full Agent Story format documentation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Feasibility Assessment Template -->
+            <div id="feasibility-template" class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="skill-number">4</div>
+                    Feasibility & Impact Assessment
+                </h2>
+                <p class="text-gray-300 mb-6">Evaluate whether your reengineered design is practical and worth pursuing.</p>
+
+                <div class="template-block">
+                    <div class="template-label">Template</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">FEASIBILITY ASSESSMENT:</span> <span class="yaml-value">[Project Name]</span>
+
+<span class="yaml-key">technical_feasibility:</span>
+  <span class="yaml-key">ai_capability_fit:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[Can current AI reliably do this?]</span>
+  <span class="yaml-key">data_availability:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[Is training/reference data available?]</span>
+  <span class="yaml-key">integration_complexity:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[How hard to connect to existing systems?]</span>
+  <span class="yaml-key">overall_technical:</span> <span class="yaml-value">[average score]</span>
+
+<span class="yaml-key">organizational_feasibility:</span>
+  <span class="yaml-key">stakeholder_buy_in:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[Will affected people support this?]</span>
+  <span class="yaml-key">change_magnitude:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[How disruptive is the change?]</span>
+  <span class="yaml-key">skill_gaps:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">[1-5]</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">[What new skills are needed?]</span>
+  <span class="yaml-key">overall_organizational:</span> <span class="yaml-value">[average score]</span>
+
+<span class="yaml-key">impact_projection:</span>
+  <span class="yaml-key">time_savings:</span>
+    <span class="yaml-key">current_hours:</span> <span class="yaml-value">[hours/week or month]</span>
+    <span class="yaml-key">projected_hours:</span> <span class="yaml-value">[hours/week or month]</span>
+    <span class="yaml-key">savings_percent:</span> <span class="yaml-value">[%]</span>
+  <span class="yaml-key">quality_improvement:</span>
+    <span class="yaml-key">current_error_rate:</span> <span class="yaml-value">[%]</span>
+    <span class="yaml-key">projected_error_rate:</span> <span class="yaml-value">[%]</span>
+  <span class="yaml-key">scalability:</span>
+    <span class="yaml-key">current_capacity:</span> <span class="yaml-value">[volume]</span>
+    <span class="yaml-key">projected_capacity:</span> <span class="yaml-value">[volume]</span>
+  <span class="yaml-key">cost_estimate:</span>
+    <span class="yaml-key">implementation:</span> <span class="yaml-value">[one-time cost]</span>
+    <span class="yaml-key">ongoing:</span> <span class="yaml-value">[monthly/annual]</span>
+    <span class="yaml-key">roi_timeline:</span> <span class="yaml-value">[months to positive ROI]</span>
+
+<span class="yaml-key">risks:</span>
+  - <span class="yaml-key">risk:</span> <span class="yaml-value">[Description]</span>
+    <span class="yaml-key">likelihood:</span> <span class="yaml-value">[low | medium | high]</span>
+    <span class="yaml-key">impact:</span> <span class="yaml-value">[low | medium | high]</span>
+    <span class="yaml-key">mitigation:</span> <span class="yaml-value">[How to address]</span>
+
+<span class="yaml-key">recommendation:</span> <span class="yaml-value">[proceed | pilot | defer | reject]</span>
+<span class="yaml-key">rationale:</span> <span class="yaml-value">[Why this recommendation]</span></pre>
+                </div>
+            </div>
+
+            <!-- Complete Worked Example -->
+            <div id="worked-example" class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-file-code text-brand-success"></i>
+                    Complete Worked Example: Financial Analyst Reengineering
+                </h2>
+                <p class="text-gray-300 mb-6">Continuing from the Agentic Replica example, here's how to reengineer the Financial Analyst role with AI agents.</p>
+
+                <!-- Task Decomposition Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">1</div>
+                        Task Decomposition
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">TASK DECOMPOSITION:</span> <span class="yaml-value">FIN-ANALYST-001</span>
+
+<span class="yaml-key">skills_assessment:</span>
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-001</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Monthly Variance Analysis</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">25%</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
+      <span class="yaml-key">error_rate:</span> <span class="yaml-value">~5% require rework</span>
+      <span class="yaml-key">pain_points:</span>
+        - <span class="yaml-value">Manual data gathering takes 2+ hours</span>
+        - <span class="yaml-value">Root cause research is repetitive</span>
+        - <span class="yaml-value">Commentary writing is time-consuming</span>
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">augment</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">Data gathering and initial analysis can be automated,
+                  but variance interpretation requires human judgment</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">Gather data, flag variances, draft commentary</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">Review analysis, refine commentary, approve</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">Collaborative</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-002</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Weekly Cash Flow Reporting</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">15%</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
+      <span class="yaml-key">error_rate:</span> <span class="yaml-value">~2%</span>
+      <span class="yaml-key">pain_points:</span>
+        - <span class="yaml-value">Tedious data extraction every week</span>
+        - <span class="yaml-value">Formatting is repetitive</span>
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">automate</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">Standard report, clear rules, low judgment</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">Generate complete report autonomously</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">Spot-check monthly, handle exceptions</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">Supervised</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-003</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Ad-hoc Analysis Requests</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">20%</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">high</span>
+      <span class="yaml-key">pain_points:</span>
+        - <span class="yaml-value">Unclear requirements from requesters</span>
+        - <span class="yaml-value">Similar analyses recreated from scratch</span>
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">augment</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">Agent can clarify requirements, retrieve similar
+                  past analyses, draft initial approach</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">Clarify request, find similar analyses, draft approach</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">Approve approach, execute complex analysis, present</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">Collaborative</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-005</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Data Quality Monitoring</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">low</span>
+      <span class="yaml-key">pain_points:</span>
+        - <span class="yaml-value">Manual checks are boring and error-prone</span>
+        - <span class="yaml-value">Issues discovered late in the process</span>
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">automate</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">Rule-based checks, continuous monitoring possible</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">Continuous monitoring, alert on anomalies</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">Investigate alerts, resolve root causes</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">Full</span>
+
+  - <span class="yaml-key">skill_id:</span> <span class="yaml-value">SKILL-006</span>
+    <span class="yaml-key">skill_name:</span> <span class="yaml-value">Stakeholder Communication</span>
+    <span class="yaml-key">current_state:</span>
+      <span class="yaml-key">time_spent:</span> <span class="yaml-value">10%</span>
+      <span class="yaml-key">judgment_required:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">future_state:</span>
+      <span class="yaml-key">classification:</span> <span class="yaml-value">human_only</span>
+      <span class="yaml-key">rationale:</span> <span class="yaml-value">Relationship-dependent, political sensitivity</span>
+      <span class="yaml-key">agent_role:</span> <span class="yaml-value">None (may draft routine updates)</span>
+      <span class="yaml-key">human_role:</span> <span class="yaml-value">All stakeholder communication</span>
+      <span class="yaml-key">autonomy_level:</span> <span class="yaml-value">N/A</span>
+
+<span class="yaml-key">summary:</span>
+  <span class="yaml-key">automate:</span> <span class="yaml-value">2 skills (SKILL-002, SKILL-005), 25% of time</span>
+  <span class="yaml-key">augment:</span> <span class="yaml-value">2 skills (SKILL-001, SKILL-003), 45% of time</span>
+  <span class="yaml-key">human_only:</span> <span class="yaml-value">2 skills (SKILL-004, SKILL-006), 30% of time</span></pre>
+                    </div>
+                </div>
+
+                <!-- Agent Story Example -->
+                <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">2</div>
+                        Agent Specification (Variance Analysis Agent)
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">AGENT STORY:</span> <span class="yaml-value">FPA-VARIANCE-001</span>
+
+As a <span class="yaml-value">Variance Analysis Agent</span>,
+triggered by <span class="yaml-value">monthly close completion notification</span>,
+I <span class="yaml-value">gather financial data, identify significant variances, and draft analysis</span>,
+so that <span class="yaml-value">analysts can focus on interpretation rather than data gathering</span>.
+
+Autonomy: <span class="yaml-value">Collaborative</span>
+
+<span class="yaml-comment"># ─────────────────────────────────────────────────────</span>
+
+<span class="yaml-key">trigger:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">message</span>
+  <span class="yaml-key">source:</span> <span class="yaml-value">Accounting system or Slack #accounting channel</span>
+  <span class="yaml-key">conditions:</span> <span class="yaml-value">Month-end close complete, GL data available</span>
+  <span class="yaml-key">examples:</span>
+    - <span class="yaml-value">"Slack: 'January books closed, GL ready for FP&A'"</span>
+    - <span class="yaml-value">"System event: NetSuite close status = complete"</span>
+
+<span class="yaml-key">behavior:</span>
+  <span class="yaml-key">type:</span> <span class="yaml-value">workflow</span>
+  <span class="yaml-key">stages:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Data Gathering</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Extract GL data and budget from source systems</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Variance Detection</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">All data extracted successfully</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Human Escalation</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Data extraction fails or data quality issues</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Variance Detection</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Calculate variances, flag items exceeding thresholds</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Root Cause Research</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Flagged variances identified</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Report Assembly</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">No significant variances (rare)</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Root Cause Research</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Investigate likely causes using historical patterns</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Commentary Drafting</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Research complete for all flagged items</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Commentary Drafting</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Generate draft explanations for each variance</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Human Review</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">All drafts complete</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Human Review</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Analyst reviews, edits, approves analysis</span>
+      <span class="yaml-key">transitions:</span>
+        - <span class="yaml-key">to:</span> <span class="yaml-value">Report Assembly</span>
+          <span class="yaml-key">when:</span> <span class="yaml-value">Analyst approves</span>
+
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Report Assembly</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Generate final formatted report</span>
+
+  <span class="yaml-key">planning:</span> <span class="yaml-value">local</span>
+
+<span class="yaml-key">skills:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Financial Data Extraction</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">ERP systems and financial databases</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Execute NetSuite saved searches and exports</span>
+      - <span class="yaml-value">Pull budget data from Adaptive Insights</span>
+      - <span class="yaml-value">Validate data completeness and reasonableness</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[NetSuite MCP, Adaptive API]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">100% of required data fields extracted accurately</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">built_in</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Variance Calculation</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Financial analysis</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Calculate budget vs actual variances by account</span>
+      - <span class="yaml-value">Apply materiality thresholds ($10K or 10%)</span>
+      - <span class="yaml-value">Identify month-over-month trends</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Internal calculation engine]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Calculations match manual verification 100%</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">built_in</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Pattern Recognition</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">Financial trend analysis</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Match current variances to historical patterns</span>
+      - <span class="yaml-value">Retrieve similar past variances and their explanations</span>
+      - <span class="yaml-value">Suggest likely root causes based on patterns</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[Variance History Vector DB]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Root cause suggestions relevant 80%+ of the time</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">learned</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Financial Writing</span>
+    <span class="yaml-key">domain:</span> <span class="yaml-value">FP&A communication</span>
+    <span class="yaml-key">proficiencies:</span>
+      - <span class="yaml-value">Draft variance commentary in company style</span>
+      - <span class="yaml-value">Summarize complex issues clearly</span>
+      - <span class="yaml-value">Flag items needing CFO attention</span>
+    <span class="yaml-key">tools_used:</span> <span class="yaml-value">[LLM]</span>
+    <span class="yaml-key">quality_bar:</span> <span class="yaml-value">Drafts require <30% editing by analyst</span>
+    <span class="yaml-key">acquired:</span> <span class="yaml-value">learned</span>
+
+<span class="yaml-key">tools:</span>
+  - <span class="yaml-key">name:</span> <span class="yaml-value">NetSuite MCP</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">GL data extraction, transaction drill-down</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Adaptive Insights API</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Budget and forecast data retrieval</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Variance History Vector DB</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Similar variance retrieval for pattern matching</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">read, write</span>
+
+  - <span class="yaml-key">name:</span> <span class="yaml-value">Report Generator</span>
+    <span class="yaml-key">purpose:</span> <span class="yaml-value">Format and output final variance reports</span>
+    <span class="yaml-key">permissions:</span> <span class="yaml-value">execute</span>
+
+<span class="yaml-key">memory:</span>
+  <span class="yaml-key">working:</span>
+    - <span class="yaml-value">Current month's extracted data</span>
+    - <span class="yaml-value">Flagged variances and draft commentary</span>
+  <span class="yaml-key">persistent:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Variance History</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">vector</span>
+      <span class="yaml-key">purpose:</span> <span class="yaml-value">Store past variances for pattern matching</span>
+      <span class="yaml-key">updates:</span> <span class="yaml-value">append</span>
+  <span class="yaml-key">learning:</span>
+    - <span class="yaml-key">type:</span> <span class="yaml-value">feedback_loop</span>
+      <span class="yaml-key">signal:</span> <span class="yaml-value">Analyst edits to draft commentary</span>
+
+<span class="yaml-key">human_interaction:</span>
+  <span class="yaml-key">mode:</span> <span class="yaml-value">in_the_loop</span>
+  <span class="yaml-key">checkpoints:</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Analysis Review</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">Draft analysis complete</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">review</span>
+      <span class="yaml-key">timeout:</span> <span class="yaml-value">Alert manager if no response in 24h</span>
+    - <span class="yaml-key">name:</span> <span class="yaml-value">Material Variance Alert</span>
+      <span class="yaml-key">trigger:</span> <span class="yaml-value">Any variance > $100K</span>
+      <span class="yaml-key">type:</span> <span class="yaml-value">escalation</span>
+      <span class="yaml-key">timeout:</span> <span class="yaml-value">Immediate notification</span>
+  <span class="yaml-key">escalation:</span>
+    <span class="yaml-key">conditions:</span> <span class="yaml-value">Data extraction failure, unrecognized variance pattern,
+                 confidence < 70%</span>
+    <span class="yaml-key">channel:</span> <span class="yaml-value">Slack DM to assigned analyst</span>
+
+<span class="yaml-key">acceptance:</span>
+  <span class="yaml-key">functional:</span>
+    - <span class="yaml-value">Extracts all required data within 15 minutes of trigger</span>
+    - <span class="yaml-value">Identifies 100% of variances exceeding thresholds</span>
+    - <span class="yaml-value">Produces draft analysis by business day 6</span>
+  <span class="yaml-key">quality:</span>
+    - <span class="yaml-value">Draft commentary requires <30% analyst editing</span>
+    - <span class="yaml-value">Root cause suggestions relevant 80%+ of time</span>
+    - <span class="yaml-value">Zero calculation errors</span>
+  <span class="yaml-key">guardrails:</span>
+    - <span class="yaml-value">Never publish analysis without human approval</span>
+    - <span class="yaml-value">Never modify source system data</span>
+    - <span class="yaml-value">Never share analysis outside finance team</span></pre>
+                    </div>
+                </div>
+
+                <!-- Feasibility Assessment Example -->
+                <div>
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <div class="skill-number">3</div>
+                        Feasibility Assessment
+                    </h4>
+                    <div class="example-block">
+                        <div class="example-label">Example</div>
+<pre class="whitespace-pre-wrap"><span class="yaml-key">FEASIBILITY ASSESSMENT:</span> <span class="yaml-value">FP&A Variance Analysis Automation</span>
+
+<span class="yaml-key">technical_feasibility:</span>
+  <span class="yaml-key">ai_capability_fit:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">4</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">Data extraction and pattern matching are strong AI use cases.
+           Commentary drafting is feasible with current LLMs.</span>
+  <span class="yaml-key">data_availability:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">5</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">3 years of variance reports available for training.
+           All source systems have APIs.</span>
+  <span class="yaml-key">integration_complexity:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">3</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">NetSuite API well-documented. Adaptive requires custom
+           connector. Report formatting needs template work.</span>
+  <span class="yaml-key">overall_technical:</span> <span class="yaml-value">4.0</span>
+
+<span class="yaml-key">organizational_feasibility:</span>
+  <span class="yaml-key">stakeholder_buy_in:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">4</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">Analysts excited to reduce data gathering.
+           CFO supportive of faster reporting.</span>
+  <span class="yaml-key">change_magnitude:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">4</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">Workflow changes but core analyst role preserved.
+           Shifts focus to interpretation vs data gathering.</span>
+  <span class="yaml-key">skill_gaps:</span>
+    <span class="yaml-key">score:</span> <span class="yaml-value">4</span>
+    <span class="yaml-key">notes:</span> <span class="yaml-value">Analysts need training on reviewing AI output.
+           IT needs agent management skills.</span>
+  <span class="yaml-key">overall_organizational:</span> <span class="yaml-value">4.0</span>
+
+<span class="yaml-key">impact_projection:</span>
+  <span class="yaml-key">time_savings:</span>
+    <span class="yaml-key">current_hours:</span> <span class="yaml-value">20 hours/month (variance analysis)</span>
+    <span class="yaml-key">projected_hours:</span> <span class="yaml-value">6 hours/month (review and refine)</span>
+    <span class="yaml-key">savings_percent:</span> <span class="yaml-value">70%</span>
+  <span class="yaml-key">quality_improvement:</span>
+    <span class="yaml-key">current_error_rate:</span> <span class="yaml-value">5% require rework</span>
+    <span class="yaml-key">projected_error_rate:</span> <span class="yaml-value">1% (calculation errors eliminated)</span>
+  <span class="yaml-key">scalability:</span>
+    <span class="yaml-key">current_capacity:</span> <span class="yaml-value">1 analyst handles 1 business unit</span>
+    <span class="yaml-key">projected_capacity:</span> <span class="yaml-value">1 analyst can oversee 3 business units</span>
+  <span class="yaml-key">cost_estimate:</span>
+    <span class="yaml-key">implementation:</span> <span class="yaml-value">$75,000 (development + integration)</span>
+    <span class="yaml-key">ongoing:</span> <span class="yaml-value">$2,000/month (API costs + maintenance)</span>
+    <span class="yaml-key">roi_timeline:</span> <span class="yaml-value">8 months</span>
+
+<span class="yaml-key">risks:</span>
+  - <span class="yaml-key">risk:</span> <span class="yaml-value">AI misses unusual variance patterns</span>
+    <span class="yaml-key">likelihood:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">impact:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">mitigation:</span> <span class="yaml-value">Human review checkpoint, continuous learning from
+               analyst corrections</span>
+
+  - <span class="yaml-key">risk:</span> <span class="yaml-value">Commentary tone doesn't match company culture</span>
+    <span class="yaml-key">likelihood:</span> <span class="yaml-value">medium</span>
+    <span class="yaml-key">impact:</span> <span class="yaml-value">low</span>
+    <span class="yaml-key">mitigation:</span> <span class="yaml-value">Fine-tune on historical reports, analyst editing phase</span>
+
+  - <span class="yaml-key">risk:</span> <span class="yaml-value">Source system API changes break extraction</span>
+    <span class="yaml-key">likelihood:</span> <span class="yaml-value">low</span>
+    <span class="yaml-key">impact:</span> <span class="yaml-value">high</span>
+    <span class="yaml-key">mitigation:</span> <span class="yaml-value">Monitoring, fallback to manual extraction,
+               vendor relationship management</span>
+
+<span class="yaml-key">recommendation:</span> <span class="yaml-value">proceed</span>
+<span class="yaml-key">rationale:</span> <span class="yaml-value">Strong technical fit, organizational support, clear ROI.
+           Start with variance analysis as pilot, expand to other
+           FP&A workflows based on results.</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Guide CTA -->
+            <div class="text-center py-8">
+                <a href="agentic-reengineering.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to the Step-by-Step Guide
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/40 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work.
+                </p>
+            </div>
+            <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
+                &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
+                Human Judgment Required.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.glass-card, h2, h3').forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

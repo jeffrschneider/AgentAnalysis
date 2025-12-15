@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Reengineering | HAP Analysis</title>
-    <meta name="description" content="Envision and design optimized workflows for human-agent pairing, restructuring roles for efficiency, scalability, and innovation.">
+    <meta name="description" content="Step-by-step guide to redesigning workflows with AI agents for efficiency, scalability, and innovation.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,23 +81,12 @@
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4b5563;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
-        .nav-link {
-            position: relative;
-        }
+        .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -108,43 +97,23 @@
             background-color: #38bdf8;
             transition: width 0.3s ease;
         }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        .nav-link:hover::after { width: 100%; }
 
         .step-number {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, #38bdf8, #c084fc);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 0.875rem;
             color: #030712;
             flex-shrink: 0;
         }
 
-        .task-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .task-automate {
-            background: rgba(52, 211, 153, 0.2);
-            color: #34d399;
-        }
-        .task-augment {
-            background: rgba(192, 132, 252, 0.2);
-            color: #c084fc;
-        }
-        .task-human {
-            background: rgba(244, 114, 182, 0.2);
-            color: #f472b6;
-        }
+        .mapping-arrow { color: #6b7280; }
     </style>
 </head>
 <body class="antialiased">
@@ -172,7 +141,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="relative pt-32 pb-12 px-6 overflow-hidden">
+    <header class="relative pt-32 pb-8 px-6 overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-hero-pattern z-[-1] opacity-60"></div>
 
         <div class="max-w-4xl mx-auto text-center">
@@ -188,236 +157,248 @@
                 <span class="text-gradient">Agentic Reengineering</span>
             </h1>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Envisioning how job areas can be optimized with AI agents—restructuring workflows for efficiency, scalability, and innovation.
+                A step-by-step guide to redesigning workflows with AI agents, producing detailed Agent Stories for implementation.
             </p>
         </div>
     </header>
 
     <!-- Content -->
-    <section class="py-12 px-6 relative">
-        <div class="max-w-5xl mx-auto space-y-12">
+    <section class="py-8 px-6 relative">
+        <div class="max-w-4xl mx-auto space-y-10">
 
-            <!-- Philosophy Section -->
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-compass text-brand-accent"></i>
-                    The Approach
-                </h2>
-                <div class="space-y-4 text-gray-300 leading-relaxed">
-                    <p>
-                        Agentic Reengineering shifts to <strong class="text-white">speculative redesign</strong>, imagining how the job area could be optimized with AI agents—potentially restructuring workflows, roles, and handoffs for efficiency, scalability, or innovation.
-                    </p>
-                    <p>
-                        Inspired by <strong class="text-white">Business Process Reengineering (BPR)</strong>, this approach assumes radical changes like automating handoffs or augmenting human creativity, while considering ethical factors such as job displacement. The approach is <strong class="text-white">forward-looking</strong>, using simulations and benchmarks to prototype AI-driven alternatives.
-                    </p>
-                    <p>
-                        This process is kept <strong class="text-white">separate from the current state</strong> to avoid conflating "as-is" with "to-be"—ensuring clear thinking about what's possible versus what exists today.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Task Decomposition Visual -->
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-object-ungroup text-brand-accent"></i>
-                    Task Decomposition Model
-                </h2>
-                <p class="text-gray-300 mb-8">From the black-box model, tasks are categorized into three types:</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-brand-success/10 border border-brand-success/30 p-6 rounded-xl">
-                        <div class="w-16 h-16 bg-brand-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-robot text-brand-success text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2 text-center">Automatable</h4>
-                        <p class="text-sm text-gray-400 text-center mb-4">Tasks agents can handle autonomously</p>
-                        <ul class="text-xs text-gray-500 space-y-1">
-                            <li>• Data aggregation</li>
-                            <li>• Report generation</li>
-                            <li>• Email triage</li>
-                            <li>• Status updates</li>
-                        </ul>
-                    </div>
-                    <div class="bg-brand-secondary/10 border border-brand-secondary/30 p-6 rounded-xl">
-                        <div class="w-16 h-16 bg-brand-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-people-arrows text-brand-secondary text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2 text-center">Augmentable</h4>
-                        <p class="text-sm text-gray-400 text-center mb-4">Tasks enhanced by AI assistance</p>
-                        <ul class="text-xs text-gray-500 space-y-1">
-                            <li>• AI-assisted decisions</li>
-                            <li>• Draft generation</li>
-                            <li>• Research synthesis</li>
-                            <li>• Anomaly detection</li>
-                        </ul>
-                    </div>
-                    <div class="bg-brand-alert/10 border border-brand-alert/30 p-6 rounded-xl">
-                        <div class="w-16 h-16 bg-brand-alert/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-user text-brand-alert text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2 text-center">Human-Only</h4>
-                        <p class="text-sm text-gray-400 text-center mb-4">Tasks requiring human judgment</p>
-                        <ul class="text-xs text-gray-500 space-y-1">
-                            <li>• Ethical decisions</li>
-                            <li>• Relationship building</li>
-                            <li>• Creative direction</li>
-                            <li>• Final accountability</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Core Process Section -->
+            <!-- Purpose Section -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
                 <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                    <i class="fa-solid fa-list-check text-brand-accent"></i>
-                    Core Process
+                    <i class="fa-solid fa-crosshairs text-brand-accent"></i>
+                    What You're Trying to Do
                 </h2>
-                <p class="text-gray-400 mb-8">A 5-step creative cycle, building on current state data but emphasizing experimentation. Involve cross-functional teams (e.g., AI devs, domain experts) in workshops.</p>
-
-                <div class="space-y-6">
-                    <!-- Step 1 -->
-                    <div class="flex gap-4">
-                        <div class="step-number">1</div>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-white mb-2">Envision Redesign Goals</h4>
-                            <p class="text-gray-400 text-sm mb-3">
-                                Define objectives based on pain points from the current state (e.g., reduce handoff delays). Use BPR principles: question assumptions, integrate processes end-to-end, and prioritize customer/value outcomes.
-                            </p>
-                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                                <p class="text-xs text-gray-500 italic">
-                                    <strong class="text-gray-400">Key questions:</strong> What takes too long? Where do errors occur? What would 10x improvement look like?
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="flex gap-4">
-                        <div class="step-number">2</div>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-white mb-2">Decompose and Reassign Tasks</h4>
-                            <p class="text-gray-400 text-sm mb-3">
-                                From the black-box model, break tasks into automatable, augmentable, and human-only categories. Imagine multi-agent systems for complex workflows.
-                            </p>
-                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                                <p class="text-xs text-gray-500 italic">
-                                    <strong class="text-gray-400">Example:</strong> A "planner agent" coordinating with "executor agents" for a marketing campaign workflow.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="flex gap-4">
-                        <div class="step-number">3</div>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-white mb-2">Simulate AI-Enabled Workflows</h4>
-                            <p class="text-gray-400 text-sm mb-3">
-                                Prototype with LLMs: prompt to reimagine roles. Model handoffs as agent-to-agent or agent-to-human. Use agent-building tools like AutoGen for complex prototypes.
-                            </p>
-                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                                <p class="text-xs text-gray-500 italic">
-                                    <strong class="text-gray-400">Prompt example:</strong> "Redesign a marketing coordinator's workflow with AI agents handling email triage and content drafting."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="flex gap-4">
-                        <div class="step-number">4</div>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-white mb-2">Evaluate Feasibility and Impact</h4>
-                            <p class="text-gray-400 text-sm mb-3">
-                                Assess using metrics like automation potential (e.g., via McKinsey frameworks) or ROI simulations. Test prototypes on sample data from current assets.
-                            </p>
-                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                                <p class="text-xs text-gray-500 italic">
-                                    <strong class="text-gray-400">Metrics to consider:</strong> Time saved, error reduction, scalability factor, human satisfaction, cost delta.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 5 -->
-                    <div class="flex gap-4">
-                        <div class="step-number">5</div>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-white mb-2">Iterate and Document the To-Be Model</h4>
-                            <p class="text-gray-400 text-sm mb-3">
-                                Refine based on simulations, creating blueprints for implementation (e.g., agent specs: tools, reasoning chains). Address risks like AI hallucinations through human oversight loops.
-                            </p>
-                            <div class="bg-white/5 p-4 rounded-lg border border-white/5">
-                                <p class="text-xs text-gray-500 italic">
-                                    <strong class="text-gray-400">Output:</strong> Reengineered process map showing streamlined flows (e.g., AI automating 60% of transformations).
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Where Agentic Replica documents <strong class="text-white">how things work today</strong>, Agentic Reengineering imagines <strong class="text-white">how they could work tomorrow</strong>. You're taking the raw material from your Replica and asking: if we had AI agents as partners, what would this role look like?
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    This isn't about replacing humans. It's about thoughtfully deciding which tasks benefit from automation, which benefit from AI assistance, and which should remain fully human. The output is a set of <strong class="text-white">Agent Stories</strong> that serve as blueprints for implementation.
+                </p>
+                <div class="bg-black/30 p-4 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-accent">Key principle:</strong> Keep this separate from documenting the current state. You need to think freely about what's possible without being constrained by "but that's not how we do it today."
+                    </p>
                 </div>
             </div>
 
-            <!-- Optional Techniques -->
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-toolbox text-brand-secondary"></i>
-                    Optional / Enhancing Techniques
+            <!-- Prerequisites -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-amber">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fa-solid fa-clipboard-check text-brand-amber"></i>
+                    Before You Start
                 </h2>
-                <p class="text-gray-400 mb-6">Secondary methods to enrich your future state vision:</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fa-solid fa-route text-brand-secondary text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2">Scenario Planning</h4>
-                        <p class="text-sm text-gray-400">
-                            Use foresight methods to explore multiple futures (e.g., full automation vs. hybrid), incorporating trends like advanced LLMs.
-                        </p>
-                    </div>
-
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fa-solid fa-vial text-brand-secondary text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2">Multi-Agent Benchmarks</h4>
-                        <p class="text-sm text-gray-400">
-                            Draw from AI research (e.g., AgentBench) to test redesigned workflows in simulated environments before deployment.
-                        </p>
-                    </div>
-
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fa-solid fa-scale-balanced text-brand-secondary text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white mb-2">Ethical Review</h4>
-                        <p class="text-sm text-gray-400">
-                            Integrate impact assessments to balance efficiency with job equity, ensuring reengineering enhances rather than eliminates roles.
-                        </p>
-                    </div>
+                <p class="text-gray-300 mb-4">
+                    Agentic Reengineering builds on the work from Agentic Replica. Before starting, you should have:
+                </p>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-brand-success mt-1"></i>
+                        <span><strong class="text-white">A completed Agentic Replica</strong> documenting the current role, including all skills, triggers, inputs, processes, and outputs.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-brand-success mt-1"></i>
+                        <span><strong class="text-white">Cross-cutting patterns identified</strong>, especially escalation patterns and observed guardrails, which inform where human oversight is essential.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-brand-success mt-1"></i>
+                        <span><strong class="text-white">Pain points noted</strong> during data collection. These are your opportunities for improvement.</span>
+                    </li>
+                </ul>
+                <div class="mt-6">
+                    <a href="agentic-replica.html" class="inline-flex items-center gap-2 text-brand-amber hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Haven't done Agentic Replica yet? Start there
+                    </a>
                 </div>
             </div>
 
-            <!-- Multi-Agent Architecture -->
+            <!-- The Five-Step Process -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-network-wired text-brand-accent"></i>
-                    Multi-Agent Architecture Patterns
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fa-solid fa-route text-brand-accent"></i>
+                    The Five-Step Process
                 </h2>
-                <p class="text-gray-300 mb-6">When redesigning workflows, consider these common multi-agent patterns:</p>
+                <p class="text-gray-300 mb-6">
+                    Reengineering is a creative process, but it follows a structured approach to ensure you don't miss important considerations.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-center text-sm">
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <div class="step-number mx-auto mb-3">1</div>
+                        <p class="text-white font-medium">Define Goals</p>
+                        <p class="text-gray-500 text-xs mt-1">What to improve</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <div class="step-number mx-auto mb-3">2</div>
+                        <p class="text-white font-medium">Classify Tasks</p>
+                        <p class="text-gray-500 text-xs mt-1">Automate / Augment / Human</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <div class="step-number mx-auto mb-3">3</div>
+                        <p class="text-white font-medium">Design Workflow</p>
+                        <p class="text-gray-500 text-xs mt-1">Agent-human collaboration</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <div class="step-number mx-auto mb-3">4</div>
+                        <p class="text-white font-medium">Specify Agents</p>
+                        <p class="text-gray-500 text-xs mt-1">Write Agent Stories</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <div class="step-number mx-auto mb-3">5</div>
+                        <p class="text-white font-medium">Assess Feasibility</p>
+                        <p class="text-gray-500 text-xs mt-1">Evaluate & refine</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="agentic-reengineering-templates.html" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors text-sm">
+                        <i class="fa-solid fa-file-code"></i>
+                        View Templates & Worked Example
+                    </a>
+                </div>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+            <!-- STEP 1: Define Goals -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">1</div>
+                    Define Your Redesign Goals
+                </h2>
+                <p class="text-gray-300 mb-6">
+                    Start by articulating what you're trying to achieve. Look at the pain points from your Agentic Replica and decide which ones matter most.
+                </p>
+
+                <h4 class="font-bold text-white mb-3">Questions to ask:</h4>
+                <ul class="space-y-3 text-gray-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-clock text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What takes too long?</strong> Where do delays frustrate customers or stakeholders? Where do people spend time on low-value activities?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-bug text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">Where do errors occur?</strong> Which skills have high rework rates? Where do mistakes slip through that cause problems downstream?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-chart-line text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What would 10x improvement look like?</strong> If you could process ten times the volume, or do it in a tenth of the time, what would that enable?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-user-clock text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What do people hate doing?</strong> Tedious, repetitive tasks drain energy that could go toward more valuable work.</span>
+                    </li>
+                </ul>
+
+                <div class="bg-black/30 p-4 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-accent">Pro tip:</strong> Be specific about goals. "Improve efficiency" is vague. "Reduce variance report preparation from 8 hours to 2 hours" is actionable and measurable.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2: Classify Tasks -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">2</div>
+                    Classify Each Task
+                </h2>
+                <p class="text-gray-300 mb-6">
+                    Go through each skill from your Agentic Replica and decide how it should be handled in the future state. Every task falls into one of three categories.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-brand-success/10 border border-brand-success/30 p-5 rounded-xl">
+                        <div class="w-12 h-12 bg-brand-success/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-robot text-brand-success text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Automate</h4>
+                        <p class="text-sm text-gray-400 text-center mb-3">Agent handles it fully</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>Low judgment required</li>
+                            <li>Clear, consistent rules</li>
+                            <li>High volume / repetitive</li>
+                            <li>Low risk if wrong</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-secondary/10 border border-brand-secondary/30 p-5 rounded-xl">
+                        <div class="w-12 h-12 bg-brand-secondary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-people-arrows text-brand-secondary text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Augment</h4>
+                        <p class="text-sm text-gray-400 text-center mb-3">Agent assists human</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>Medium judgment required</li>
+                            <li>Benefits from AI analysis</li>
+                            <li>Human makes final call</li>
+                            <li>AI drafts, human refines</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-alert/10 border border-brand-alert/30 p-5 rounded-xl">
+                        <div class="w-12 h-12 bg-brand-alert/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-user text-brand-alert text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-center">Human-Only</h4>
+                        <p class="text-sm text-gray-400 text-center mb-3">Human handles it fully</p>
+                        <ul class="text-xs text-gray-500 space-y-1">
+                            <li>High judgment required</li>
+                            <li>Ethical considerations</li>
+                            <li>Relationship-dependent</li>
+                            <li>Novel / unprecedented</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 class="font-bold text-white mb-3">How to decide:</h4>
+                <ul class="space-y-2 text-sm text-gray-400 mb-6">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Look at the judgment level</strong> you captured in the Replica. Low judgment skills are automation candidates. High judgment skills need human involvement.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Consider the escalation patterns.</strong> If a skill frequently escalates, that's a signal it needs human oversight even in the future state.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Think about consequences of errors.</strong> If getting it wrong causes serious harm, lean toward human involvement.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Assess AI capability honestly.</strong> Can current AI actually do this reliably? Don't assume future magic.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="agentic-reengineering-templates.html#decomposition-template" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-file-code"></i>
+                        See the Task Decomposition template
+                    </a>
+                </div>
+            </div>
+
+            <!-- STEP 3: Design the Workflow -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">3</div>
+                    Design the Future Workflow
+                </h2>
+                <p class="text-gray-300 mb-6">
+                    Now that you know what should be automated, augmented, or human-only, design how agents and humans will work together. This is where you decide the structure of collaboration.
+                </p>
+
+                <h4 class="font-bold text-white mb-3">Consider these patterns:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
                                 <i class="fa-solid fa-sitemap text-brand-accent"></i>
                             </div>
                             <h4 class="font-bold text-white">Planner-Executor</h4>
                         </div>
-                        <p class="text-sm text-gray-400">One agent plans and delegates, others execute specific tasks. Good for complex workflows with clear decomposition.</p>
+                        <p class="text-sm text-gray-400">One agent (or human) plans and delegates, others execute specific tasks. Good for complex workflows with clear decomposition.</p>
                     </div>
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
                                 <i class="fa-solid fa-arrows-spin text-brand-accent"></i>
@@ -426,7 +407,7 @@
                         </div>
                         <p class="text-sm text-gray-400">Sequential handoffs where each agent's output feeds the next. Ideal for linear processes with clear stages.</p>
                     </div>
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
                                 <i class="fa-solid fa-users text-brand-accent"></i>
@@ -435,107 +416,292 @@
                         </div>
                         <p class="text-sm text-gray-400">Agents work as equals, sharing information and coordinating dynamically. Suited for creative or research tasks.</p>
                     </div>
-                    <div class="bg-white/5 p-5 rounded-lg border border-white/5">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-10 h-10 bg-brand-accent/20 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-user-tie text-brand-accent"></i>
+                                <i class="fa-solid fa-user-shield text-brand-accent"></i>
                             </div>
                             <h4 class="font-bold text-white">Human-in-the-Loop</h4>
                         </div>
                         <p class="text-sm text-gray-400">Human oversees and intervenes at key decision points. Essential for high-stakes or novel situations.</p>
                     </div>
                 </div>
+
+                <h4 class="font-bold text-white mb-3">Key decisions to make:</h4>
+                <ul class="space-y-3 text-gray-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-exchange-alt text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">Where are the handoffs?</strong> Every transition between agent and human (or between agents) is a potential failure point. Design these carefully.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-traffic-light text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What are the checkpoints?</strong> Where must a human review, approve, or intervene before the workflow continues?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-arrow-up-right-dots text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What triggers escalation?</strong> Under what conditions does an agent stop and ask for human help?</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-shield-halved text-brand-accent mt-1"></i>
+                        <span><strong class="text-white">What are the guardrails?</strong> What must never happen? These become constraints on agent behavior.</span>
+                    </li>
+                </ul>
+
+                <div class="bg-black/30 p-4 rounded-lg border border-white/5">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-accent">Design tip:</strong> Start with the simplest pattern that works. A single agent with human checkpoints is easier to implement and debug than a complex multi-agent system. Add complexity only when simpler approaches don't meet your goals.
+                    </p>
+                </div>
             </div>
 
-            <!-- Tools Section -->
-            <div class="glass-card p-8 rounded-2xl border-l-4 border-gray-500">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-wrench text-gray-400"></i>
-                    Recommended Tools
+            <!-- STEP 4: Specify Agents -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-secondary">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">4</div>
+                    Specify Each Agent
                 </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                        <i class="fa-solid fa-robot text-gray-400 text-2xl mb-2"></i>
-                        <p class="text-sm text-gray-300">Agent Frameworks</p>
-                        <p class="text-xs text-gray-500">AutoGen, LangGraph, CrewAI</p>
+                <p class="text-gray-300 mb-6">
+                    For each agent in your design, create an <strong class="text-white">Agent Story</strong> using the Full format. This becomes the implementation blueprint that developers will use.
+                </p>
+
+                <h4 class="font-bold text-white mb-3">What each Agent Story captures:</h4>
+                <div class="space-y-4 mb-6">
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">The Core Story</h5>
+                        <p class="text-sm text-gray-400">A simple narrative: As [Agent Role], triggered by [Event], I [Action], so that [Outcome]. Plus the autonomy level (Full, Supervised, Collaborative, or Directed).</p>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                        <i class="fa-solid fa-flask text-gray-400 text-2xl mb-2"></i>
-                        <p class="text-sm text-gray-300">Simulation</p>
-                        <p class="text-xs text-gray-500">AgentBench, custom sandboxes</p>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Trigger Specification</h5>
+                        <p class="text-sm text-gray-400">What activates this agent? A message, a schedule, a system event? Include concrete examples so implementers understand exactly what to listen for.</p>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                        <i class="fa-solid fa-diagram-project text-gray-400 text-2xl mb-2"></i>
-                        <p class="text-sm text-gray-300">Process Modeling</p>
-                        <p class="text-xs text-gray-500">BPMN tools, Miro</p>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Behavior Model</h5>
+                        <p class="text-sm text-gray-400">How does the agent work? Define the stages it moves through, what transitions between them, and how much planning flexibility it has.</p>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                        <i class="fa-solid fa-calculator text-gray-400 text-2xl mb-2"></i>
-                        <p class="text-sm text-gray-300">ROI Analysis</p>
-                        <p class="text-xs text-gray-500">Spreadsheets, custom models</p>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Skills</h5>
+                        <p class="text-sm text-gray-400">What competencies does the agent have? Each skill has a domain, specific proficiencies, tools it uses, and a quality bar defining what "good" looks like.</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Tools</h5>
+                        <p class="text-sm text-gray-400">What systems and APIs does the agent need access to? Define the purpose and permission level for each.</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Human Interaction</h5>
+                        <p class="text-sm text-gray-400">How does the human fit in? Define checkpoints where human approval is needed, conditions that trigger escalation, and timeout behaviors.</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h5 class="font-bold text-brand-secondary mb-2">Acceptance Criteria</h5>
+                        <p class="text-sm text-gray-400">How do we know it's working? Define functional criteria (what it does), quality criteria (how well), and guardrails (what it must never do).</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="agent-story-full.html" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors text-sm">
+                        <i class="fa-solid fa-scroll"></i>
+                        Agent Story Full Format
+                    </a>
+                    <a href="agentic-reengineering-templates.html#agent-spec-template" class="inline-flex items-center gap-2 text-brand-secondary hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-file-code"></i>
+                        See the template
+                    </a>
+                </div>
+            </div>
+
+            <!-- STEP 5: Assess Feasibility -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-accent">
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <div class="step-number">5</div>
+                    Assess Feasibility and Iterate
+                </h2>
+                <p class="text-gray-300 mb-6">
+                    Before committing to implementation, evaluate whether your design is practical and worth pursuing. This step prevents costly mistakes.
+                </p>
+
+                <h4 class="font-bold text-white mb-3">Evaluate on two dimensions:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h5 class="font-bold text-brand-accent mb-2">Technical Feasibility</h5>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-microchip text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">AI capability fit:</strong> Can current AI actually do this reliably? Test with prototypes.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-database text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">Data availability:</strong> Do you have the data needed for training and operation?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-plug text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">Integration complexity:</strong> How hard is it to connect to existing systems?</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-brand-accent mb-2">Organizational Feasibility</h5>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-users text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">Stakeholder buy-in:</strong> Will the people affected support this change?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-arrows-up-down text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">Change magnitude:</strong> How disruptive is this to current ways of working?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-graduation-cap text-brand-accent mt-1 text-xs"></i>
+                                <span><strong class="text-gray-300">Skill gaps:</strong> What new capabilities do people need to learn?</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 class="font-bold text-white mb-3">Project the impact:</h4>
+                <ul class="space-y-2 text-sm text-gray-400 mb-6">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-clock text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Time savings:</strong> How many hours will this free up? For whom?</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check-double text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Quality improvement:</strong> Will error rates decrease? By how much?</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-expand text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Scalability:</strong> Can this handle growth without proportional staffing?</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-dollar-sign text-brand-accent mt-1 text-xs"></i>
+                        <span><strong class="text-gray-300">Cost:</strong> What's the implementation cost vs. ongoing value?</span>
+                    </li>
+                </ul>
+
+                <div class="bg-black/30 p-4 rounded-lg border border-white/5 mb-4">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-brand-accent">Iteration is expected.</strong> Your first design won't be perfect. Prototype key pieces, get feedback, and refine. It's better to discover problems early than during full implementation.
+                    </p>
+                </div>
+
+                <a href="agentic-reengineering-templates.html#feasibility-template" class="inline-flex items-center gap-2 text-brand-accent hover:text-white transition-colors text-sm">
+                    <i class="fa-solid fa-file-code"></i>
+                    See the Feasibility Assessment template
+                </a>
+            </div>
+
+            <!-- Ethical Considerations -->
+            <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-alert">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-brand-alert"></i>
+                    Ethical Considerations
+                </h2>
+                <p class="text-gray-300 mb-6">
+                    Reengineering with AI agents has real impact on people's jobs and lives. Take these considerations seriously.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-white mb-2">Job Impact</h4>
+                        <p class="text-sm text-gray-400">
+                            Be honest about how roles will change. If automation eliminates tasks, what happens to the people who did them? The goal should be augmentation that makes work more meaningful, not displacement that harms livelihoods.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-white mb-2">Transparency</h4>
+                        <p class="text-sm text-gray-400">
+                            Involve affected workers in the design process. They have expertise about their jobs that you don't, and early involvement builds trust and surfaces better solutions.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-white mb-2">Accountability</h4>
+                        <p class="text-sm text-gray-400">
+                            When agents make decisions that affect people, who is responsible? Design clear accountability chains. "The AI did it" is never an acceptable answer.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <h4 class="font-bold text-white mb-2">Reversibility</h4>
+                        <p class="text-sm text-gray-400">
+                            Can you undo the changes if they don't work? Preserve the ability to fall back to human-operated processes if needed.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Output Section -->
+            <!-- What You'll Produce -->
             <div class="glass-card p-8 rounded-2xl border-l-4 border-brand-success">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <i class="fa-solid fa-check-circle text-brand-success"></i>
                     What You'll Produce
                 </h2>
+                <p class="text-gray-300 mb-6">By the end of this process, you'll have:</p>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h4 class="font-bold text-white mb-3">Primary Deliverable</h4>
+                        <h4 class="font-bold text-white mb-3">Primary Deliverables</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
-                                <span>Reengineered process map (To-Be model)</span>
+                                <span><strong class="text-gray-300">Task decomposition matrix</strong> showing what's automated, augmented, or human-only</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
-                                <span>Task decomposition matrix (automate/augment/human)</span>
+                                <span><strong class="text-gray-300">To-Be workflow design</strong> showing how agents and humans collaborate</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
-                                <span>Agent specifications (roles, tools, reasoning chains)</span>
+                                <span><strong class="text-gray-300">Agent Stories (Full format)</strong> for each agent in the design</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-success rounded-full mt-2"></div>
-                                <span>Feasibility and ROI assessment</span>
+                                <span><strong class="text-gray-300">Feasibility assessment</strong> with ROI projection and risk analysis</span>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white mb-3">Enables</h4>
+                        <h4 class="font-bold text-white mb-3">This Enables</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
-                                <span>Comprehensive Agent Stories (Full format)</span>
+                                <span>Implementation planning and prioritization</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
-                                <span>HAP Plan development</span>
+                                <span>HAP Plan development for the human-agent pair</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
-                                <span>Implementation roadmap</span>
+                                <span>Technical architecture and tool selection</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-1.5 h-1.5 bg-brand-accent rounded-full mt-2"></div>
-                                <span>Change management planning</span>
+                                <span>Change management and training planning</span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Templates & Example CTA -->
+            <div class="glass-card p-8 rounded-2xl bg-gradient-to-br from-brand-accent/10 to-transparent border-brand-accent/30">
+                <div class="text-center">
+                    <i class="fa-solid fa-file-code text-brand-accent text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Ready to start reengineering?</h3>
+                    <p class="text-gray-400 mb-6 max-w-lg mx-auto">
+                        Get the copy-paste templates and see a complete worked example continuing the Financial Analyst from the Agentic Replica guide.
+                    </p>
+                    <a href="agentic-reengineering-templates.html" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
+                        <i class="fa-solid fa-file-code"></i>
+                        View Templates & Worked Example
+                    </a>
+                </div>
+            </div>
+
             <!-- CTA Section -->
             <div class="text-center py-8">
-                <h3 class="text-xl font-bold text-white mb-6">See how methods map to artifacts</h3>
+                <h3 class="text-xl font-bold text-white mb-6">Continue your journey</h3>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="methods-matrix.html" class="px-8 py-4 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-cyan-300 transition-colors">
-                        <i class="fa-solid fa-table-cells mr-2"></i>
-                        View Methods Matrix
+                    <a href="agent-story-full.html" class="px-8 py-4 bg-brand-secondary text-brand-dark font-bold rounded-lg hover:bg-purple-300 transition-colors">
+                        <i class="fa-solid fa-scroll mr-2"></i>
+                        Agent Story Full Format
                     </a>
                     <a href="agentic-replica.html" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-lg transition-colors font-medium">
                         <i class="fa-solid fa-arrow-left mr-2"></i>
@@ -554,9 +720,9 @@
                 <i class="fa-solid fa-dna text-brand-accent text-3xl mb-4"></i>
                 <h2 class="text-2xl font-bold text-white">HAPanalysis.com</h2>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
-                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities.                </p>
+                    Agent Analysis provides frameworks for understanding human-AI collaboration as the fundamental unit of modern work. As AI agents become capable partners rather than passive tools, organizations need new methodologies to design systems that build trust, allocate responsibilities dynamically, and evolve alongside advancing capabilities.
+                </p>
             </div>
-
             <div class="text-xs text-gray-600 font-mono border-t border-white/5 pt-8">
                 &copy; 2026 <a href="https://legendary.ai" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-white transition-colors">Legendary.AI</a>. All rights reserved. <br>
                 Human Judgment Required.
@@ -564,13 +730,8 @@
         </div>
     </footer>
 
-    <!-- Interactive Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1
-            };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -578,11 +739,8 @@
                         entry.target.classList.remove('opacity-0', 'translate-y-10');
                     }
                 });
-            }, observerOptions);
-
-            const animatedElements = document.querySelectorAll('.glass-card, h2, h3');
-
-            animatedElements.forEach(el => {
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.glass-card, h2, h3').forEach(el => {
                 el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
                 observer.observe(el);
             });
